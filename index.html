@@ -142,7 +142,14 @@ footer h4{color:#fff8e9;margin:0 0 12px}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.15);margin-top:25px;padding-top:16px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:#aebdaf;font-size:.76rem}
 .modal-backdrop{position:fixed;inset:0;background:rgba(18,30,23,.58);z-index:50;display:none;align-items:center;justify-content:center;padding:18px}
 .modal-backdrop.open{display:flex}
-.modal{background:var(--paper);width:min(650px,100%);max-height:90dvh;overflow:auto;border-radius:22px;padding:24px;box-shadow:0 25px 70px rgba(0,0,0,.25)}
+.modal{background:var(--paper);width:min(760px,100%);max-height:90dvh;overflow:auto;border-radius:22px;padding:clamp(18px,3vw,28px);box-shadow:0 25px 70px rgba(0,0,0,.25)}
+.policy-modal{width:min(1000px,100%)}
+.policy-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.policy-grid .feed-card{padding:18px}
+#entryMeaning{min-height:170px;line-height:1.65}
+#editorModal .modal{border:1px solid rgba(217,180,106,.55)}
+#editorForm .notice{line-height:1.5}
+@media(max-width:650px){.policy-grid{grid-template-columns:1fr}.modal{padding:17px;border-radius:17px}.modal-head{align-items:flex-start}}
 .modal-head{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:18px}
 .modal-head h2{font-family:Georgia,serif;color:var(--forest);margin:0}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
@@ -315,23 +322,27 @@ footer h4{color:#fff8e9;margin:0 0 12px}
   </div>
  </div>
 </section>
-<section id="policies">
- <div class="wrap">
-  <div class="section-head"><div><span class="eyebrow">Malinaw na patakaran</span><h2>Terms, Privacy & Content Policy</h2><p>Mga pangunahing gabay para sa paggamit at pangangalaga sa nilalaman ng Liblu Blaan.</p></div></div>
-  <div class="feature-grid">
+
+</main>
+
+<div class="modal-backdrop" id="policyModal" role="dialog" aria-modal="true" aria-labelledby="policyTitle">
+ <div class="modal policy-modal"><div class="modal-head"><div><span class="eyebrow">Malinaw na patakaran</span><h2 id="policyTitle">Terms, Privacy & Content Policy</h2></div><button class="icon-btn" data-close="policyModal" aria-label="Close">✕</button></div>
+  <p class="legal-note">Mga gabay sa paggamit ng Liblu Blaan. Dapat iayon ng may-ari ang privacy notice sa aktuwal na data practices bago ito ituring na pinal na legal notice.</p>
+  <div class="policy-grid">
    <article class="feed-card"><h3 style="color:var(--forest)">Terms of Use</h3><p style="color:var(--muted);font-size:.9rem">Gamitin ang website para sa pag-aaral, pagbahagi ng kaalaman, at paggalang sa wikang at kulturang Blaan. Huwag mag-post ng ilegal, mapanakit, mapanlinlang, spam, personal na impormasyon ng ibang tao, o materyal na wala kang pahintulot na ibahagi. Maaaring alisin ng owner ang content na lumalabag sa mga patakarang ito. Ang mga tala sa wika at kultura ay dapat may wastong pagkilala sa pinagmulan at beripikasyon kung maaari.</p></article>
    <article class="feed-card"><h3 style="color:var(--forest)">Privacy Policy</h3><p style="color:var(--muted);font-size:.9rem">Maaaring iproseso ng website ang owner email/session para sa authentication, at ang display name, comment, reaction, at post data na isinusumite sa site. Ginagamit ang data para patakbuhin ang community features, protektahan ang website, at mag-moderate ng content. Huwag maglagay ng password, government ID, financial details, o sensitibong personal na impormasyon sa comments. Ang Supabase at GitHub Pages ay third-party providers. Para sa access, correction, o removal request, makipag-ugnayan sa site owner. Iwasang mangakong walang tracking hangga’t hindi sinusuri ang provider settings. Dapat tiyakin ng may-ari na tugma ang patakarang ito sa aktuwal na data practices ng website at sa naaangkop na batas bago ilathala bilang pinal na legal notice.</p></article>
    <article class="feed-card"><h3 style="color:var(--forest)">Copyright & Cultural Respect</h3><p style="color:var(--muted);font-size:.9rem">Kilalanin ang may-akda, tagapagsalaysay, photographer, at pinagmulan. Huwag kopyahin o muling ilathala ang protektadong nilalaman nang walang pahintulot. Igalang ang kaalamang may limitasyon sa pagbabahagi. Ang pag-post ay hindi nangangahulugang pagmamay-ari ng website ang copyright ng materyal.</p></article>
+  
   </div>
  </div>
-</section>
-</main>
+</div>
+
 <footer>
  <div class="wrap">
   <div class="footer-grid">
    <div><a class="brand" href="#home"><div class="brand-mark" aria-hidden="true"></div><div><div class="brand-name">Liblu Blaan</div><div class="brand-tag">Blaan ang tribo, Blaan din ang lengwahe ko</div></div></a><p style="max-width:360px;margin-top:16px">Isang digital na tahanan para sa wika, pamana, kuwentong-bayan, at tunog ng Blaan.</p></div>
    <div><h4>Explore</h4><div class="footer-links"><a href="#dictionary">Dictionary</a><a href="#heritage">Heritage</a><a href="#stories">Stories & Folklore</a><a href="#newsfeed">Newsfeed</a><a href="#timeline">Timeline</a></div></div>
-   <div><h4>Website information</h4><div class="footer-links"><a href="#about">About the Author</a><a href="#policies">Terms of Use</a><a href="#policies">Privacy Policy</a><a href="#policies">Copyright & Content Policy</a><a href="mailto:liblublaan@example.com">Contact / Report</a><button class="btn btn-outline" id="footerOwner" style="justify-content:flex-start;color:#f6f1e4;border-color:#637568">Editors Lounge</button></div></div>
+   <div><h4>Website information</h4><div class="footer-links"><a href="#about">About the Author</a><a href="#policyModal" data-policy-open>Terms of Use</a><a href="#policyModal" data-policy-open>Privacy Policy</a><a href="#policyModal" data-policy-open>Copyright & Content Policy</a><a href="mailto:liblublaan@example.com">Contact / Report</a><button class="btn btn-outline" id="footerOwner" style="justify-content:flex-start;color:#f6f1e4;border-color:#637568">Editors Lounge</button></div></div>
   </div>
   <div class="footer-bottom"><span>© <span id="year"></span> LIBLU BLAAN — All rights reserved.</span><span>Created by Floramae Malayon</span></div>
  </div>
@@ -353,12 +364,13 @@ footer h4{color:#fff8e9;margin:0 0 12px}
  <div class="modal"><div class="modal-head"><h2 id="editorTitle">Add content</h2><button class="icon-btn" data-close="editorModal" aria-label="Close">✕</button></div>
   <form id="editorForm">
    <input type="hidden" id="contentType"><input type="hidden" id="editingPostId">
-   <div class="field" id="wordField"><label for="entryWord">Blaan word / title</label><input id="entryWord" placeholder="Hal. AYÈM" /></div>
+   <div class="field" id="wordField"><label for="entryWord" id="entryWordLabel">Blaan word</label><input id="entryWord" placeholder="Hal. AYÈM" autocomplete="off" maxlength="100" /></div>
    <div class="form-grid" id="wordExtras">
     <div class="field"><label for="entryPronunciation">Pronunciation guide</label><input id="entryPronunciation" placeholder="Phonetic guide (optional)"></div>
     <div class="field"><label for="entryCategory">Category</label><select id="entryCategory"><option>Daily words</option><option>Animals</option><option>Culture</option></select></div>
    </div>
-   <div class="field" id="meaningField"><label for="entryMeaning">Meaning / description</label><textarea id="entryMeaning" placeholder="Ilagay ang kahulugan o nilalaman…"></textarea></div>
+   <div class="field hidden" id="sourceField"><label for="entrySource">Source / speaker (optional)</label><input id="entrySource" maxlength="120" placeholder="Hal. pangalan ng source o community speaker"></div>
+   <div class="field" id="meaningField"><label for="entryMeaning" id="entryMeaningLabel">Kahulugan / salin</label><textarea id="entryMeaning" placeholder="Ilagay ang kahulugan o nilalaman…" maxlength="10000"></textarea></div>
    <div class="field hidden" id="audioField"><label for="entryAudio">Audio file (optional)</label><input id="entryAudio" type="file" accept="audio/*"><small style="color:var(--muted)">Audio files are not uploaded to the server by this form. Gumamit ng cloud storage bago mag-publish ng audio para makita ito ng lahat.</small></div>
    <div class="field hidden" id="imageField"><label for="entryImage">Post image (optional)</label><input id="entryImage" type="file" accept="image/*"><small style="color:var(--muted)">Image is resized in the browser. Para makita ng lahat, kailangan itong i-upload sa cloud storage.</small><img id="imagePreview" class="hidden" alt="Image preview" style="max-height:170px;object-fit:contain;border-radius:10px"></div>
    <div class="field hidden" id="dateField"><label for="entryDate">Date / year</label><input id="entryDate" placeholder="Hal. 2026 · October"></div>
@@ -379,12 +391,12 @@ const supabaseClient = (window.supabase && SUPABASE_URL.startsWith('https://') &
  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY) : null;
 
 const initialWords = [
- {word:"ANGOK",pron:"AH-ngok (gabay lamang)",meaning:"Monkey / unggoy",category:"Animals",source:"Starter entry"},
- {word:"AYÈM",pron:"AH-yem (gabay lamang)",meaning:"Dog / aso",category:"Animals",source:"Starter entry"},
- {word:"KUKÔ",pron:"ku-KO (gabay lamang)",meaning:"Cat / pusa",category:"Animals",source:"Starter entry"},
- {word:"Blaan",pron:"blahn (approximate guide)",meaning:"Pangalan ng katutubong pangkat at ng wikang tinatalakay sa site na ito.",category:"Culture",source:"General entry — verify locally"},
- {word:"Liblu",pron:"lib-lu (approximate guide)",meaning:"Ginamit dito bilang pangalan ng digital na aklatan; beripikahin ang lokal na kahulugan bago ituring na dictionary definition.",category:"Daily words",source:"Site title"},
- {word:"Klang",pron:"",meaning:"Magdagdag ng kahulugan at pagbigkas matapos itong makumpirma sa isang fluent Blaan speaker.",category:"Culture",source:"Needs verification"}
+ {word:"ANGOK",pronunciation:"AH-ngok (gabay lamang)",meaning:"Monkey / unggoy",category:"Animals",source:"Starter entry"},
+ {word:"AYÈM",pronunciation:"AH-yem (gabay lamang)",meaning:"Dog / aso",category:"Animals",source:"Starter entry"},
+ {word:"KUKÔ",pronunciation:"ku-KO (gabay lamang)",meaning:"Cat / pusa",category:"Animals",source:"Starter entry"},
+ {word:"Blaan",pronunciation:"blahn (approximate guide)",meaning:"Pangalan ng katutubong pangkat at ng wikang tinatalakay sa site na ito.",category:"Culture",source:"General entry — verify locally"},
+ {word:"Liblu",pronunciation:"lib-lu (approximate guide)",meaning:"Ginamit dito bilang pangalan ng digital na aklatan; beripikahin ang lokal na kahulugan bago ituring na dictionary definition.",category:"Daily words",source:"Site title"},
+ {word:"Klang",pronunciation:"",meaning:"Magdagdag ng kahulugan at pagbigkas matapos itong makumpirma sa isang fluent Blaan speaker.",category:"Culture",source:"Needs verification"}
 ];
 const initialPosts = [
  {title:"Maligayang pagdating sa Liblu Blaan",category:"Announcement",date:"Oktubre 2026",body:"Ito ang bagong digital na tahanan para sa mga salita, tunog, kuwento, folklore, at pamana ng Blaan. Unti-unti nating palalawakin ang mga tala—na may paggalang at beripikasyon mula sa komunidad.",image:"",likes:0},
@@ -400,16 +412,28 @@ const safeRead = (key, fallback) => { try { const v=localStorage.getItem(key); r
 let words = safeRead("liblu_words", initialWords);
 let posts = safeRead("liblu_posts", initialPosts);
 let timelineItems = safeRead("liblu_timeline", initialTimeline);
-let ownerMode = false, currentFilter = "All", pendingImage = "", pendingAudio = "", editingLegacyIndex = null;
+let ownerMode = false, currentFilter = "All", pendingImage = "", pendingAudio = "", editingLegacyIndex = null, editingWordValue = null;
 function saveAll(){try{localStorage.setItem("liblu_words",JSON.stringify(words));localStorage.setItem("liblu_posts",JSON.stringify(posts));localStorage.setItem("liblu_timeline",JSON.stringify(timelineItems));}catch(e){alert("Hindi sapat ang browser storage. Gumamit ng mas maliit na image/audio o ikonekta ang site sa cloud storage.");}}
 function escapeHTML(s=""){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function safeMediaUrl(value, kind="image") {
+ if (typeof value !== "string") return "";
+ const v = value.trim();
+ if (/^https?:\/\//i.test(v)) return escapeHTML(v);
+ const allowed = kind === "audio"
+   ? /^data:audio\/(?:mpeg|mp3|wav|ogg|webm|mp4);base64,[a-z0-9+/=\r\n]+$/i
+   : /^data:image\/(?:jpeg|jpg|png|gif|webp);base64,[a-z0-9+/=\r\n]+$/i;
+ return allowed.test(v) ? escapeHTML(v) : "";
+}
 function speakWord(word){if(!("speechSynthesis" in window)){alert("Hindi suportado ng browser ang text-to-speech. Mas mainam ang verified audio recording ng Blaan speaker.");return;}let u=new SpeechSynthesisUtterance(word);u.lang="en-US";u.rate=.78;window.speechSynthesis.cancel();window.speechSynthesis.speak(u);alert("Browser text-to-speech ito, hindi garantisadong tamang Blaan pronunciation. Gumamit ng verified Blaan audio kapag available.");}
 function renderWords(){
  const q=$("#wordSearch").value.trim().toLowerCase();
  const activeWords = cloudWords !== null ? cloudWords : words;
- const list=activeWords.filter(w=>(currentFilter==="All"||w.category===currentFilter)&&[w.word,w.meaning,w.pronunciation,w.category].join(" ").toLowerCase().includes(q));
+ const list=activeWords.filter(w=>(currentFilter==="All"||w.category===currentFilter)&&[w.word,w.meaning,w.pronunciation||w.pron,w.category,w.source].join(" ").toLowerCase().includes(q));
  $("#wordCount").textContent=activeWords.length;
- $("#wordGrid").innerHTML=list.length?list.map((w)=>`<article class="word-card"><div class="word-top"><div><div class="word">${escapeHTML(w.word)}</div><div class="pronunciation">${escapeHTML(w.pronunciation||"Bigkas: kailangan pang idagdag")}</div></div><button class="icon-btn" title="Hear pronunciation (browser voice only)" aria-label="Hear ${escapeHTML(w.word)}" onclick="speakWord('${String(w.word).replace(/\\/g,"\\\\").replace(/'/g,"\\'")}')">♫</button></div><div class="meaning">${escapeHTML(w.meaning)}</div><div class="word-meta"><span>${escapeHTML(w.category)} · ${escapeHTML(w.source||"Liblu Blaan")}</span>${ownerMode?`<button class="icon-btn" title="Delete entry" onclick="deleteWord('${String(w.word).replace(/\\/g,"\\\\").replace(/'/g,"\\'")}')">⌫</button>`:""}</div>${w.audio?`<audio controls preload="none" style="width:100%;margin-top:12px"><source src="${w.audio}"></audio>`:""}</article>`).join(""):'<div class="empty">Walang nahanap na salita. Subukang ibang keyword o category.</div>';
+ $("#wordGrid").innerHTML=list.length?list.map((w)=>{
+  const audioUrl=safeMediaUrl(w.audio_url||w.audio,"audio");
+  return `<article class="word-card"><div class="word-top"><div><div class="word">${escapeHTML(w.word)}</div><div class="pronunciation">${escapeHTML(w.pronunciation||w.pron||"Bigkas: kailangan pang idagdag")}</div></div><button class="icon-btn" type="button" data-speak-word="${escapeHTML(w.word)}" title="Hear pronunciation (browser voice only)" aria-label="Hear ${escapeHTML(w.word)}">♫</button></div><div class="meaning">${escapeHTML(w.meaning)}</div><div class="word-meta"><span>${escapeHTML(w.category)} · ${escapeHTML(w.source||"Liblu Blaan")}</span>${ownerMode?`<button class="icon-btn" type="button" data-edit-word="${escapeHTML(w.word)}" title="Edit entry" aria-label="Edit ${escapeHTML(w.word)}">✎</button><button class="icon-btn" type="button" data-delete-word="${escapeHTML(w.word)}" title="Delete entry" aria-label="Delete ${escapeHTML(w.word)}">⌫</button>`:""}</div>${audioUrl?`<audio controls preload="none" style="width:100%;margin-top:12px"><source src="${audioUrl}"></audio>`:""}</article>`;
+ }).join(""):'<div class="empty">Walang nahanap na salita. Subukang ibang keyword o category.</div>';
 }
 let cloudPosts = [];
 let cloudWords = null;
@@ -483,9 +507,10 @@ function renderCloudPost(p) {
   const comments = postComments.filter(c => c.post_id === p.id);
   const liked = postReactions.some(r => r.post_id === p.id && r.visitor_id === visitorId);
   const isOwner = ownerMode;
+  const imageUrl=safeMediaUrl(p.image_url,"image");
   return `<article class="feed-card" data-cloud-post="${p.id}">
     <div class="feed-head"><div class="avatar">BB</div><div><strong>Liblu Blaan</strong><small>${escapeHTML(p.published_at || new Date(p.created_at).toLocaleDateString())} · Official update</small></div><span class="post-tag">${escapeHTML(p.category || "Update")}</span></div>
-    <h3>${escapeHTML(p.title)}</h3><p>${escapeHTML(p.body)}</p>${p.image_url ? `<img class="post-image" src="${escapeHTML(p.image_url)}" alt="Image for ${escapeHTML(p.title)}" loading="lazy">` : ""}
+    <h3>${escapeHTML(p.title)}</h3><p>${escapeHTML(p.body)}</p>${imageUrl ? `<img class="post-image" src="${imageUrl}" alt="Image for ${escapeHTML(p.title)}" loading="lazy">` : ""}
     <div class="post-actions"><button class="social-btn ${liked ? "liked" : ""}" type="button" onclick="likeCloudPost('${p.id}')" ${liked ? "disabled" : ""}>♥ ${liked ? "Liked" : "Like"} (${postReactions.filter(r=>r.post_id===p.id).length})</button><button class="social-btn" type="button" onclick="focusComment('${p.id}')">💬 Comment (${comments.length})</button><button class="social-btn" type="button" onclick="shareCloudPost('${p.id}')">↗ Share</button>${isOwner ? `<button class="social-btn" type="button" onclick="editCloudPost('${p.id}')">✎ Edit</button><button class="social-btn" type="button" onclick="deleteCloudPost('${p.id}')">Delete</button>` : ""}</div>
     <div class="post-comments"><strong>Comments & replies</strong><div class="comment-list">${renderCommentTree(p.id) || '<p class="legal-note">Wala pang comment. Maging magalang sa pagbahagi.</p>'}</div>
       <form class="comment-form" onsubmit="submitCloudComment(event,'${p.id}')"><input name="display_name" maxlength="60" placeholder="Pangalan o display name (huwag ang password)" required><textarea name="body" maxlength="1000" placeholder="Isulat ang comment…" required></textarea><div class="legal-note" id="reply-label-${p.id}">${replyToByPost[p.id] ? "May napiling reply target." : "Keep comments respectful. Comments may be public."}</div><button class="btn btn-light" type="submit">Post comment / reply</button></form>
@@ -494,7 +519,8 @@ function renderCloudPost(p) {
 function renderLegacyPost(p, i, migratedKeys) {
   const key = legacyKey(p);
   if (migratedKeys.has(key)) return "";
-  return `<article class="feed-card"><div class="feed-head"><div class="avatar">BB</div><div><strong>Liblu Blaan</strong><small>${escapeHTML(p.date||"Recent update")} · Browser-saved post</small></div><span class="post-tag">${escapeHTML(p.category||"Update")}</span></div><h3>${escapeHTML(p.title)}</h3><p>${escapeHTML(p.body)}</p>${p.image?`<img class="post-image" src="${p.image}" alt="Image for ${escapeHTML(p.title)}" loading="lazy">`:""}${p.audio?`<audio controls preload="none" style="width:100%;margin:8px 0"><source src="${p.audio}"></audio>`:""}<div class="post-actions">${ownerMode?`<button class="social-btn" type="button" onclick="editLegacyPost(${i})">✎ Edit locally</button><button class="social-btn" type="button" onclick="deletePost(${i})">Delete local post</button>`:""}<span class="legal-note">This older post is stored in this browser until the owner imports it.</span></div></article>`;
+  const imageUrl=safeMediaUrl(p.image,"image"), audioUrl=safeMediaUrl(p.audio,"audio");
+  return `<article class="feed-card"><div class="feed-head"><div class="avatar">BB</div><div><strong>Liblu Blaan</strong><small>${escapeHTML(p.date||"Recent update")} · Browser-saved post</small></div><span class="post-tag">${escapeHTML(p.category||"Update")}</span></div><h3>${escapeHTML(p.title)}</h3><p>${escapeHTML(p.body)}</p>${imageUrl?`<img class="post-image" src="${imageUrl}" alt="Image for ${escapeHTML(p.title)}" loading="lazy">`:""}${audioUrl?`<audio controls preload="none" style="width:100%;margin:8px 0"><source src="${audioUrl}"></audio>`:""}<div class="post-actions">${ownerMode?`<button class="social-btn" type="button" onclick="editLegacyPost(${i})">✎ Edit locally</button><button class="social-btn" type="button" onclick="deletePost(${i})">Delete local post</button>`:""}<span class="legal-note">This older post is stored in this browser until the owner imports it.</span></div></article>`;
 }
 function renderPosts() {
   const feed = $("#feedList");
@@ -569,8 +595,10 @@ async function editCloudPost(postId) {
   $("#entryWord").value=p.title || "";
   $("#entryMeaning").value=p.body || "";
   $("#entryDate").value=p.published_at || "";
-  $("#entryCategory").value=p.category || "Announcement";
-  pendingImage="";
+  setEditorCategories("post", p.category || "Announcement");
+  pendingImage=safeMediaUrl(p.image_url,"image") ? p.image_url : "";
+  if(pendingImage){$("#imagePreview").src=pendingImage;$("#imagePreview").classList.remove("hidden");}
+  else $("#imagePreview").classList.add("hidden");
   openModal("editorModal");
 }
 function editLegacyPost(i) {
@@ -616,20 +644,33 @@ function setOwner(on){ownerMode=on;document.querySelectorAll(".owner-action").fo
 function openModal(id){$("#"+id).classList.add("open");document.body.style.overflow="hidden";}
 function closeModal(id){$("#"+id).classList.remove("open");document.body.style.overflow="";}
 function openOwner(){ $("#loginError").textContent="";$("#ownerPassword").value="";openModal("ownerModal");}
+function setEditorCategories(type, selected="") {
+ const select=$("#entryCategory");
+ const options=type==="word"
+   ? [["Daily words","Pang-araw-araw"],["Animals","Hayop"],["Culture","Kultura"]]
+   : [["Announcement","Announcement"],["Dictionary","Dictionary"],["Heritage","Heritage"],["Stories & Folklore","Stories & Folklore"],["Community Update","Community Update"]];
+ select.innerHTML=options.map(([value,label])=>`<option value="${escapeHTML(value)}">${escapeHTML(label)}</option>`).join("");
+ select.value=options.some(([value])=>value===selected)?selected:options[0][0];
+}
 function openEditor(type, legacyData=null){
  if(!ownerMode){openOwner();return;}
- $("#editorForm").reset();pendingImage="";pendingAudio="";$("#imagePreview").classList.add("hidden");
+ $("#editorForm").reset();pendingImage="";pendingAudio="";editingWordValue=null;$("#imagePreview").classList.add("hidden");
  $("#editingPostId").value="";
  if (!legacyData) editingLegacyIndex=null;
  $("#editorSaveButton").textContent="Save content";
+ setEditorCategories(type, type==="word"?"Daily words":"Announcement");
  $("#contentType").value=type;$("#editorTitle").textContent=type==="word"?"Add dictionary word":type==="post"?"Publish update":"Add timeline item";
  $("#wordField").classList.toggle("hidden",type==="timeline");
  $("#wordExtras").classList.toggle("hidden",type!=="word");
+ $("#sourceField").classList.toggle("hidden",type!=="word");
+ $("#entrySource").value="";
  $("#meaningField").classList.toggle("hidden",type==="timeline");
  $("#audioField").classList.toggle("hidden",type!=="word"&&type!=="post");
  $("#imageField").classList.toggle("hidden",type!=="post");
  $("#dateField").classList.toggle("hidden",type==="word");
- $("#entryWord").placeholder=type==="post"?"Post title":type==="timeline"?"Timeline title":"Blaan word / title";
+ $("#entryWord").placeholder=type==="post"?"Pamagat ng post":type==="timeline"?"Pamagat ng timeline":"Hal. AYÈM";
+ $("#entryWordLabel").textContent=type==="post"?"Post title":type==="timeline"?"Timeline title":"Blaan word";
+ $("#entryMeaningLabel").textContent=type==="post"?"Post content":type==="timeline"?"Description":"Kahulugan / salin";
  $("#entryMeaning").placeholder=type==="word"?"Meaning / translation":type==="post"?"Write the newsfeed post…":"Description";
  if (legacyData) {
    $("#editorTitle").textContent="Edit browser-saved update";
@@ -637,11 +678,26 @@ function openEditor(type, legacyData=null){
    $("#entryWord").value=legacyData.title||"";
    $("#entryMeaning").value=legacyData.body||"";
    $("#entryDate").value=legacyData.date||"";
-   $("#entryCategory").value=legacyData.category||"Announcement";
+   setEditorCategories("post", legacyData.category||"Announcement");
    pendingImage=legacyData.image||""; pendingAudio=legacyData.audio||"";
    if (pendingImage) { $("#imagePreview").src=pendingImage; $("#imagePreview").classList.remove("hidden"); }
  }
  openModal("editorModal");
+}
+function editWord(word){
+ if(!ownerMode)return openOwner();
+ const item=(cloudWords!==null?cloudWords:words).find(w=>w.word===word);
+ if(!item)return;
+ openEditor("word");
+ editingWordValue=item.word;
+ $("#editorTitle").textContent="Edit dictionary word";
+ $("#editorSaveButton").textContent="Save changes";
+ $("#entryWord").value=item.word||"";
+ $("#entryPronunciation").value=item.pronunciation||item.pron||"";
+ $("#entryMeaning").value=item.meaning||"";
+ $("#entryCategory").value=item.category||"Daily words";
+ $("#entrySource").value=item.source||"";
+ pendingAudio=item.audio_url||item.audio||"";
 }
 async function deleteWord(word){if(!ownerMode)return openOwner();if(!confirm("Burahin ang dictionary entry na "+word+"?"))return;if(supabaseClient && cloudWords!==null){const {error}=await supabaseClient.from("dictionary_words").delete().eq("word",word);if(error)return alert("Hindi nabura sa cloud: "+error.message);await refreshSharedContent();return;}words=words.filter(w=>w.word!==word);saveAll();renderWords();}
 function deletePost(i){if(confirm("Burahin ang post na ito?")){posts.splice(i,1);saveAll();renderPosts();}}
@@ -651,6 +707,14 @@ async function resizeImage(file){
  return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onerror=reject;reader.onload=()=>{const img=new Image();img.onerror=reject;img.onload=()=>{const max=1400,scale=Math.min(1,max/Math.max(img.width,img.height));const canvas=document.createElement("canvas");canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);const ctx=canvas.getContext("2d");ctx.drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL("image/jpeg",.78));};img.src=reader.result;};reader.readAsDataURL(file);});
 }
 async function fileToData(file){if(!file)return "";return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file);});}
+$("#wordGrid").addEventListener("click",async e=>{
+ const speakButton=e.target.closest("[data-speak-word]");
+ if(speakButton){speakWord(speakButton.dataset.speakWord);return;}
+ const editButton=e.target.closest("[data-edit-word]");
+ if(editButton){editWord(editButton.dataset.editWord);return;}
+ const deleteButton=e.target.closest("[data-delete-word]");
+ if(deleteButton) await deleteWord(deleteButton.dataset.deleteWord);
+});
 $("#wordSearch").addEventListener("input",renderWords);$("#searchBtn").addEventListener("click",renderWords);
 $("#wordFilters").addEventListener("click",e=>{const b=e.target.closest("[data-filter]");if(!b)return;currentFilter=b.dataset.filter;document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("active",c===b));renderWords();});
 $("#menuToggle").addEventListener("click",()=>{const n=$("#navlinks"),open=n.classList.toggle("open");$("#menuToggle").setAttribute("aria-expanded",open?"true":"false");$("#menuToggle").textContent=open?"✕":"☰";});
@@ -661,6 +725,7 @@ $("#ownerAddWord").addEventListener("click",()=>{closeModal("ownerModal");openEd
 $("#syncLegacyPosts").addEventListener("click",syncLegacyPostsToCloud);
 $("#ownerLogout").addEventListener("click",async()=>{if(supabaseClient)await supabaseClient.auth.signOut();setOwner(false);closeModal("ownerModal")});
 document.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",()=>closeModal(b.dataset.close)));
+document.querySelectorAll("[data-policy-open]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();openModal("policyModal");}));
 document.querySelectorAll(".modal-backdrop").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)closeModal(m.id)}));
 $("#ownerForm").addEventListener("submit",async e=>{
  e.preventDefault(); const error=$("#loginError"); error.textContent="";
@@ -697,7 +762,7 @@ $("#editorForm").addEventListener("submit",async e=>{
    const user=sessionData?.session?.user;
    if(!user || (user.email||"").toLowerCase()!==AUTHORIZED_OWNER_EMAIL){alert("Owner session not verified.");return;}
    const row={title,body,category:$("#entryCategory").value||"Announcement",published_at:date,owner_id:user.id};
-   if(pendingImage && pendingImage.startsWith("http")) row.image_url=pendingImage;
+   if(pendingImage && (pendingImage.startsWith("http") || pendingImage.startsWith("data:image/"))) row.image_url=pendingImage;
    const postId=$("#editingPostId").value;
    const result=postId
       ? await supabaseClient.from("community_posts").update({...row,updated_at:new Date().toISOString()}).eq("id",postId).select().single()
@@ -710,7 +775,7 @@ $("#editorForm").addEventListener("submit",async e=>{
    const user=sessionData?.session?.user;
    if(!user || (user.email||"").toLowerCase()!==AUTHORIZED_OWNER_EMAIL){alert("Owner session not verified.");return;}
    const row={title,body,category:$("#entryCategory").value||"Announcement",published_at:date,updated_at:new Date().toISOString()};
-   if(pendingImage && pendingImage.startsWith("http")) row.image_url=pendingImage;
+   if(pendingImage && (pendingImage.startsWith("http") || pendingImage.startsWith("data:image/"))) row.image_url=pendingImage;
    const result=await supabaseClient.from("community_posts").update(row).eq("id",$("#editingPostId").value).select().single();
    if(result.error){alert("Hindi na-save ang update: "+result.error.message);return;}
    closeModal("editorModal");await refreshCommunityData();return;
@@ -718,10 +783,12 @@ $("#editorForm").addEventListener("submit",async e=>{
  if(type==="word" && supabaseClient && cloudWords!==null) {
    const {data:sd}=await supabaseClient.auth.getSession(); const u=sd?.session?.user;
    if(!u || (u.email||"").toLowerCase()!==AUTHORIZED_OWNER_EMAIL) return alert("Hindi beripikado ang owner session.");
-   const row={word:title,pronunciation:$("#entryPronunciation").value.trim(),category:$("#entryCategory").value,meaning:body,source:"Owner entry",audio_url:(pendingAudio.startsWith("https://")?pendingAudio:null)};
-   const {error}=await supabaseClient.from("dictionary_words").insert(row);
-   if(error)return alert("Hindi na-save ang salita sa cloud: "+error.message);
-   closeModal("editorModal"); await refreshSharedContent(); return;
+   const row={word:title,pronunciation:$("#entryPronunciation").value.trim(),category:$("#entryCategory").value,meaning:body,source:$("#entrySource").value.trim()||"Owner entry",audio_url:(pendingAudio.startsWith("https://")?pendingAudio:null)};
+   const result=editingWordValue
+     ? await supabaseClient.from("dictionary_words").update(row).eq("word",editingWordValue)
+     : await supabaseClient.from("dictionary_words").insert(row);
+   if(result.error)return alert("Hindi na-save ang salita sa cloud: "+result.error.message);
+   editingWordValue=null;closeModal("editorModal"); await refreshSharedContent(); return;
  }
  if(type==="timeline" && supabaseClient && cloudTimeline!==null) {
    const {data:sd}=await supabaseClient.auth.getSession(); const u=sd?.session?.user;
@@ -730,7 +797,11 @@ $("#editorForm").addEventListener("submit",async e=>{
    if(error)return alert("Hindi na-save ang timeline sa cloud: "+error.message);
    closeModal("editorModal"); await refreshSharedContent(); return;
  }
- if(type==="word"){words.unshift({word:title,pronunciation:$("#entryPronunciation").value.trim(),category:$("#entryCategory").value,meaning:body,source:"Owner entry",audio:pendingAudio});}
+ if(type==="word"){
+   const entry={word:title,pronunciation:$("#entryPronunciation").value.trim(),category:$("#entryCategory").value,meaning:body,source:$("#entrySource").value.trim()||"Owner entry",audio:pendingAudio};
+   if(editingWordValue!==null){words=words.map(w=>w.word===editingWordValue?{...w,...entry}:w);editingWordValue=null;}
+   else words.unshift(entry);
+ }
  if(type==="post"){
    if (editingLegacyIndex !== null) {
      const old=posts[editingLegacyIndex];
