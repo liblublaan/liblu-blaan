@@ -304,10 +304,14 @@ footer h4{color:#fff8e9;margin:0 0 12px}
 </footer>
 
 <div class="modal-backdrop" id="ownerModal" role="dialog" aria-modal="true" aria-labelledby="ownerTitle">
- <div class="modal"><div class="modal-head"><h2 id="ownerTitle">Owner access</h2><button class="icon-btn" data-close="ownerModal" aria-label="Close">✕</button></div>
-  <div class="notice">Prototype only: this demo uses browser-local storage and a local owner passphrase. It is <strong>not secure authentication</strong> and does not publish across devices. Connect a real backend/auth service before putting private owner tools on a live website.</div>
-  <form id="ownerForm"><div class="field"><label for="ownerPassword">Demo owner passphrase</label><input type="password" id="ownerPassword" placeholder="Enter demo passphrase" autocomplete="current-password" required></div><button class="btn btn-primary" type="submit">Unlock owner tools</button><p id="loginError" style="color:#9b3c32;font-size:.85rem;margin:10px 0 0"></p></form>
-  <div id="ownerPanel" class="hidden"><p>Owner mode is on for this browser. You can add dictionary words, publish newsfeed posts, and add timeline entries.</p><div style="display:flex;gap:9px;flex-wrap:wrap"><button class="btn btn-primary" id="ownerAddWord">＋ Add word</button><button class="btn btn-primary" id="ownerAddPost">＋ Publish post</button><button class="btn btn-primary" id="ownerAddTimeline">＋ Timeline item</button><button class="btn btn-light" id="ownerLogout">Log out</button></div><p style="font-size:.8rem;color:var(--muted);margin-top:12px">Demo passphrase: <code>LibluBlaan-Owner</code> (change in the HTML; do not use this for a live site).</p></div>
+ <div class="modal"><div class="modal-head"><h2 id="ownerTitle">Owner login</h2><button class="icon-btn" data-close="ownerModal" aria-label="Close">✕</button></div>
+  <p>Mag-login gamit ang registered email at password. Ang kasalukuyang content ay nananatili sa browser storage; hindi ito awtomatikong inililipat sa cloud.</p>
+  <form id="ownerForm">
+   <div class="field"><label for="ownerEmail">Email</label><input type="email" id="ownerEmail" value="liblublaan@gmail.com" autocomplete="username" required></div>
+   <div class="field"><label for="ownerPassword">Password</label><input type="password" id="ownerPassword" placeholder="Password" autocomplete="current-password" required></div>
+   <button class="btn btn-primary" type="submit">Log in</button><p id="loginError" style="color:#9b3c32;font-size:.85rem;margin:10px 0 0" role="alert"></p>
+  </form>
+  <div id="ownerPanel" class="hidden"><p>Naka-login ka bilang owner.</p><div style="display:flex;gap:9px;flex-wrap:wrap"><button class="btn btn-primary" id="ownerAddWord">＋ Add word</button><button class="btn btn-primary" id="ownerAddPost">＋ Publish post</button><button class="btn btn-primary" id="ownerAddTimeline">＋ Timeline item</button><button class="btn btn-light" id="ownerLogout">Log out</button></div></div>
  </div>
 </div>
 
@@ -330,7 +334,16 @@ footer h4{color:#fff8e9;margin:0 0 12px}
  </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+/* I-configure ang Supabase URL at Publishable/anon key. Huwag gamitin ang service_role key sa browser. */
+const SUPABASE_URL = 'https://hlkbexmgmzhjkithgbex.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_F4E1mYBNNtyZLujIMrYJbg_ow6AdxMU';
+const AUTHORIZED_OWNER_EMAIL = 'liblublaan@gmail.com'.toLowerCase();
+const supabaseClient = (window.supabase && SUPABASE_URL.startsWith('https://') &&
+ !SUPABASE_URL.includes('PASTE_') && !SUPABASE_PUBLISHABLE_KEY.includes('PASTE_'))
+ ? window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY) : null;
+
 const initialWords = [
  {word:"ANGOK",pron:"AH-ngok (gabay lamang)",meaning:"Monkey / unggoy",category:"Animals",source:"Starter entry"},
  {word:"AYÈM",pron:"AH-yem (gabay lamang)",meaning:"Dog / aso",category:"Animals",source:"Starter entry"},
@@ -369,7 +382,7 @@ function renderPosts(){
 function renderTimeline(){
  $("#timelineList").innerHTML=timelineItems.map((t,i)=>`<article class="timeline-card"><small>${escapeHTML(t.date||"Update")}</small><h3>${escapeHTML(t.title)}</h3><p>${escapeHTML(t.body)}</p>${ownerMode?`<button class="text-link" style="margin-top:10px" onclick="deleteTimeline(${i})">Delete item</button>`:""}</article>`).join("");
 }
-function setOwner(on){ownerMode=on;document.querySelectorAll(".owner-action").forEach(b=>b.classList.toggle("hidden",!on));$("#ownerPanel").classList.toggle("hidden",!on);$("#ownerForm").classList.toggle("hidden",on);$("#ownerTitle").textContent=on?"Owner tools":"Owner access";renderWords();renderPosts();renderTimeline();}
+function setOwner(on){ownerMode=on;document.querySelectorAll(".owner-action").forEach(b=>b.classList.toggle("hidden",!on));$("#ownerPanel").classList.toggle("hidden",!on);$("#ownerForm").classList.toggle("hidden",on);$("#ownerTitle").textContent=on?"Owner tools":"Owner login";renderWords();renderPosts();renderTimeline();}
 function openModal(id){$("#"+id).classList.add("open");document.body.style.overflow="hidden";}
 function closeModal(id){$("#"+id).classList.remove("open");document.body.style.overflow="";}
 function openOwner(){ $("#loginError").textContent="";$("#ownerPassword").value="";openModal("ownerModal");}
@@ -402,10 +415,31 @@ $("#navlinks").addEventListener("click",e=>{if(e.target.closest("a")){$("#navlin
 $("#ownerOpen").addEventListener("click",openOwner);$("#footerOwner").addEventListener("click",openOwner);
 $("#addWordBtn").addEventListener("click",()=>openEditor("word"));$("#addPostBtn").addEventListener("click",()=>openEditor("post"));$("#addTimelineBtn").addEventListener("click",()=>openEditor("timeline"));
 $("#ownerAddWord").addEventListener("click",()=>{closeModal("ownerModal");openEditor("word")});$("#ownerAddPost").addEventListener("click",()=>{closeModal("ownerModal");openEditor("post")});$("#ownerAddTimeline").addEventListener("click",()=>{closeModal("ownerModal");openEditor("timeline")});
-$("#ownerLogout").addEventListener("click",()=>{setOwner(false);closeModal("ownerModal")});
+$("#ownerLogout").addEventListener("click",async()=>{if(supabaseClient)await supabaseClient.auth.signOut();setOwner(false);closeModal("ownerModal")});
 document.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",()=>closeModal(b.dataset.close)));
 document.querySelectorAll(".modal-backdrop").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)closeModal(m.id)}));
-$("#ownerForm").addEventListener("submit",e=>{e.preventDefault();if($("#ownerPassword").value==="LibluBlaan-Owner"){setOwner(true);$("#loginError").textContent="";}else{$("#loginError").textContent="Hindi tama ang passphrase.";}});
+$("#ownerForm").addEventListener("submit",async e=>{
+ e.preventDefault(); const error=$("#loginError"); error.textContent="";
+ if(!supabaseClient){error.textContent="Hindi ma-load ang Supabase client. Suriin ang internet connection at Supabase configuration.";return;}
+ const email=$("#ownerEmail").value.trim().toLowerCase();
+ if(email !== AUTHORIZED_OWNER_EMAIL){
+   error.textContent="Ang email na ito ay hindi awtorisadong owner account.";
+   return;
+ }
+ const {data,error:authError}=await supabaseClient.auth.signInWithPassword({email,password:$("#ownerPassword").value});
+ if(authError){error.textContent="Hindi makapag-login. Suriin ang email/password at kung naka-enable/nakarehistro ang account sa Supabase Auth.";return;}
+ if(!data.session || !data.user){
+   error.textContent="Walang active session. Subukan muli.";
+   return;
+ }
+ if((data.user.email||"").toLowerCase() !== AUTHORIZED_OWNER_EMAIL){
+   await supabaseClient.auth.signOut();
+   setOwner(false);
+   error.textContent="Hindi awtorisado ang account na ito.";
+   return;
+ }
+ setOwner(true);
+});
 
 $("#entryImage").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;try{pendingImage=await resizeImage(f);$("#imagePreview").src=pendingImage;$("#imagePreview").classList.remove("hidden");}catch(err){alert("Hindi mabasa ang image. Subukang ibang file.");}});
 $("#entryAudio").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;if(f.size>1_500_000){alert("Para sa local demo, hanggang 1.5 MB lang ang audio. Sa live site, gumamit ng cloud storage.");e.target.value="";return;}try{pendingAudio=await fileToData(f);}catch(err){alert("Hindi mabasa ang audio file.");}});
@@ -421,6 +455,20 @@ $("#editorForm").addEventListener("submit",e=>{
 });
 $("#year").textContent=new Date().getFullYear();
 renderWords();renderPosts();renderTimeline();
+
+// Restore owner tools only for the designated email. Existing localStorage keys/data are untouched.
+if(supabaseClient){
+ supabaseClient.auth.getSession().then(({data})=>{
+   const user=data && data.session && data.session.user;
+   if(user && (user.email||"").toLowerCase()===AUTHORIZED_OWNER_EMAIL) setOwner(true);
+   else setOwner(false);
+ }).catch(()=>setOwner(false));
+ supabaseClient.auth.onAuthStateChange((event, session)=>{
+   const user=session && session.user;
+   if(user && (user.email||"").toLowerCase()===AUTHORIZED_OWNER_EMAIL) setOwner(true);
+   else if(event==="SIGNED_OUT" || event==="USER_DELETED" || event==="SIGNED_IN") setOwner(false);
+ });
+}
 </script>
 </body>
 </html>
