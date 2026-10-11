@@ -1,42 +1,43 @@
-# Liblu Blaan — GitHub Pages deployment
+# Liblu Blaan
 
-This package contains the reviewed static site entry point and deployment/security checklist.
+Isang digital na tahanan para sa wikang Blaan, kultura, tradisyon, at kaalamang pamana.
 
-## Files
+## Mga file sa website
 
-- `index.html` — the website. GitHub Pages must serve this file from the repository root.
-- `SECURITY_REVIEW.md` — review findings, remaining production gates, and smoke-test checklist.
-- `.nojekyll` — prevents Jekyll processing; optional for this plain HTML site.
+Panatilihin ang mga sumusunod na file sa **root folder** ng GitHub repository (sa parehong antas):
 
-## Deploy to GitHub Pages
+- `index.html` — pangunahing website code.
+- `liblu-blaan-logo.svg` — logo na ginagamit sa header at footer.
+- `83a71bfc-8ba3-4c24-becc-a9369d8d1897.png` — bagong 16:9 landscape cultural banner.
 
-1. Download/extract this package.
-2. In the `liblu-blaan` repository, back up the current live `index.html` or make a branch first.
-3. Replace the repository-root `index.html` with this package's `index.html`. Keep the filename exactly `index.html`.
-4. Add `README.md`, `SECURITY_REVIEW.md`, and `.nojekyll` at the repository root if desired.
-5. Review the diff before committing. Do not commit any Supabase `service_role` or secret key.
-6. Commit to the configured deployment branch (`main`, root `/` according to the current project setup).
-7. In GitHub, open **Settings → Pages** and confirm the source is the expected branch and `/ (root)`.
-8. After deployment, hard-refresh the public site and complete the checklist in `SECURITY_REVIEW.md`.
+Huwag palitan ang pangalan ng banner file maliban kung ia-update rin ang `src` nito sa `index.html`.
 
-## Supabase requirements before calling this production-ready
+## Mga update sa bersiyong ito
 
-The browser code uses the configured Supabase project URL and a **publishable** key. A publishable key is expected to be visible in a static website; database safety depends on Row Level Security (RLS), table grants, and policies—not on hiding this key.
+- Idinagdag ang LIBLU BLAAN landscape banner na may 16:9 aspect ratio para sa website at social media cover.
+- Idinagdag ang logo asset.
+- Inayos ang pagpapakita ng mga post na may kategoryang `Dictionary` sa Dictionary section.
+- Idinagdag ang rich-text editing tools sa Writing Lounge para sa basic formatting gaya ng bold, italic, underline, headings, lists, alignment, at spacing.
 
-The site expects these database objects to be present and correctly permissioned:
+## Pag-publish sa GitHub Pages
 
-- `site_admins` with the authenticated owner's `user_id` and `role = 'owner'`
-- `dictionary_words`
-- `timeline_items`
-- `community_posts`
-- `post_comments`
-- `post_reactions`
+1. Gumawa ng backup ng kasalukuyang `index.html` at `README.md` bago magpalit ng files.
+2. I-upload o palitan ang `index.html`, `liblu-blaan-logo.svg`, at `83a71bfc-8ba3-4c24-becc-a9369d8d1897.png` sa root folder ng repository.
+3. Palitan ang `README.md` ng file na ito kung nais mong i-update ang dokumentasyon.
+4. Sa GitHub, ilagay ang commit message:
 
-The previously prepared community SQL only creates the community-post/comment/reaction tables and **assumes `site_admins` already exists**. It does not provision the dictionary or timeline tables. Do not run it blindly against production; inspect the existing schema and policies first, back up the database, and test on a staging project.
+   `feat: add Liblu Blaan banner and improve writing lounge`
 
-## Important behavior
+5. I-commit ang mga pagbabago at hintaying matapos ang GitHub Pages deployment.
+6. Buksan ang live website at subukan ang banner, logo, Dictionary section, Writing Lounge, at login. Kung may problema, tingnan ang browser console at Supabase logs.
 
-- Dictionary words and timeline items are shared across visitors only when the corresponding Supabase tables and policies work. If the cloud query fails, the page can fall back to browser-local data; local edits are not automatically shared.
-- The owner login is Supabase Auth. The frontend email check is only a UI check; RLS must enforce owner-only writes.
-- Image/audio file selection is not a cloud-storage upload. Data-URI media can be local to a browser and does not become a reliable shared asset. Configure Supabase Storage and store validated HTTPS asset URLs before relying on media publishing for everyone.
-- Likes/comments use browser-generated visitor IDs that can be spoofed. Add abuse controls/rate limits and moderation before a high-traffic launch.
+## Supabase at seguridad
+
+- Gamitin lamang ang Supabase publishable/anon key sa browser-side code.
+- **Huwag kailanman ilagay** ang `service_role` key o anumang secret key sa `index.html`, README, o GitHub repository.
+- Tiyaking tama at mahigpit ang Row Level Security (RLS) policies para sa mga table na ginagamit ng website.
+- Ang pag-upload ng bagong HTML ay hindi awtomatikong naglilipat ng mga post na naka-save lamang sa browser `localStorage` papunta sa Supabase. Gumamit ng umiiral na import/migration workflow kung kinakailangan.
+
+## Mga tala sa pagsubok
+
+Na-check ang JavaScript syntax at duplicate HTML IDs sa inihandang HTML. Hindi ito katumbas ng buong end-to-end test; kailangan pa ring subukan ang aktuwal na GitHub Pages deployment, login, at Supabase operations.
