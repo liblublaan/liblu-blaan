@@ -65,6 +65,9 @@ h1 em{font-weight:400;color:#8b7445}
 .art-bottom{border-top:1px solid rgba(255,255,255,.2);padding-top:15px;display:flex;justify-content:space-between;gap:10px;font-size:.75rem;color:#d9e0d4}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0 45px}
 .stat{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:17px 19px;display:flex;align-items:center;gap:13px}
+.stat-link{color:inherit;text-align:left;text-decoration:none;font:inherit;width:100%;cursor:pointer;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
+.stat-link:hover,.stat-link:focus-visible{border-color:var(--forest);box-shadow:0 5px 16px rgba(0,0,0,.07);transform:translateY(-2px);outline-offset:3px}
+.stat-owner-link{appearance:none;-webkit-appearance:none;background:var(--paper)}
 .stat-icon{width:43px;height:43px;border-radius:13px;background:var(--soft);display:grid;place-items:center;font-size:1.25rem}
 .stat strong{display:block;font-size:1.18rem;color:var(--forest)}
 .stat span{font-size:.79rem;color:var(--muted)}
@@ -246,10 +249,18 @@ footer h4{color:#fff8e9;margin:0 0 12px}
     </div>
   </div>
   <div class="wrap stats">
-    <div class="stat"><div class="stat-icon">📖</div><div><strong id="wordCount">6</strong><span>Mga salita</span></div></div>
-    <div class="stat"><div class="stat-icon">🌿</div><div><strong>Heritage</strong><span>Kultura at tradisyon</span></div></div>
-    <div class="stat"><div class="stat-icon">🔊</div><div><strong>Sounds</strong><span>Gabay sa pagbigkas</span></div></div>
-    <div class="stat"><div class="stat-icon">✍️</div><div><strong>By owner</strong><span>Pinamamahalaan ng may-ari</span></div></div>
+    <a class="stat stat-link" href="#dictionary" aria-label="Pumunta sa mga salita">
+      <div class="stat-icon">📖</div><div><strong id="wordCount">6</strong><span>Mga salita</span></div>
+    </a>
+    <a class="stat stat-link" href="#heritage" aria-label="Pumunta sa Heritage">
+      <div class="stat-icon">🌿</div><div><strong>Heritage</strong><span>Kultura at tradisyon</span></div>
+    </a>
+    <a class="stat stat-link" href="#dictionary" aria-label="Pumunta sa Sounds at gabay sa pagbigkas">
+      <div class="stat-icon">🔊</div><div><strong>Sounds</strong><span>Gabay sa pagbigkas</span></div>
+    </a>
+    <button class="stat stat-link stat-owner-link" id="statsOwner" type="button" aria-label="Buksan ang Editors Lounge">
+      <div class="stat-icon">✍️</div><div><strong>By owner</strong><span>Pinamamahalaan ng may-ari</span></div>
+    </button>
   </div>
 </section>
 
@@ -395,11 +406,14 @@ function escapeHTML(s=""){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","
 function speakWord(word){if(!("speechSynthesis" in window)){alert("Hindi suportado ng browser ang text-to-speech. Mas mainam ang verified audio recording ng Blaan speaker.");return;}let u=new SpeechSynthesisUtterance(word);u.lang="en-US";u.rate=.78;window.speechSynthesis.cancel();window.speechSynthesis.speak(u);alert("Browser text-to-speech ito, hindi garantisadong tamang Blaan pronunciation. Gumamit ng verified Blaan audio kapag available.");}
 function renderWords(){
  const q=$("#wordSearch").value.trim().toLowerCase();
- const list=words.filter(w=>(currentFilter==="All"||w.category===currentFilter)&&[w.word,w.meaning,w.pronunciation,w.category].join(" ").toLowerCase().includes(q));
- $("#wordCount").textContent=words.length;
+ const activeWords = cloudWords !== null ? cloudWords : words;
+ const list=activeWords.filter(w=>(currentFilter==="All"||w.category===currentFilter)&&[w.word,w.meaning,w.pronunciation,w.category].join(" ").toLowerCase().includes(q));
+ $("#wordCount").textContent=activeWords.length;
  $("#wordGrid").innerHTML=list.length?list.map((w)=>`<article class="word-card"><div class="word-top"><div><div class="word">${escapeHTML(w.word)}</div><div class="pronunciation">${escapeHTML(w.pronunciation||"Bigkas: kailangan pang idagdag")}</div></div><button class="icon-btn" title="Hear pronunciation (browser voice only)" aria-label="Hear ${escapeHTML(w.word)}" onclick="speakWord('${String(w.word).replace(/\\/g,"\\\\").replace(/'/g,"\\'")}')">♫</button></div><div class="meaning">${escapeHTML(w.meaning)}</div><div class="word-meta"><span>${escapeHTML(w.category)} · ${escapeHTML(w.source||"Liblu Blaan")}</span>${ownerMode?`<button class="icon-btn" title="Delete entry" onclick="deleteWord('${String(w.word).replace(/\\/g,"\\\\").replace(/'/g,"\\'")}')">⌫</button>`:""}</div>${w.audio?`<audio controls preload="none" style="width:100%;margin-top:12px"><source src="${w.audio}"></audio>`:""}</article>`).join(""):'<div class="empty">Walang nahanap na salita. Subukang ibang keyword o category.</div>';
 }
 let cloudPosts = [];
+let cloudWords = null;
+let cloudTimeline = null;
 let postComments = [];
 let postReactions = [];
 let replyToByPost = {};
@@ -413,6 +427,34 @@ function legacyKey(p) {
   let h = 2166136261;
   for (let i = 0; i < raw.length; i++) { h ^= raw.charCodeAt(i); h = Math.imul(h, 16777619); }
   return "legacy-" + (h >>> 0).toString(16);
+}
+async function refreshSharedContent() {
+  if (!supabaseClient) return;
+  const [wordRes, timelineRes] = await Promise.all([
+    supabaseClient.from("dictionary_words").select("id,word,pronunciation,meaning,category,source,audio_url").order("word"),
+    supabaseClient.from("timeline_items").select("id,event_date,title,body,legacy_key,created_at").order("created_at", {ascending:false})
+  ]);
+  if (!wordRes.error) cloudWords = (wordRes.data || []).map(w => ({...w, date:undefined}));
+  else console.warn("Cloud dictionary unavailable:", wordRes.error.message);
+  if (!timelineRes.error) cloudTimeline = (timelineRes.data || []).map(t => ({...t, date:t.event_date}));
+  else console.warn("Cloud timeline unavailable:", timelineRes.error.message);
+  renderWords(); renderTimeline();
+}
+async function syncLegacyLibraryToCloud() {
+  if (!supabaseClient || !ownerMode) return;
+  try {
+    if (words.length) {
+      const rows = words.map(w => ({word:String(w.word||"").trim().slice(0,100), pronunciation:String(w.pronunciation||w.pron||"").slice(0,200), meaning:String(w.meaning||"").slice(0,3000), category:String(w.category||"Daily words").slice(0,60), source:String(w.source||"Liblu Blaan").slice(0,120), audio_url:(typeof w.audio === "string" && w.audio.startsWith("https://")) ? w.audio : null})).filter(w=>w.word && w.meaning);
+      const {error}=await supabaseClient.from("dictionary_words").upsert(rows,{onConflict:"word",ignoreDuplicates:true});
+      if(error) console.warn("Dictionary import skipped:",error.message);
+    }
+    if (timelineItems.length) {
+      const rows = timelineItems.map(t=>({event_date:String(t.date||"Update").slice(0,100),title:String(t.title||"").slice(0,200),body:String(t.body||"").slice(0,3000),legacy_key:legacyKey(t)})).filter(t=>t.title && t.body);
+      const {error}=await supabaseClient.from("timeline_items").upsert(rows,{onConflict:"legacy_key",ignoreDuplicates:true});
+      if(error) console.warn("Timeline import skipped:",error.message);
+    }
+    await refreshSharedContent();
+  } catch(e) { console.warn("Local-to-cloud import did not finish:",e.message||e); }
 }
 async function refreshCommunityData() {
   if (!supabaseClient) { renderPosts(); return; }
@@ -567,7 +609,8 @@ async function syncLegacyPostsToCloud() {
   }
 }
 function renderTimeline(){
- $("#timelineList").innerHTML=timelineItems.map((t,i)=>`<article class="timeline-card"><small>${escapeHTML(t.date||"Update")}</small><h3>${escapeHTML(t.title)}</h3><p>${escapeHTML(t.body)}</p>${ownerMode?`<button class="text-link" style="margin-top:10px" onclick="deleteTimeline(${i})">Delete item</button>`:""}</article>`).join("");
+ const activeTimeline = cloudTimeline !== null ? cloudTimeline : timelineItems;
+ $("#timelineList").innerHTML=activeTimeline.map((t,i)=>`<article class="timeline-card"><small>${escapeHTML(t.date||t.event_date||"Update")}</small><h3>${escapeHTML(t.title)}</h3><p>${escapeHTML(t.body)}</p>${ownerMode?`<button class="text-link" style="margin-top:10px" onclick="deleteTimeline(${i})">Delete item</button>`:""}</article>`).join("");
 }
 function setOwner(on){ownerMode=on;document.querySelectorAll(".owner-action").forEach(b=>b.classList.toggle("hidden",!on));$("#ownerPanel").classList.toggle("hidden",!on);$("#ownerForm").classList.toggle("hidden",on);$("#ownerTitle").textContent=on?"Editors Lounge":"Editors Lounge · Owner login";renderWords();renderPosts();renderTimeline();}
 function openModal(id){$("#"+id).classList.add("open");document.body.style.overflow="hidden";}
@@ -600,9 +643,9 @@ function openEditor(type, legacyData=null){
  }
  openModal("editorModal");
 }
-function deleteWord(word){if(confirm("Burahin ang dictionary entry na "+word+"?")){words=words.filter(w=>w.word!==word);saveAll();renderWords();}}
+async function deleteWord(word){if(!ownerMode)return openOwner();if(!confirm("Burahin ang dictionary entry na "+word+"?"))return;if(supabaseClient && cloudWords!==null){const {error}=await supabaseClient.from("dictionary_words").delete().eq("word",word);if(error)return alert("Hindi nabura sa cloud: "+error.message);await refreshSharedContent();return;}words=words.filter(w=>w.word!==word);saveAll();renderWords();}
 function deletePost(i){if(confirm("Burahin ang post na ito?")){posts.splice(i,1);saveAll();renderPosts();}}
-function deleteTimeline(i){if(confirm("Burahin ang timeline item na ito?")){timelineItems.splice(i,1);saveAll();renderTimeline();}}
+async function deleteTimeline(i){if(!ownerMode)return openOwner();if(!confirm("Burahin ang timeline item na ito?"))return;if(supabaseClient && cloudTimeline!==null){const item=cloudTimeline[i];if(!item)return;const {error}=await supabaseClient.from("timeline_items").delete().eq("id",item.id);if(error)return alert("Hindi nabura sa cloud: "+error.message);await refreshSharedContent();return;}timelineItems.splice(i,1);saveAll();renderTimeline();}
 async function resizeImage(file){
  if(!file||!file.type.startsWith("image/"))return "";
  return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onerror=reject;reader.onload=()=>{const img=new Image();img.onerror=reject;img.onload=()=>{const max=1400,scale=Math.min(1,max/Math.max(img.width,img.height));const canvas=document.createElement("canvas");canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);const ctx=canvas.getContext("2d");ctx.drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL("image/jpeg",.78));};img.src=reader.result;};reader.readAsDataURL(file);});
@@ -612,7 +655,7 @@ $("#wordSearch").addEventListener("input",renderWords);$("#searchBtn").addEventL
 $("#wordFilters").addEventListener("click",e=>{const b=e.target.closest("[data-filter]");if(!b)return;currentFilter=b.dataset.filter;document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("active",c===b));renderWords();});
 $("#menuToggle").addEventListener("click",()=>{const n=$("#navlinks"),open=n.classList.toggle("open");$("#menuToggle").setAttribute("aria-expanded",open?"true":"false");$("#menuToggle").textContent=open?"✕":"☰";});
 $("#navlinks").addEventListener("click",e=>{if(e.target.closest("a")){$("#navlinks").classList.remove("open");$("#menuToggle").setAttribute("aria-expanded","false");$("#menuToggle").textContent="☰";}});
-$("#ownerOpen").addEventListener("click",openOwner);$("#footerOwner").addEventListener("click",openOwner);
+$("#ownerOpen").addEventListener("click",openOwner);$("#footerOwner").addEventListener("click",openOwner);$("#statsOwner").addEventListener("click",openOwner);
 $("#addWordBtn").addEventListener("click",()=>openEditor("word"));$("#addPostBtn").addEventListener("click",()=>openEditor("post"));$("#addTimelineBtn").addEventListener("click",()=>openEditor("timeline"));
 $("#ownerAddWord").addEventListener("click",()=>{closeModal("ownerModal");openEditor("word")});$("#ownerAddPost").addEventListener("click",()=>{closeModal("ownerModal");openEditor("post")});$("#ownerAddTimeline").addEventListener("click",()=>{closeModal("ownerModal");openEditor("timeline")});
 $("#syncLegacyPosts").addEventListener("click",syncLegacyPostsToCloud);
@@ -639,7 +682,7 @@ $("#ownerForm").addEventListener("submit",async e=>{
    error.textContent="Hindi awtorisado ang account na ito.";
    return;
  }
- setOwner(true); await refreshCommunityData();
+ setOwner(true); await refreshCommunityData(); await syncLegacyLibraryToCloud();
 });
 
 $("#entryImage").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;try{pendingImage=await resizeImage(f);$("#imagePreview").src=pendingImage;$("#imagePreview").classList.remove("hidden");}catch(err){alert("Hindi mabasa ang image. Subukang ibang file.");}});
@@ -672,6 +715,21 @@ $("#editorForm").addEventListener("submit",async e=>{
    if(result.error){alert("Hindi na-save ang update: "+result.error.message);return;}
    closeModal("editorModal");await refreshCommunityData();return;
  }
+ if(type==="word" && supabaseClient && cloudWords!==null) {
+   const {data:sd}=await supabaseClient.auth.getSession(); const u=sd?.session?.user;
+   if(!u || (u.email||"").toLowerCase()!==AUTHORIZED_OWNER_EMAIL) return alert("Hindi beripikado ang owner session.");
+   const row={word:title,pronunciation:$("#entryPronunciation").value.trim(),category:$("#entryCategory").value,meaning:body,source:"Owner entry",audio_url:(pendingAudio.startsWith("https://")?pendingAudio:null)};
+   const {error}=await supabaseClient.from("dictionary_words").insert(row);
+   if(error)return alert("Hindi na-save ang salita sa cloud: "+error.message);
+   closeModal("editorModal"); await refreshSharedContent(); return;
+ }
+ if(type==="timeline" && supabaseClient && cloudTimeline!==null) {
+   const {data:sd}=await supabaseClient.auth.getSession(); const u=sd?.session?.user;
+   if(!u || (u.email||"").toLowerCase()!==AUTHORIZED_OWNER_EMAIL) return alert("Hindi beripikado ang owner session.");
+   const {error}=await supabaseClient.from("timeline_items").insert({event_date:date,title,body,legacy_key:legacyKey({date,title,body})});
+   if(error)return alert("Hindi na-save ang timeline sa cloud: "+error.message);
+   closeModal("editorModal"); await refreshSharedContent(); return;
+ }
  if(type==="word"){words.unshift({word:title,pronunciation:$("#entryPronunciation").value.trim(),category:$("#entryCategory").value,meaning:body,source:"Owner entry",audio:pendingAudio});}
  if(type==="post"){
    if (editingLegacyIndex !== null) {
@@ -689,17 +747,18 @@ $("#editorForm").addEventListener("submit",async e=>{
 $("#year").textContent=new Date().getFullYear();
 renderWords();renderPosts();renderTimeline();
 refreshCommunityData();
+refreshSharedContent();
 
 // Restore owner tools only for the designated email. Existing localStorage keys/data are untouched.
 if(supabaseClient){
  supabaseClient.auth.getSession().then(({data})=>{
    const user=data && data.session && data.session.user;
-   if(user && (user.email||"").toLowerCase()===AUTHORIZED_OWNER_EMAIL) { setOwner(true); }
+   if(user && (user.email||"").toLowerCase()===AUTHORIZED_OWNER_EMAIL) { setOwner(true); refreshSharedContent(); }
    else setOwner(false);
  }).catch(()=>setOwner(false));
  supabaseClient.auth.onAuthStateChange((event, session)=>{
    const user=session && session.user;
-   if(user && (user.email||"").toLowerCase()===AUTHORIZED_OWNER_EMAIL) { setOwner(true); refreshCommunityData(); }
+   if(user && (user.email||"").toLowerCase()===AUTHORIZED_OWNER_EMAIL) { setOwner(true); refreshCommunityData(); refreshSharedContent(); }
    else if(event==="SIGNED_OUT" || event==="USER_DELETED" || event==="SIGNED_IN") setOwner(false);
  });
 }
