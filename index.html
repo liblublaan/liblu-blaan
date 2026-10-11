@@ -8,6 +8,7 @@
 <title>Liblu Blaan — Blaan ang tribo, Blaan din ang lengwahe ko</title>
 <style>
 :root{
+  --blaan-red:#d9272e;--blaan-yellow:#f4c430;--blaan-green:#178447;--blaan-blue:#1675b9;--blaan-black:#171717;--blaan-orange:#ef7d22;--blaan-white:#fffdf7;
   --forest:#29483b;--forest2:#365b49;--leaf:#708b63;--gold:#d9b46a;--cream:#f7f3e8;
   --paper:#fffdf7;--ink:#26352d;--muted:#6d786f;--line:#e5e0d2;--soft:#edf1e7;
   --shadow:0 12px 34px rgba(38,53,45,.08);--radius:20px;
@@ -25,7 +26,7 @@ img{max-width:100%;display:block}
 header{position:sticky;top:0;z-index:20;background:rgba(255,253,247,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(229,224,210,.85)}
 .nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
 .brand{display:flex;align-items:center;gap:11px;min-width:0}
-.brand-mark{width:45px;height:45px;border-radius:15px;background:var(--forest);display:grid;place-items:center;color:var(--gold);font-size:1.45rem;box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+.brand-mark{width:45px;height:45px;border-radius:13px;display:block;position:relative;overflow:hidden;background:conic-gradient(from 45deg,var(--blaan-red) 0 16.66%,var(--blaan-yellow) 16.66% 33.32%,var(--blaan-green) 33.32% 49.98%,var(--blaan-blue) 49.98% 66.64%,var(--blaan-black) 66.64% 83.3%,var(--blaan-orange) 83.3% 100%);box-shadow:inset 0 0 0 3px var(--blaan-white),0 2px 8px #0002;transform:rotate(45deg) scale(.83)}.brand-mark:before{content:"";position:absolute;inset:8px;border:2px solid var(--blaan-white);transform:rotate(0deg)}.brand-mark:after{content:"";position:absolute;inset:14px;background:var(--blaan-black);border:2px solid var(--blaan-yellow);transform:rotate(45deg)}
 .brand-name{font-family:Georgia,serif;font-weight:700;font-size:1.45rem;line-height:1.1;color:var(--forest)}
 .brand-tag{font-size:.7rem;color:var(--muted);letter-spacing:.04em}
 .navlinks{display:flex;align-items:center;gap:5px}
@@ -186,6 +187,28 @@ footer h4{color:#fff8e9;margin:0 0 12px}
  .stat{padding:11px 9px}.searchbar{flex-direction:column}.searchbar .btn{width:100%}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+
+/* Blaan-inspired palette accent and community controls */
+.topline{background:linear-gradient(90deg,var(--blaan-red),var(--blaan-orange),var(--blaan-yellow),var(--blaan-green),var(--blaan-blue),var(--blaan-black));color:#fff}
+.owner-lounge-label{display:inline-flex;align-items:center;gap:8px;border:1px solid #d9b46a;background:#fff7df;color:#755014;border-radius:999px;padding:5px 10px;font-size:.76rem;font-weight:800}
+.post-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:12px;margin-top:14px}
+.social-btn{border:1px solid var(--line);background:#fffdf7;color:#34463b;border-radius:999px;padding:7px 11px;font-size:.82rem;font-weight:700}
+.social-btn:hover,.social-btn.liked{background:#fff0f0;border-color:#e8b2b2;color:#b31f2b}
+.social-btn:disabled{opacity:.55;cursor:not-allowed}
+.post-comments{border-top:1px solid var(--line);margin-top:12px;padding-top:12px}
+.comment-list{display:grid;gap:10px;margin:10px 0}
+.comment-item{background:#f8f7f1;border-radius:12px;padding:10px 12px}
+.comment-item.reply{margin-left:22px;border-left:3px solid var(--blaan-orange)}
+.comment-meta{font-size:.75rem;color:var(--muted);margin-bottom:4px}
+.comment-body{white-space:pre-wrap;overflow-wrap:anywhere;font-size:.9rem}
+.comment-form{display:grid;grid-template-columns:1fr;gap:7px;margin-top:10px}
+.comment-form input,.comment-form textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:9px 11px;background:white;color:var(--ink)}
+.comment-form textarea{min-height:70px;resize:vertical}
+.lounge-panel{border:1px solid var(--line);background:linear-gradient(120deg,#fffdf7,#f4f6ee);border-radius:16px;padding:16px;margin:12px 0}
+.post-owner-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.legal-note{font-size:.8rem;color:var(--muted)}
+@media(max-width:560px){.post-actions{align-items:stretch}.social-btn{flex:1}.comment-item.reply{margin-left:10px}}
+
 </style>
 </head>
 <body>
@@ -193,14 +216,14 @@ footer h4{color:#fff8e9;margin:0 0 12px}
 <header>
   <div class="wrap nav">
     <a class="brand" href="#home" aria-label="Liblu Blaan home">
-      <div class="brand-mark" aria-hidden="true">ᜊ</div>
+      <div class="brand-mark" aria-hidden="true"></div>
       <div><div class="brand-name">Liblu Blaan</div><div class="brand-tag">Wika • Pamana • Alaala</div></div>
     </a>
     <nav class="navlinks" id="navlinks" aria-label="Main navigation">
       <a href="#home">Home</a><a href="#dictionary">Dictionary</a><a href="#heritage">Heritage</a><a href="#stories">Stories & Folklore</a><a href="#timeline">Timeline</a><a href="#newsfeed">Newsfeed</a><a href="#about">About</a>
     </nav>
     <div class="nav-actions">
-      <button class="btn btn-primary desktop-only" id="ownerOpen">Owner Login</button>
+      <button class="btn btn-primary desktop-only" id="ownerOpen">Editors Lounge</button>
       <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
     </div>
   </div>
@@ -285,9 +308,9 @@ footer h4{color:#fff8e9;margin:0 0 12px}
  <div class="wrap">
   <div class="section-head"><div><span class="eyebrow">Malinaw na patakaran</span><h2>Terms, Privacy & Content Policy</h2><p>Mga pangunahing gabay para sa paggamit at pangangalaga sa nilalaman ng Liblu Blaan.</p></div></div>
   <div class="feature-grid">
-   <article class="feed-card"><h3 style="color:var(--forest)">Terms of Use</h3><p style="color:var(--muted);font-size:.9rem">Gamitin ang website para sa pag-aaral at paggalang sa wika at kultura. Huwag mag-post o magbahagi ng mapanlinlang, mapanakit, o walang pahintulot na materyal.</p></article>
-   <article class="feed-card"><h3 style="color:var(--forest)">Privacy Policy</h3><p style="color:var(--muted);font-size:.9rem">Ang prototype na ito ay walang account database o server-side tracking. Huwag maglagay ng sensitibong personal na impormasyon. Magdagdag ng kumpletong privacy notice bago maglunsad ng real accounts.</p></article>
-   <article class="feed-card"><h3 style="color:var(--forest)">Copyright & Cultural Respect</h3><p style="color:var(--muted);font-size:.9rem">Kilalanin ang may-akda, tagapagsalaysay, photographer, at pinagmulan. Huwag kopyahin o muling ilathala ang protektadong nilalaman nang walang pahintulot. Igalang ang kaalamang may limitasyon sa pagbabahagi.</p></article>
+   <article class="feed-card"><h3 style="color:var(--forest)">Terms of Use</h3><p style="color:var(--muted);font-size:.9rem">Gamitin ang website para sa pag-aaral, pagbahagi ng kaalaman, at paggalang sa wikang at kulturang Blaan. Huwag mag-post ng ilegal, mapanakit, mapanlinlang, spam, personal na impormasyon ng ibang tao, o materyal na wala kang pahintulot na ibahagi. Maaaring alisin ng owner ang content na lumalabag sa mga patakarang ito. Ang mga tala sa wika at kultura ay dapat may wastong pagkilala sa pinagmulan at beripikasyon kung maaari.</p></article>
+   <article class="feed-card"><h3 style="color:var(--forest)">Privacy Policy</h3><p style="color:var(--muted);font-size:.9rem">Maaaring iproseso ng website ang owner email/session para sa authentication, at ang display name, comment, reaction, at post data na isinusumite sa site. Ginagamit ang data para patakbuhin ang community features, protektahan ang website, at mag-moderate ng content. Huwag maglagay ng password, government ID, financial details, o sensitibong personal na impormasyon sa comments. Ang Supabase at GitHub Pages ay third-party providers. Para sa access, correction, o removal request, makipag-ugnayan sa site owner. Iwasang mangakong walang tracking hangga’t hindi sinusuri ang provider settings. Dapat tiyakin ng may-ari na tugma ang patakarang ito sa aktuwal na data practices ng website at sa naaangkop na batas bago ilathala bilang pinal na legal notice.</p></article>
+   <article class="feed-card"><h3 style="color:var(--forest)">Copyright & Cultural Respect</h3><p style="color:var(--muted);font-size:.9rem">Kilalanin ang may-akda, tagapagsalaysay, photographer, at pinagmulan. Huwag kopyahin o muling ilathala ang protektadong nilalaman nang walang pahintulot. Igalang ang kaalamang may limitasyon sa pagbabahagi. Ang pag-post ay hindi nangangahulugang pagmamay-ari ng website ang copyright ng materyal.</p></article>
   </div>
  </div>
 </section>
@@ -295,41 +318,41 @@ footer h4{color:#fff8e9;margin:0 0 12px}
 <footer>
  <div class="wrap">
   <div class="footer-grid">
-   <div><a class="brand" href="#home"><div class="brand-mark">ᜊ</div><div><div class="brand-name">Liblu Blaan</div><div class="brand-tag">Blaan ang tribo, Blaan din ang lengwahe ko</div></div></a><p style="max-width:360px;margin-top:16px">Isang digital na tahanan para sa wika, heritage, stories, folklore, at tunog ng Blaan.</p></div>
+   <div><a class="brand" href="#home"><div class="brand-mark" aria-hidden="true"></div><div><div class="brand-name">Liblu Blaan</div><div class="brand-tag">Blaan ang tribo, Blaan din ang lengwahe ko</div></div></a><p style="max-width:360px;margin-top:16px">Isang digital na tahanan para sa wika, pamana, kuwentong-bayan, at tunog ng Blaan.</p></div>
    <div><h4>Explore</h4><div class="footer-links"><a href="#dictionary">Dictionary</a><a href="#heritage">Heritage</a><a href="#stories">Stories & Folklore</a><a href="#newsfeed">Newsfeed</a><a href="#timeline">Timeline</a></div></div>
-   <div><h4>Website information</h4><div class="footer-links"><a href="#about">About the Author</a><a href="#policies">Terms of Use</a><a href="#policies">Privacy Policy</a><a href="#policies">Copyright & Content Policy</a><a href="mailto:liblublaan@example.com">Contact / Report</a><button class="btn btn-outline" id="footerOwner" style="justify-content:flex-start;color:#f6f1e4;border-color:#637568">Owner Login</button></div></div>
+   <div><h4>Website information</h4><div class="footer-links"><a href="#about">About the Author</a><a href="#policies">Terms of Use</a><a href="#policies">Privacy Policy</a><a href="#policies">Copyright & Content Policy</a><a href="mailto:liblublaan@example.com">Contact / Report</a><button class="btn btn-outline" id="footerOwner" style="justify-content:flex-start;color:#f6f1e4;border-color:#637568">Editors Lounge</button></div></div>
   </div>
   <div class="footer-bottom"><span>© <span id="year"></span> LIBLU BLAAN — All rights reserved.</span><span>Created by Floramae Malayon</span></div>
  </div>
 </footer>
 
 <div class="modal-backdrop" id="ownerModal" role="dialog" aria-modal="true" aria-labelledby="ownerTitle">
- <div class="modal"><div class="modal-head"><h2 id="ownerTitle">Owner login</h2><button class="icon-btn" data-close="ownerModal" aria-label="Close">✕</button></div>
+ <div class="modal"><div class="modal-head"><h2 id="ownerTitle">Editors Lounge</h2><button class="icon-btn" data-close="ownerModal" aria-label="Close">✕</button></div>
   <p>Mag-login gamit ang registered email at password. Ang kasalukuyang content ay nananatili sa browser storage; hindi ito awtomatikong inililipat sa cloud.</p>
   <form id="ownerForm">
    <div class="field"><label for="ownerEmail">Email</label><input type="email" id="ownerEmail" value="liblublaan@gmail.com" autocomplete="username" required></div>
    <div class="field"><label for="ownerPassword">Password</label><input type="password" id="ownerPassword" placeholder="Password" autocomplete="current-password" required></div>
    <button class="btn btn-primary" type="submit">Log in</button><p id="loginError" style="color:#9b3c32;font-size:.85rem;margin:10px 0 0" role="alert"></p>
   </form>
-  <div id="ownerPanel" class="hidden"><p>Naka-login ka bilang owner.</p><div style="display:flex;gap:9px;flex-wrap:wrap"><button class="btn btn-primary" id="ownerAddWord">＋ Add word</button><button class="btn btn-primary" id="ownerAddPost">＋ Publish post</button><button class="btn btn-primary" id="ownerAddTimeline">＋ Timeline item</button><button class="btn btn-light" id="ownerLogout">Log out</button></div></div>
+  <div id="ownerPanel" class="hidden"><div class="lounge-panel"><span class="owner-lounge-label">✦ Editors Lounge · OWNER</span><p style="margin:10px 0 4px">Owner-only workspace. Ikaw lamang ang may pahintulot na gumawa at mag-edit ng official updates.</p><p class="legal-note" style="margin:0">Ang cloud updates ay puwedeng gawin, i-edit, at burahin ng owner lamang. I-import ang lumang browser-saved posts para makita ng lahat; hindi buburahin ang local backup.</p><button class="btn btn-light" id="syncLegacyPosts" type="button" style="margin-top:10px">Import existing browser posts to cloud</button><p id="syncStatus" class="legal-note" role="status"></p></div><div style="display:flex;gap:9px;flex-wrap:wrap"><button class="btn btn-primary" id="ownerAddWord">＋ Add word</button><button class="btn btn-primary" id="ownerAddPost">＋ Create update</button><button class="btn btn-primary" id="ownerAddTimeline">＋ Timeline item</button><button class="btn btn-light" id="ownerLogout">Log out</button></div></div>
  </div>
 </div>
 
 <div class="modal-backdrop" id="editorModal" role="dialog" aria-modal="true" aria-labelledby="editorTitle">
  <div class="modal"><div class="modal-head"><h2 id="editorTitle">Add content</h2><button class="icon-btn" data-close="editorModal" aria-label="Close">✕</button></div>
   <form id="editorForm">
-   <input type="hidden" id="contentType">
+   <input type="hidden" id="contentType"><input type="hidden" id="editingPostId">
    <div class="field" id="wordField"><label for="entryWord">Blaan word / title</label><input id="entryWord" placeholder="Hal. AYÈM" /></div>
    <div class="form-grid" id="wordExtras">
     <div class="field"><label for="entryPronunciation">Pronunciation guide</label><input id="entryPronunciation" placeholder="Phonetic guide (optional)"></div>
     <div class="field"><label for="entryCategory">Category</label><select id="entryCategory"><option>Daily words</option><option>Animals</option><option>Culture</option></select></div>
    </div>
    <div class="field" id="meaningField"><label for="entryMeaning">Meaning / description</label><textarea id="entryMeaning" placeholder="Ilagay ang kahulugan o nilalaman…"></textarea></div>
-   <div class="field hidden" id="audioField"><label for="entryAudio">Audio file (optional)</label><input id="entryAudio" type="file" accept="audio/*"><small style="color:var(--muted)">Local demo: audio file will be stored in this browser if size allows. For production, upload audio to secure cloud storage.</small></div>
-   <div class="field hidden" id="imageField"><label for="entryImage">Post image (optional)</label><input id="entryImage" type="file" accept="image/*"><small style="color:var(--muted)">Auto-resizes to a maximum 1400px edge and compresses to JPEG before saving.</small><img id="imagePreview" class="hidden" alt="Image preview" style="max-height:170px;object-fit:contain;border-radius:10px"></div>
+   <div class="field hidden" id="audioField"><label for="entryAudio">Audio file (optional)</label><input id="entryAudio" type="file" accept="audio/*"><small style="color:var(--muted)">Audio files are not uploaded to the server by this form. Gumamit ng cloud storage bago mag-publish ng audio para makita ito ng lahat.</small></div>
+   <div class="field hidden" id="imageField"><label for="entryImage">Post image (optional)</label><input id="entryImage" type="file" accept="image/*"><small style="color:var(--muted)">Image is resized in the browser. Para makita ng lahat, kailangan itong i-upload sa cloud storage.</small><img id="imagePreview" class="hidden" alt="Image preview" style="max-height:170px;object-fit:contain;border-radius:10px"></div>
    <div class="field hidden" id="dateField"><label for="entryDate">Date / year</label><input id="entryDate" placeholder="Hal. 2026 · October"></div>
    <div class="notice">Iwasang maglathala ng hindi pa nabeberipikang kahulugan, sensitibong kaalamang pangkomunidad, o recording nang walang pahintulot.</div>
-   <button class="btn btn-primary" type="submit">Save content</button>
+   <button class="btn btn-primary" type="submit" id="editorSaveButton">Save content</button>
   </form>
  </div>
 </div>
@@ -366,7 +389,7 @@ const safeRead = (key, fallback) => { try { const v=localStorage.getItem(key); r
 let words = safeRead("liblu_words", initialWords);
 let posts = safeRead("liblu_posts", initialPosts);
 let timelineItems = safeRead("liblu_timeline", initialTimeline);
-let ownerMode = false, currentFilter = "All", pendingImage = "", pendingAudio = "";
+let ownerMode = false, currentFilter = "All", pendingImage = "", pendingAudio = "", editingLegacyIndex = null;
 function saveAll(){try{localStorage.setItem("liblu_words",JSON.stringify(words));localStorage.setItem("liblu_posts",JSON.stringify(posts));localStorage.setItem("liblu_timeline",JSON.stringify(timelineItems));}catch(e){alert("Hindi sapat ang browser storage. Gumamit ng mas maliit na image/audio o ikonekta ang site sa cloud storage.");}}
 function escapeHTML(s=""){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function speakWord(word){if(!("speechSynthesis" in window)){alert("Hindi suportado ng browser ang text-to-speech. Mas mainam ang verified audio recording ng Blaan speaker.");return;}let u=new SpeechSynthesisUtterance(word);u.lang="en-US";u.rate=.78;window.speechSynthesis.cancel();window.speechSynthesis.speak(u);alert("Browser text-to-speech ito, hindi garantisadong tamang Blaan pronunciation. Gumamit ng verified Blaan audio kapag available.");}
@@ -376,20 +399,187 @@ function renderWords(){
  $("#wordCount").textContent=words.length;
  $("#wordGrid").innerHTML=list.length?list.map((w)=>`<article class="word-card"><div class="word-top"><div><div class="word">${escapeHTML(w.word)}</div><div class="pronunciation">${escapeHTML(w.pronunciation||"Bigkas: kailangan pang idagdag")}</div></div><button class="icon-btn" title="Hear pronunciation (browser voice only)" aria-label="Hear ${escapeHTML(w.word)}" onclick="speakWord('${String(w.word).replace(/\\/g,"\\\\").replace(/'/g,"\\'")}')">♫</button></div><div class="meaning">${escapeHTML(w.meaning)}</div><div class="word-meta"><span>${escapeHTML(w.category)} · ${escapeHTML(w.source||"Liblu Blaan")}</span>${ownerMode?`<button class="icon-btn" title="Delete entry" onclick="deleteWord('${String(w.word).replace(/\\/g,"\\\\").replace(/'/g,"\\'")}')">⌫</button>`:""}</div>${w.audio?`<audio controls preload="none" style="width:100%;margin-top:12px"><source src="${w.audio}"></audio>`:""}</article>`).join(""):'<div class="empty">Walang nahanap na salita. Subukang ibang keyword o category.</div>';
 }
-function renderPosts(){
- $("#feedList").innerHTML=posts.length?posts.map((p,i)=>`<article class="feed-card"><div class="feed-head"><div class="avatar">LB</div><div><strong>Liblu Blaan</strong><small>${escapeHTML(p.date||"Recent update")} · Official update</small></div><span class="post-tag">${escapeHTML(p.category||"Update")}</span></div><h3>${escapeHTML(p.title)}</h3><p>${escapeHTML(p.body)}</p>${p.image?`<img class="post-image" src="${p.image}" alt="Image for ${escapeHTML(p.title)}" loading="lazy">`:""}${p.audio?`<audio controls preload="none" style="width:100%;margin:8px 0"><source src="${p.audio}"></audio>`:""}<div class="post-actions"><span>✦ ${p.likes||0} appreciation</span><span>▣ Liblu Blaan newsfeed</span>${ownerMode?`<button class="text-link" onclick="deletePost(${i})">Delete post</button>`:""}</div></article>`).join(""):'<div class="empty">Wala pang post. Maaaring magdagdag ng update ang owner.</div>';
+let cloudPosts = [];
+let postComments = [];
+let postReactions = [];
+let replyToByPost = {};
+let visitorId = localStorage.getItem("blaan_visitor_id");
+if (!visitorId) {
+  visitorId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : ("v-" + Date.now() + "-" + Math.random().toString(36).slice(2));
+  localStorage.setItem("blaan_visitor_id", visitorId);
+}
+function legacyKey(p) {
+  const raw = [p.title || "", p.body || "", p.date || "", p.category || ""].join("|");
+  let h = 2166136261;
+  for (let i = 0; i < raw.length; i++) { h ^= raw.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return "legacy-" + (h >>> 0).toString(16);
+}
+async function refreshCommunityData() {
+  if (!supabaseClient) { renderPosts(); return; }
+  const [postRes, commentRes, reactionRes] = await Promise.all([
+    supabaseClient.from("community_posts").select("id,title,body,category,image_url,published_at,created_at,legacy_key,owner_id").order("created_at", {ascending:false}),
+    supabaseClient.from("post_comments").select("id,post_id,parent_id,display_name,body,created_at").eq("visible", true).order("created_at", {ascending:true}),
+    supabaseClient.from("post_reactions").select("post_id,visitor_id")
+  ]);
+  if (postRes.error) {
+    console.warn("Community posts unavailable:", postRes.error.message);
+    renderPosts();
+    return;
+  }
+  cloudPosts = postRes.data || [];
+  postComments = commentRes.error ? [] : (commentRes.data || []);
+  postReactions = reactionRes.error ? [] : (reactionRes.data || []);
+  renderPosts();
+}
+function renderCommentTree(postId, parentId = null, depth = 0) {
+  return postComments.filter(c => c.post_id === postId && (c.parent_id || null) === parentId).map(c => {
+    const isReply = depth > 0;
+    return `<div class="comment-item ${isReply ? "reply" : ""}"><div class="comment-meta">${escapeHTML(c.display_name || "Visitor")} · ${escapeHTML(new Date(c.created_at).toLocaleString())}</div><div class="comment-body">${escapeHTML(c.body)}</div><button class="text-link" type="button" onclick="setReplyTarget('${c.post_id}','${c.id}')">Reply</button>${depth < 2 ? renderCommentTree(postId, c.id, depth + 1) : ""}</div>`;
+  }).join("");
+}
+function renderCloudPost(p) {
+  const comments = postComments.filter(c => c.post_id === p.id);
+  const liked = postReactions.some(r => r.post_id === p.id && r.visitor_id === visitorId);
+  const isOwner = ownerMode;
+  return `<article class="feed-card" data-cloud-post="${p.id}">
+    <div class="feed-head"><div class="avatar">BB</div><div><strong>Liblu Blaan</strong><small>${escapeHTML(p.published_at || new Date(p.created_at).toLocaleDateString())} · Official update</small></div><span class="post-tag">${escapeHTML(p.category || "Update")}</span></div>
+    <h3>${escapeHTML(p.title)}</h3><p>${escapeHTML(p.body)}</p>${p.image_url ? `<img class="post-image" src="${escapeHTML(p.image_url)}" alt="Image for ${escapeHTML(p.title)}" loading="lazy">` : ""}
+    <div class="post-actions"><button class="social-btn ${liked ? "liked" : ""}" type="button" onclick="likeCloudPost('${p.id}')" ${liked ? "disabled" : ""}>♥ ${liked ? "Liked" : "Like"} (${postReactions.filter(r=>r.post_id===p.id).length})</button><button class="social-btn" type="button" onclick="focusComment('${p.id}')">💬 Comment (${comments.length})</button><button class="social-btn" type="button" onclick="shareCloudPost('${p.id}')">↗ Share</button>${isOwner ? `<button class="social-btn" type="button" onclick="editCloudPost('${p.id}')">✎ Edit</button><button class="social-btn" type="button" onclick="deleteCloudPost('${p.id}')">Delete</button>` : ""}</div>
+    <div class="post-comments"><strong>Comments & replies</strong><div class="comment-list">${renderCommentTree(p.id) || '<p class="legal-note">Wala pang comment. Maging magalang sa pagbahagi.</p>'}</div>
+      <form class="comment-form" onsubmit="submitCloudComment(event,'${p.id}')"><input name="display_name" maxlength="60" placeholder="Pangalan o display name (huwag ang password)" required><textarea name="body" maxlength="1000" placeholder="Isulat ang comment…" required></textarea><div class="legal-note" id="reply-label-${p.id}">${replyToByPost[p.id] ? "May napiling reply target." : "Keep comments respectful. Comments may be public."}</div><button class="btn btn-light" type="submit">Post comment / reply</button></form>
+    </div></article>`;
+}
+function renderLegacyPost(p, i, migratedKeys) {
+  const key = legacyKey(p);
+  if (migratedKeys.has(key)) return "";
+  return `<article class="feed-card"><div class="feed-head"><div class="avatar">BB</div><div><strong>Liblu Blaan</strong><small>${escapeHTML(p.date||"Recent update")} · Browser-saved post</small></div><span class="post-tag">${escapeHTML(p.category||"Update")}</span></div><h3>${escapeHTML(p.title)}</h3><p>${escapeHTML(p.body)}</p>${p.image?`<img class="post-image" src="${p.image}" alt="Image for ${escapeHTML(p.title)}" loading="lazy">`:""}${p.audio?`<audio controls preload="none" style="width:100%;margin:8px 0"><source src="${p.audio}"></audio>`:""}<div class="post-actions">${ownerMode?`<button class="social-btn" type="button" onclick="editLegacyPost(${i})">✎ Edit locally</button><button class="social-btn" type="button" onclick="deletePost(${i})">Delete local post</button>`:""}<span class="legal-note">This older post is stored in this browser until the owner imports it.</span></div></article>`;
+}
+function renderPosts() {
+  const feed = $("#feedList");
+  if (!feed) return;
+  const migratedKeys = new Set(cloudPosts.map(p => p.legacy_key).filter(Boolean));
+  const cloudHtml = cloudPosts.map(renderCloudPost).join("");
+  const legacyHtml = posts.map((p,i)=>renderLegacyPost(p,i,migratedKeys)).join("");
+  const combined = cloudHtml + legacyHtml;
+  feed.innerHTML = combined || '<div class="empty">Wala pang post. Maaaring magdagdag ng update ang owner.</div>';
+}
+async function likeCloudPost(postId) {
+  if (!supabaseClient) return alert("Hindi available ang community database.");
+  try {
+    const {error} = await supabaseClient.from("post_reactions").insert({post_id:postId, visitor_id:visitorId});
+    if (error && !String(error.code).includes("23505")) throw error;
+    await refreshCommunityData();
+  } catch (e) { alert("Hindi na-save ang Like. Tiyaking naipatupad ang Supabase SQL setup. " + (e.message || "")); }
+}
+function focusComment(postId) {
+  const form = document.querySelector(`[data-cloud-post="${postId}"] .comment-form`);
+  if (form) form.querySelector("textarea").focus();
+}
+function setReplyTarget(postId, commentId) {
+  replyToByPost[postId] = commentId;
+  const label = document.getElementById("reply-label-" + postId);
+  if (label) label.textContent = "Replying to selected comment. Submit to post your reply.";
+  focusComment(postId);
+}
+async function submitCloudComment(event, postId) {
+  event.preventDefault();
+  if (!supabaseClient) return alert("Hindi available ang community database.");
+  const form = event.currentTarget;
+  const display_name = form.elements.display_name.value.trim();
+  const body = form.elements.body.value.trim();
+  if (!display_name || !body || body.length > 1000) return alert("Pakisuri ang pangalan at comment (hanggang 1000 characters).");
+  try {
+    const {error} = await supabaseClient.from("post_comments").insert({
+      post_id: postId, parent_id: replyToByPost[postId] || null,
+      display_name, body, visitor_id: visitorId
+    });
+    if (error) throw error;
+    delete replyToByPost[postId];
+    await refreshCommunityData();
+  } catch (e) { alert("Hindi na-save ang comment/reply. Tiyaking naipatupad ang Supabase SQL setup. " + (e.message || "")); }
+}
+async function shareCloudPost(postId) {
+  const p = cloudPosts.find(x => x.id === postId);
+  if (!p) return;
+  const url = location.origin + location.pathname + "#newsfeed";
+  const shareData = {title:p.title, text:p.body, url};
+  try {
+    if (navigator.share) await navigator.share(shareData);
+    else if (navigator.clipboard) { await navigator.clipboard.writeText(url); alert("Nakopya ang website link para ma-share."); }
+    else prompt("Kopyahin ang link na ito:", url);
+  } catch (e) { if (e.name !== "AbortError") alert("Hindi mabuksan ang share dialog. Kopyahin ang URL ng website."); }
+}
+async function editCloudPost(postId) {
+  if (!ownerMode) return openOwner();
+  const p = cloudPosts.find(x=>x.id===postId);
+  if (!p) return;
+  $("#editorForm").reset();
+  $("#contentType").value="post";
+  $("#editingPostId").value=p.id;
+  $("#editorTitle").textContent="Edit update";
+  $("#editorSaveButton").textContent="Save changes";
+  $("#wordField").classList.remove("hidden");
+  $("#wordExtras").classList.add("hidden");
+  $("#meaningField").classList.remove("hidden");
+  $("#audioField").classList.add("hidden");
+  $("#imageField").classList.remove("hidden");
+  $("#dateField").classList.remove("hidden");
+  $("#entryWord").value=p.title || "";
+  $("#entryMeaning").value=p.body || "";
+  $("#entryDate").value=p.published_at || "";
+  $("#entryCategory").value=p.category || "Announcement";
+  pendingImage="";
+  openModal("editorModal");
+}
+function editLegacyPost(i) {
+  if (!ownerMode) return openOwner();
+  const p=posts[i]; if(!p) return;
+  editingLegacyIndex=i;
+  openEditor("post", {title:p.title,body:p.body,date:p.date,category:p.category,image:p.image,audio:p.audio});
+}
+async function deleteCloudPost(postId) {
+  if (!ownerMode) return openOwner();
+  if (!confirm("Sigurado ka bang buburahin ang post na ito? Mabubura rin ang comments/reactions na naka-link dito.")) return;
+  const {error}=await supabaseClient.from("community_posts").delete().eq("id",postId);
+  if (error) return alert("Hindi nabura ang post: " + error.message);
+  await refreshCommunityData();
+}
+async function syncLegacyPostsToCloud() {
+  if (!ownerMode || !supabaseClient) return alert("Mag-login bilang owner at tiyaking naka-configure ang Supabase.");
+  const status=$("#syncStatus");
+  status.textContent="Ini-import ang browser posts sa cloud…";
+  let count=0;
+  try {
+    const {data:sessionData}=await supabaseClient.auth.getSession();
+    const user=sessionData?.session?.user;
+    if (!user || (user.email||"").toLowerCase() !== AUTHORIZED_OWNER_EMAIL) throw new Error("Owner session not found.");
+    for (const p of posts) {
+      const key=legacyKey(p);
+      const row={legacy_key:key,title:String(p.title||"Untitled").slice(0,200),body:String(p.body||"").slice(0,10000),category:String(p.category||"Update").slice(0,60),image_url:(p.image && p.image.startsWith("http"))?p.image:null,published_at:String(p.date||new Date().toISOString().slice(0,10)).slice(0,60),owner_id:user.id};
+      const {error}=await supabaseClient.from("community_posts").upsert(row,{onConflict:"legacy_key",ignoreDuplicates:true});
+      if(error) throw error;
+      count++;
+    }
+    status.textContent=`Tapos. ${count} browser post(s) na-import o na-check. Hindi binura ang localStorage backup.`;
+    await refreshCommunityData();
+  } catch(e) {
+    status.textContent="Hindi natapos ang import. " + (e.message || "Suriin ang SQL setup at RLS policies.");
+  }
 }
 function renderTimeline(){
  $("#timelineList").innerHTML=timelineItems.map((t,i)=>`<article class="timeline-card"><small>${escapeHTML(t.date||"Update")}</small><h3>${escapeHTML(t.title)}</h3><p>${escapeHTML(t.body)}</p>${ownerMode?`<button class="text-link" style="margin-top:10px" onclick="deleteTimeline(${i})">Delete item</button>`:""}</article>`).join("");
 }
-function setOwner(on){ownerMode=on;document.querySelectorAll(".owner-action").forEach(b=>b.classList.toggle("hidden",!on));$("#ownerPanel").classList.toggle("hidden",!on);$("#ownerForm").classList.toggle("hidden",on);$("#ownerTitle").textContent=on?"Owner tools":"Owner login";renderWords();renderPosts();renderTimeline();}
+function setOwner(on){ownerMode=on;document.querySelectorAll(".owner-action").forEach(b=>b.classList.toggle("hidden",!on));$("#ownerPanel").classList.toggle("hidden",!on);$("#ownerForm").classList.toggle("hidden",on);$("#ownerTitle").textContent=on?"Editors Lounge":"Editors Lounge · Owner login";renderWords();renderPosts();renderTimeline();}
 function openModal(id){$("#"+id).classList.add("open");document.body.style.overflow="hidden";}
 function closeModal(id){$("#"+id).classList.remove("open");document.body.style.overflow="";}
 function openOwner(){ $("#loginError").textContent="";$("#ownerPassword").value="";openModal("ownerModal");}
-function openEditor(type){
+function openEditor(type, legacyData=null){
  if(!ownerMode){openOwner();return;}
  $("#editorForm").reset();pendingImage="";pendingAudio="";$("#imagePreview").classList.add("hidden");
- $("#contentType").value=type;$("#editorTitle").textContent=type==="word"?"Add dictionary word":type==="post"?"Publish newsfeed post":"Add timeline item";
+ $("#editingPostId").value="";
+ if (!legacyData) editingLegacyIndex=null;
+ $("#editorSaveButton").textContent="Save content";
+ $("#contentType").value=type;$("#editorTitle").textContent=type==="word"?"Add dictionary word":type==="post"?"Publish update":"Add timeline item";
  $("#wordField").classList.toggle("hidden",type==="timeline");
  $("#wordExtras").classList.toggle("hidden",type!=="word");
  $("#meaningField").classList.toggle("hidden",type==="timeline");
@@ -398,6 +588,16 @@ function openEditor(type){
  $("#dateField").classList.toggle("hidden",type==="word");
  $("#entryWord").placeholder=type==="post"?"Post title":type==="timeline"?"Timeline title":"Blaan word / title";
  $("#entryMeaning").placeholder=type==="word"?"Meaning / translation":type==="post"?"Write the newsfeed post…":"Description";
+ if (legacyData) {
+   $("#editorTitle").textContent="Edit browser-saved update";
+   $("#editorSaveButton").textContent="Save changes";
+   $("#entryWord").value=legacyData.title||"";
+   $("#entryMeaning").value=legacyData.body||"";
+   $("#entryDate").value=legacyData.date||"";
+   $("#entryCategory").value=legacyData.category||"Announcement";
+   pendingImage=legacyData.image||""; pendingAudio=legacyData.audio||"";
+   if (pendingImage) { $("#imagePreview").src=pendingImage; $("#imagePreview").classList.remove("hidden"); }
+ }
  openModal("editorModal");
 }
 function deleteWord(word){if(confirm("Burahin ang dictionary entry na "+word+"?")){words=words.filter(w=>w.word!==word);saveAll();renderWords();}}
@@ -415,6 +615,7 @@ $("#navlinks").addEventListener("click",e=>{if(e.target.closest("a")){$("#navlin
 $("#ownerOpen").addEventListener("click",openOwner);$("#footerOwner").addEventListener("click",openOwner);
 $("#addWordBtn").addEventListener("click",()=>openEditor("word"));$("#addPostBtn").addEventListener("click",()=>openEditor("post"));$("#addTimelineBtn").addEventListener("click",()=>openEditor("timeline"));
 $("#ownerAddWord").addEventListener("click",()=>{closeModal("ownerModal");openEditor("word")});$("#ownerAddPost").addEventListener("click",()=>{closeModal("ownerModal");openEditor("post")});$("#ownerAddTimeline").addEventListener("click",()=>{closeModal("ownerModal");openEditor("timeline")});
+$("#syncLegacyPosts").addEventListener("click",syncLegacyPostsToCloud);
 $("#ownerLogout").addEventListener("click",async()=>{if(supabaseClient)await supabaseClient.auth.signOut();setOwner(false);closeModal("ownerModal")});
 document.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",()=>closeModal(b.dataset.close)));
 document.querySelectorAll(".modal-backdrop").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)closeModal(m.id)}));
@@ -438,34 +639,67 @@ $("#ownerForm").addEventListener("submit",async e=>{
    error.textContent="Hindi awtorisado ang account na ito.";
    return;
  }
- setOwner(true);
+ setOwner(true); await refreshCommunityData();
 });
 
 $("#entryImage").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;try{pendingImage=await resizeImage(f);$("#imagePreview").src=pendingImage;$("#imagePreview").classList.remove("hidden");}catch(err){alert("Hindi mabasa ang image. Subukang ibang file.");}});
 $("#entryAudio").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;if(f.size>1_500_000){alert("Para sa local demo, hanggang 1.5 MB lang ang audio. Sa live site, gumamit ng cloud storage.");e.target.value="";return;}try{pendingAudio=await fileToData(f);}catch(err){alert("Hindi mabasa ang audio file.");}});
-$("#editorForm").addEventListener("submit",e=>{
+$("#editorForm").addEventListener("submit",async e=>{
  e.preventDefault();if(!ownerMode){alert("Owner mode muna.");return;}
  const type=$("#contentType").value,title=$("#entryWord").value.trim(),body=$("#entryMeaning").value.trim(),date=$("#entryDate").value.trim()||new Date().toLocaleDateString("en-PH",{year:"numeric",month:"long"});
  if(type!=="timeline"&&!title){alert("Pakilagyan ng title o salita.");return;}
  if(type!=="timeline"&&!body){alert("Pakilagyan ng kahulugan o nilalaman.");return;}
+ if(type==="post" && supabaseClient && !editingLegacyIndex && !$("#editingPostId").value) {
+   const {data:sessionData}=await supabaseClient.auth.getSession();
+   const user=sessionData?.session?.user;
+   if(!user || (user.email||"").toLowerCase()!==AUTHORIZED_OWNER_EMAIL){alert("Owner session not verified.");return;}
+   const row={title,body,category:$("#entryCategory").value||"Announcement",published_at:date,owner_id:user.id};
+   if(pendingImage && pendingImage.startsWith("http")) row.image_url=pendingImage;
+   const postId=$("#editingPostId").value;
+   const result=postId
+      ? await supabaseClient.from("community_posts").update({...row,updated_at:new Date().toISOString()}).eq("id",postId).select().single()
+      : await supabaseClient.from("community_posts").insert(row).select().single();
+   if(result.error){alert("Hindi na-save sa cloud. Patakbuhin muna ang SQL setup file. " + result.error.message);return;}
+   closeModal("editorModal");await refreshCommunityData();return;
+ }
+ if(type==="post" && supabaseClient && $("#editingPostId").value) {
+   const {data:sessionData}=await supabaseClient.auth.getSession();
+   const user=sessionData?.session?.user;
+   if(!user || (user.email||"").toLowerCase()!==AUTHORIZED_OWNER_EMAIL){alert("Owner session not verified.");return;}
+   const row={title,body,category:$("#entryCategory").value||"Announcement",published_at:date,updated_at:new Date().toISOString()};
+   if(pendingImage && pendingImage.startsWith("http")) row.image_url=pendingImage;
+   const result=await supabaseClient.from("community_posts").update(row).eq("id",$("#editingPostId").value).select().single();
+   if(result.error){alert("Hindi na-save ang update: "+result.error.message);return;}
+   closeModal("editorModal");await refreshCommunityData();return;
+ }
  if(type==="word"){words.unshift({word:title,pronunciation:$("#entryPronunciation").value.trim(),category:$("#entryCategory").value,meaning:body,source:"Owner entry",audio:pendingAudio});}
- if(type==="post"){posts.unshift({title,category:"Announcement",date,body,image:pendingImage,audio:pendingAudio,likes:0});}
+ if(type==="post"){
+   if (editingLegacyIndex !== null) {
+     const old=posts[editingLegacyIndex];
+     posts[editingLegacyIndex]={...old,title,body,date,category:$("#entryCategory").value||"Announcement",image:pendingImage||old.image||"",audio:pendingAudio||old.audio||""};
+     editingLegacyIndex=null;
+   } else {
+     alert("Cloud posts are not configured. This post can only be saved locally until the SQL setup is installed.");
+     return;
+   }
+ }
  if(type==="timeline"){if(!title||!body){alert("Pakilagyan ng title at description.");return;}timelineItems.unshift({date,title,body});}
  saveAll();renderWords();renderPosts();renderTimeline();closeModal("editorModal");
 });
 $("#year").textContent=new Date().getFullYear();
 renderWords();renderPosts();renderTimeline();
+refreshCommunityData();
 
 // Restore owner tools only for the designated email. Existing localStorage keys/data are untouched.
 if(supabaseClient){
  supabaseClient.auth.getSession().then(({data})=>{
    const user=data && data.session && data.session.user;
-   if(user && (user.email||"").toLowerCase()===AUTHORIZED_OWNER_EMAIL) setOwner(true);
+   if(user && (user.email||"").toLowerCase()===AUTHORIZED_OWNER_EMAIL) { setOwner(true); }
    else setOwner(false);
  }).catch(()=>setOwner(false));
  supabaseClient.auth.onAuthStateChange((event, session)=>{
    const user=session && session.user;
-   if(user && (user.email||"").toLowerCase()===AUTHORIZED_OWNER_EMAIL) setOwner(true);
+   if(user && (user.email||"").toLowerCase()===AUTHORIZED_OWNER_EMAIL) { setOwner(true); refreshCommunityData(); }
    else if(event==="SIGNED_OUT" || event==="USER_DELETED" || event==="SIGNED_IN") setOwner(false);
  });
 }
