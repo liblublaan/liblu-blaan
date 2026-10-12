@@ -199,6 +199,11 @@ footer h4{color:#fff8e9;margin:0 0 12px}
  .stat{padding:11px 9px}.searchbar{flex-direction:column}.searchbar .btn{width:100%}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+body{-webkit-user-select:none;user-select:none}
+input,textarea,[contenteditable="true"],select,.comment-body{-webkit-user-select:text;user-select:text}
+.rich-editor-wrap:after{content:"LIBLU BLAAN";position:absolute;left:50%;top:56%;transform:translate(-50%,-50%) rotate(-24deg);font-family:Georgia,serif;font-size:clamp(1.6rem,5vw,3.4rem);font-weight:800;letter-spacing:.12em;color:rgba(41,72,59,.10);pointer-events:none;white-space:nowrap;z-index:2}
+@media print{.post-rich-content:after{content:"LIBLU BLAAN";position:fixed;left:50%;top:45%;transform:translate(-50%,-50%) rotate(-30deg);font-size:52pt;font-weight:800;letter-spacing:8px;color:rgba(41,72,59,.14);pointer-events:none;z-index:9999}}
+
 
 /* Blaan-inspired palette accent and community controls */
 .topline{background:linear-gradient(90deg,var(--blaan-red),var(--blaan-orange),var(--blaan-yellow),var(--blaan-green),var(--blaan-blue),var(--blaan-black));color:#fff}
@@ -224,7 +229,7 @@ footer h4{color:#fff8e9;margin:0 0 12px}
 
 /* Writing Lounge rich-text editor and Dictionary post recovery */
 .dictionary-posts-wrap{margin-top:34px;padding-top:25px;border-top:1px solid var(--line)}.dictionary-posts-head{margin-bottom:14px}.dictionary-posts-head h3{font-family:Georgia,serif;color:var(--forest);font-size:1.55rem;margin:7px 0 0}.dictionary-posts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.dictionary-post-card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px;min-width:0}.dictionary-post-card h4{font-family:Georgia,serif;color:var(--forest);font-size:1.2rem;margin:0 0 8px}.dictionary-post-card .post-rich-content{font-size:.92rem}
-.rich-editor-wrap{border:1px solid #cfcbbd;border-radius:13px;overflow:hidden;background:#fffef9}.rich-toolbar{display:flex;align-items:center;gap:5px;flex-wrap:wrap;padding:9px;border-bottom:1px solid var(--line);background:#f3f1e8}.rich-toolbar button{border:1px solid #ded9ca;background:#fffdf7;color:var(--forest);border-radius:7px;padding:7px 9px;min-height:34px;font-size:.82rem;font-weight:700}.rich-toolbar button:hover{background:#e8eddf}.toolbar-divider{height:25px;width:1px;background:#d7d1c2;margin:0 3px}.toolbar-select-label{display:inline-flex;align-items:center;gap:4px;font-size:.72rem;color:var(--muted);font-weight:800}.toolbar-select-label select{max-width:110px;border:1px solid #ded9ca;border-radius:7px;background:#fffdf7;color:var(--ink);padding:7px 5px;font-size:.78rem}.rich-editor{min-height:260px;padding:17px 18px;outline:none;line-height:1.7;overflow-wrap:anywhere}.rich-editor:empty:before{content:attr(data-placeholder);color:#969b92;pointer-events:none}.rich-editor p{margin:0 0 1em}.rich-editor h2{font-family:Georgia,serif;font-size:1.7rem;line-height:1.2;margin:.5em 0}.rich-editor h3{font-family:Georgia,serif;font-size:1.3rem;margin:.5em 0}.rich-editor blockquote{margin:1em 0;padding:8px 14px;border-left:3px solid var(--gold);background:#f7f3e8}.rich-editor ul,.rich-editor ol{padding-left:1.7em}.editor-help{padding:9px 13px;background:#f7f3e8;border-top:1px solid var(--line);color:var(--muted);font-size:.76rem}.post-rich-content{line-height:1.8;overflow-wrap:anywhere;white-space:normal}.post-rich-content p{margin:0 0 1em;color:#536158}.post-rich-content p:last-child{margin-bottom:0}.post-rich-content h2,.post-rich-content h3{font-family:Georgia,serif;color:var(--forest);line-height:1.3;margin:1em 0 .5em}.post-rich-content blockquote{margin:1em 0;padding:9px 15px;border-left:3px solid var(--gold);background:#f7f3e8;color:#536158}.post-rich-content ul,.post-rich-content ol{padding-left:1.6em;margin:.6em 0 1em}.post-rich-content a{color:#176b48;text-decoration:underline}.post-rich-content img{max-height:360px;object-fit:contain;border-radius:12px}@media(max-width:700px){.dictionary-posts{grid-template-columns:1fr}.rich-editor{min-height:220px;padding:14px}.rich-toolbar{gap:4px}.toolbar-select-label select{max-width:85px}}
+.rich-editor-wrap{position:relative;border:1px solid #cfcbbd;border-radius:13px;overflow:hidden;background:#fffef9}.rich-toolbar{display:flex;align-items:center;gap:5px;flex-wrap:wrap;padding:9px;border-bottom:1px solid var(--line);background:#f3f1e8}.rich-toolbar button{border:1px solid #ded9ca;background:#fffdf7;color:var(--forest);border-radius:7px;padding:7px 9px;min-height:34px;font-size:.82rem;font-weight:700}.rich-toolbar button:hover{background:#e8eddf}.toolbar-divider{height:25px;width:1px;background:#d7d1c2;margin:0 3px}.toolbar-select-label{display:inline-flex;align-items:center;gap:4px;font-size:.72rem;color:var(--muted);font-weight:800}.toolbar-select-label select{max-width:110px;border:1px solid #ded9ca;border-radius:7px;background:#fffdf7;color:var(--ink);padding:7px 5px;font-size:.78rem}.rich-editor{min-height:260px;padding:17px 18px;outline:none;line-height:1.7;overflow-wrap:anywhere}.rich-editor:empty:before{content:attr(data-placeholder);color:#969b92;pointer-events:none}.rich-editor p{margin:0 0 1em}.rich-editor h2{font-family:Georgia,serif;font-size:1.7rem;line-height:1.2;margin:.5em 0}.rich-editor h3{font-family:Georgia,serif;font-size:1.3rem;margin:.5em 0}.rich-editor blockquote{margin:1em 0;padding:8px 14px;border-left:3px solid var(--gold);background:#f7f3e8}.rich-editor ul,.rich-editor ol{padding-left:1.7em}.editor-help{padding:9px 13px;background:#f7f3e8;border-top:1px solid var(--line);color:var(--muted);font-size:.76rem}.post-rich-content{line-height:1.8;overflow-wrap:anywhere;white-space:normal}.post-rich-content p{margin:0 0 1em;color:#536158}.post-rich-content p:last-child{margin-bottom:0}.post-rich-content h2,.post-rich-content h3{font-family:Georgia,serif;color:var(--forest);line-height:1.3;margin:1em 0 .5em}.post-rich-content blockquote{margin:1em 0;padding:9px 15px;border-left:3px solid var(--gold);background:#f7f3e8;color:#536158}.post-rich-content ul,.post-rich-content ol{padding-left:1.6em;margin:.6em 0 1em}.post-rich-content a{color:#176b48;text-decoration:underline}.post-rich-content img{max-height:360px;object-fit:contain;border-radius:12px}@media(max-width:700px){.dictionary-posts{grid-template-columns:1fr}.rich-editor{min-height:220px;padding:14px}.rich-toolbar{gap:4px}.toolbar-select-label select{max-width:85px}}
 
 
 </style>
@@ -241,7 +246,7 @@ footer h4{color:#fff8e9;margin:0 0 12px}
       <a href="#home">Home</a><a href="#dictionary">Dictionary</a><a href="#heritage">Heritage</a><a href="#stories">Stories & Folklore</a><a href="#timeline">Timeline</a><a href="#newsfeed">Newsfeed</a><a href="#about">About</a>
     </nav>
     <div class="nav-actions">
-      <button class="btn btn-primary desktop-only" id="ownerOpen">Editors Lounge</button>
+      <button class="btn btn-primary desktop-only" id="ownerOpen">Log in / Sign up</button>
       <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
     </div>
   </div>
@@ -359,11 +364,11 @@ footer h4{color:#fff8e9;margin:0 0 12px}
 
 <div class="modal-backdrop" id="ownerModal" role="dialog" aria-modal="true" aria-labelledby="ownerTitle">
  <div class="modal"><div class="modal-head"><h2 id="ownerTitle">Editors Lounge</h2><button class="icon-btn" data-close="ownerModal" aria-label="Close">✕</button></div>
-  <p>Mag-login gamit ang registered email at password. Ang kasalukuyang content ay nananatili sa browser storage; hindi ito awtomatikong inililipat sa cloud.</p>
+  <p id="authIntro">Mag-login o gumawa ng account para makapag-like at makapag-comment. Ang Editors Lounge ay para lamang sa awtorisadong owner.</p>
   <form id="ownerForm">
-   <div class="field"><label for="ownerEmail">Email</label><input type="email" id="ownerEmail" value="liblublaan@gmail.com" autocomplete="username" required></div>
+   <div class="field"><label for="ownerEmail">Email</label><input type="email" id="ownerEmail" placeholder="Gmail o email address" autocomplete="username" required></div>
    <div class="field"><label for="ownerPassword">Password</label><input type="password" id="ownerPassword" placeholder="Password" autocomplete="current-password" required></div>
-   <button class="btn btn-primary" type="submit">Log in</button><p id="loginError" style="color:#9b3c32;font-size:.85rem;margin:10px 0 0" role="alert"></p>
+   <button class="btn btn-primary" type="submit" id="authSubmit">Log in</button> <button class="btn btn-light" type="button" id="authModeToggle">Create account</button> <button class="btn btn-outline" type="button" id="googleAuth">Continue with Google</button><p id="loginError" style="color:#9b3c32;font-size:.85rem;margin:10px 0 0" role="alert"></p>
   </form>
   <div id="ownerPanel" class="hidden"><div class="lounge-panel"><span class="owner-lounge-label">✦ Editors Lounge · OWNER</span><p style="margin:10px 0 4px">Owner-only workspace. Ikaw lamang ang may pahintulot na gumawa at mag-edit ng official updates.</p><p class="legal-note" style="margin:0">Ang cloud updates ay puwedeng gawin, i-edit, at burahin ng owner lamang. I-import ang lumang browser-saved posts para makita ng lahat; hindi buburahin ang local backup.</p><button class="btn btn-light" id="syncLegacyPosts" type="button" style="margin-top:10px">Import existing browser posts to cloud</button><p id="syncStatus" class="legal-note" role="status"></p></div><div style="display:flex;gap:9px;flex-wrap:wrap"><button class="btn btn-primary" id="ownerAddWord">＋ Add word</button><button class="btn btn-primary" id="ownerAddPost">＋ Create update</button><button class="btn btn-primary" id="ownerAddTimeline">＋ Timeline item</button><button class="btn btn-light" id="ownerLogout">Log out</button></div></div>
  </div>
@@ -430,7 +435,7 @@ const safeRead = (key, fallback) => { try { const v=localStorage.getItem(key); r
 let words = safeRead("liblu_words", initialWords);
 let posts = safeRead("liblu_posts", initialPosts);
 let timelineItems = safeRead("liblu_timeline", initialTimeline);
-let ownerMode = false, currentFilter = "All", pendingImage = "", pendingAudio = "", editingLegacyIndex = null, editingWordValue = null;
+let ownerMode = false, currentUser = null, currentFilter = "All", pendingImage = "", pendingAudio = "", editingLegacyIndex = null, editingWordValue = null;
 function saveAll(){try{localStorage.setItem("liblu_words",JSON.stringify(words));localStorage.setItem("liblu_posts",JSON.stringify(posts));localStorage.setItem("liblu_timeline",JSON.stringify(timelineItems));}catch(e){alert("Hindi sapat ang browser storage. Gumamit ng mas maliit na image/audio o ikonekta ang site sa cloud storage.");}}
 function escapeHTML(s=""){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function safeMediaUrl(value, kind="image") {
@@ -542,7 +547,7 @@ function plainTextFromRich(html=""){const d=new DOMParser().parseFromString(Stri
 function renderDictionaryPosts(){const target=$("#dictionaryPosts");if(!target)return;const all=[...(cloudPosts||[]),...(posts||[]).filter(p=>!cloudPosts.some(c=>c.legacy_key===legacyKey(p)))].filter(p=>String(p.category||"").toLowerCase()==="dictionary");target.innerHTML=all.length?all.map(p=>`<article class="dictionary-post-card"><div class="kicker">Dictionary · ${escapeHTML(p.published_at||p.date||"Update")}</div><h4>${escapeHTML(p.title||"Dictionary note")}</h4><div class="post-rich-content">${renderRichContent(p.body||"")}</div>${ownerMode&&p.id?`<div class="post-owner-actions"><button class="social-btn" type="button" onclick="editCloudPost('${p.id}')">✎ Edit</button></div>`:""}</article>`).join(""):'<div class="empty">Wala pang Dictionary post. Kapag nag-publish ka ng post sa Writing Lounge at pinili ang “Dictionary,” lalabas din ito rito.</div>';}
 function renderCloudPost(p) {
   const comments = postComments.filter(c => c.post_id === p.id);
-  const liked = postReactions.some(r => r.post_id === p.id && r.visitor_id === visitorId);
+  const liked = !!currentUser && postReactions.some(r => r.post_id === p.id && r.visitor_id === currentUser.id);
   const isOwner = ownerMode;
   const imageUrl=safeMediaUrl(p.image_url,"image");
   return `<article class="feed-card" data-cloud-post="${p.id}">
@@ -550,7 +555,7 @@ function renderCloudPost(p) {
     <h3>${escapeHTML(p.title)}</h3><div class="post-rich-content">${renderRichContent(p.body)}</div>${imageUrl ? `<img class="post-image" src="${imageUrl}" alt="Image for ${escapeHTML(p.title)}" loading="lazy">` : ""}
     <div class="post-actions"><button class="social-btn ${liked ? "liked" : ""}" type="button" onclick="likeCloudPost('${p.id}')" ${liked ? "disabled" : ""}>♥ ${liked ? "Liked" : "Like"} (${postReactions.filter(r=>r.post_id===p.id).length})</button><button class="social-btn" type="button" onclick="focusComment('${p.id}')">💬 Comment (${comments.length})</button><button class="social-btn" type="button" onclick="shareCloudPost('${p.id}')">↗ Share</button>${isOwner ? `<button class="social-btn" type="button" onclick="editCloudPost('${p.id}')">✎ Edit</button><button class="social-btn" type="button" onclick="deleteCloudPost('${p.id}')">Delete</button>` : ""}</div>
     <div class="post-comments"><strong>Comments & replies</strong><div class="comment-list">${renderCommentTree(p.id) || '<p class="legal-note">Wala pang comment. Maging magalang sa pagbahagi.</p>'}</div>
-      <form class="comment-form" onsubmit="submitCloudComment(event,'${p.id}')"><input name="display_name" maxlength="60" placeholder="Pangalan o display name (huwag ang password)" required><textarea name="body" maxlength="1000" placeholder="Isulat ang comment…" required></textarea><div class="legal-note" id="reply-label-${p.id}">${replyToByPost[p.id] ? "May napiling reply target." : "Keep comments respectful. Comments may be public."}</div><button class="btn btn-light" type="submit">Post comment / reply</button></form>
+      <form class="comment-form" onsubmit="submitCloudComment(event,'${p.id}')"><input name="display_name" maxlength="60" placeholder="Pangalan o display name" value="${escapeHTML(currentUser?.user_metadata?.full_name || currentUser?.user_metadata?.name || (currentUser?.email||"").split("@")[0] || "")}" required ${currentUser ? "" : "disabled"}><textarea name="body" maxlength="1000" placeholder="Isulat ang comment…" required ${currentUser ? "" : "disabled"}></textarea><div class="legal-note" id="reply-label-${p.id}">${currentUser ? (replyToByPost[p.id] ? "May napiling reply target." : "") : "Mag-login para makapag-comment."}</div><button class="btn btn-light" type="submit" ${currentUser ? "" : "disabled"}>Post comment / reply</button></form>
     </div></article>`;
 }
 function renderLegacyPost(p, i, migratedKeys) {
@@ -572,7 +577,7 @@ function renderPosts() {
 async function likeCloudPost(postId) {
   if (!supabaseClient) return alert("Hindi available ang community database.");
   try {
-    const {error} = await supabaseClient.from("post_reactions").insert({post_id:postId, visitor_id:visitorId});
+    const {error} = await supabaseClient.from("post_reactions").insert({post_id:postId, visitor_id:currentUser.id});
     if (error && !String(error.code).includes("23505")) throw error;
     await refreshCommunityData();
   } catch (e) { alert("Hindi na-save ang Like. Tiyaking naipatupad ang Supabase SQL setup. " + (e.message || "")); }
@@ -597,7 +602,7 @@ async function submitCloudComment(event, postId) {
   try {
     const {error} = await supabaseClient.from("post_comments").insert({
       post_id: postId, parent_id: replyToByPost[postId] || null,
-      display_name, body, visitor_id: visitorId
+      display_name, body, visitor_id: currentUser.id
     });
     if (error) throw error;
     delete replyToByPost[postId];
@@ -678,10 +683,10 @@ function renderTimeline(){
  const activeTimeline = cloudTimeline !== null ? cloudTimeline : timelineItems;
  $("#timelineList").innerHTML=activeTimeline.map((t,i)=>`<article class="timeline-card"><small>${escapeHTML(t.date||t.event_date||"Update")}</small><h3>${escapeHTML(t.title)}</h3><p>${escapeHTML(t.body)}</p>${ownerMode?`<button class="text-link" style="margin-top:10px" onclick="deleteTimeline(${i})">Delete item</button>`:""}</article>`).join("");
 }
-function setOwner(on){ownerMode=on;document.querySelectorAll(".owner-action").forEach(b=>b.classList.toggle("hidden",!on));$("#ownerPanel").classList.toggle("hidden",!on);$("#ownerForm").classList.toggle("hidden",on);$("#ownerTitle").textContent=on?"Editors Lounge":"Editors Lounge · Owner login";renderWords();renderPosts();renderTimeline();}
+function setOwner(on){ownerMode=!!on;document.querySelectorAll(".owner-action").forEach(b=>b.classList.toggle("hidden",!ownerMode));$("#ownerPanel").classList.toggle("hidden",!ownerMode);$("#ownerForm").classList.toggle("hidden",ownerMode);$("#ownerTitle").textContent=ownerMode?"Editors Lounge":"Log in / Sign up";$("#ownerOpen").textContent=currentUser?(ownerMode?"Editors Lounge":"Account / Log out"):"Log in / Sign up";renderWords();renderPosts();renderTimeline();}
 function openModal(id){$("#"+id).classList.add("open");document.body.style.overflow="hidden";}
 function closeModal(id){$("#"+id).classList.remove("open");document.body.style.overflow="";}
-function openOwner(){ $("#loginError").textContent="";$("#ownerPassword").value="";openModal("ownerModal");}
+function openOwner(){ $("#loginError").textContent="";$("#ownerPassword").value="";authMode="login";$("#authSubmit").textContent="Log in";$("#authModeToggle").textContent="Create account";$("#ownerForm").classList.remove("hidden");$("#ownerPanel").classList.add("hidden");$("#ownerTitle").textContent="Log in / Sign up";openModal("ownerModal");}
 function setEditorCategories(type, selected="") {
  const select=$("#entryCategory");
  const options=type==="word"
@@ -759,37 +764,51 @@ $("#wordSearch").addEventListener("input",renderWords);$("#searchBtn").addEventL
 $("#wordFilters").addEventListener("click",e=>{const b=e.target.closest("[data-filter]");if(!b)return;currentFilter=b.dataset.filter;document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("active",c===b));renderWords();});
 $("#menuToggle").addEventListener("click",()=>{const n=$("#navlinks"),open=n.classList.toggle("open");$("#menuToggle").setAttribute("aria-expanded",open?"true":"false");$("#menuToggle").textContent=open?"✕":"☰";});
 $("#navlinks").addEventListener("click",e=>{if(e.target.closest("a")){$("#navlinks").classList.remove("open");$("#menuToggle").setAttribute("aria-expanded","false");$("#menuToggle").textContent="☰";}});
-$("#ownerOpen").addEventListener("click",openOwner);$("#footerOwner").addEventListener("click",openOwner);$("#statsOwner").addEventListener("click",openOwner);
+$("#ownerOpen").addEventListener("click",async()=>{if(currentUser&&!ownerMode){if(confirm("Mag-log out sa account na ito?")){await supabaseClient.auth.signOut();currentUser=null;setOwner(false);}}else openOwner();});$("#footerOwner").addEventListener("click",openOwner);$("#statsOwner").addEventListener("click",openOwner);
 $("#addWordBtn").addEventListener("click",()=>openEditor("word"));$("#addPostBtn").addEventListener("click",()=>openEditor("post"));$("#addTimelineBtn").addEventListener("click",()=>openEditor("timeline"));
 $("#ownerAddWord").addEventListener("click",()=>{closeModal("ownerModal");openEditor("word")});$("#ownerAddPost").addEventListener("click",()=>{closeModal("ownerModal");openEditor("post")});$("#ownerAddTimeline").addEventListener("click",()=>{closeModal("ownerModal");openEditor("timeline")});
 $("#syncLegacyPosts").addEventListener("click",syncLegacyPostsToCloud);
-$("#ownerLogout").addEventListener("click",async()=>{if(supabaseClient)await supabaseClient.auth.signOut();setOwner(false);closeModal("ownerModal")});
+$("#ownerLogout").addEventListener("click",async()=>{if(supabaseClient)await supabaseClient.auth.signOut();currentUser=null;setOwner(false);closeModal("ownerModal")});
 document.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",()=>closeModal(b.dataset.close)));
 document.querySelectorAll("[data-policy-open]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();openModal("policyModal");}));
 document.querySelectorAll(".modal-backdrop").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)closeModal(m.id)}));
-$("#ownerForm").addEventListener("submit",async e=>{
- e.preventDefault(); const error=$("#loginError"); error.textContent="";
- if(!supabaseClient){error.textContent="Hindi ma-load ang Supabase client. Suriin ang internet connection at Supabase configuration.";return;}
- const email=$("#ownerEmail").value.trim().toLowerCase();
- if(email !== AUTHORIZED_OWNER_EMAIL){
-   error.textContent="Ang email na ito ay hindi awtorisadong owner account.";
-   return;
- }
- const {data,error:authError}=await supabaseClient.auth.signInWithPassword({email,password:$("#ownerPassword").value});
- if(authError){error.textContent="Hindi makapag-login. Suriin ang email/password at kung naka-enable/nakarehistro ang account sa Supabase Auth.";return;}
- if(!data.session || !data.user){
-   error.textContent="Walang active session. Subukan muli.";
-   return;
- }
- if((data.user.email||"").toLowerCase() !== AUTHORIZED_OWNER_EMAIL){
-   await supabaseClient.auth.signOut();
-   setOwner(false);
-   error.textContent="Hindi awtorisado ang account na ito.";
-   return;
- }
- setOwner(true); await refreshCommunityData(); await syncLegacyLibraryToCloud();
+let authMode = "login";
+async function requireCommunityLogin(){
+ if(!supabaseClient){alert("Hindi available ang login service.");return false;}
+ const {data}=await supabaseClient.auth.getSession(); currentUser=data?.session?.user||null;
+ if(!currentUser){openOwner();$("#loginError").textContent="Mag-login o gumawa ng account para magpatuloy.";return false;}
+ return true;
+}
+$("#authModeToggle").addEventListener("click",()=>{
+ authMode=authMode==="login"?"signup":"login";
+ $("#authSubmit").textContent=authMode==="signup"?"Create account":"Log in";
+ $("#authModeToggle").textContent=authMode==="signup"?"Back to login":"Create account";
+ $("#authIntro").textContent=authMode==="signup"?"Gumawa ng account gamit ang email at password.":"Mag-login o gumawa ng account para makapag-like at makapag-comment. Ang Editors Lounge ay para lamang sa awtorisadong owner.";
+ $("#loginError").textContent="";
 });
-
+$("#googleAuth").addEventListener("click",async()=>{
+ if(!supabaseClient){$("#loginError").textContent="Hindi available ang login service.";return;}
+ const {error}=await supabaseClient.auth.signInWithOAuth({provider:"google",options:{redirectTo:location.origin+location.pathname}});
+ if(error)$("#loginError").textContent=error.message;
+});
+$("#ownerForm").addEventListener("submit",async e=>{
+ e.preventDefault();const error=$("#loginError");error.textContent="";
+ if(!supabaseClient){error.textContent="Hindi ma-load ang login service. Suriin ang internet connection at Supabase configuration.";return;}
+ const email=$("#ownerEmail").value.trim().toLowerCase(),password=$("#ownerPassword").value;
+ if(authMode==="signup"){
+  if(password.length<6){error.textContent="Gumamit ng password na hindi bababa sa 6 na character.";return;}
+  const {data,error:signupError}=await supabaseClient.auth.signUp({email,password,options:{emailRedirectTo:location.origin+location.pathname}});
+  if(signupError){error.textContent=signupError.message;return;}
+  if(data.session&&data.user){currentUser=data.user;setOwner((data.user.email||"").toLowerCase()===AUTHORIZED_OWNER_EMAIL);await refreshCommunityData();closeModal("ownerModal");}
+  else error.textContent="Tingnan ang iyong email para sa verification link bago mag-login.";
+  return;
+ }
+ const {data,error:authError}=await supabaseClient.auth.signInWithPassword({email,password});
+ if(authError){error.textContent="Hindi makapag-login. Suriin ang email/password o i-verify muna ang email.";return;}
+ if(!data.session||!data.user){error.textContent="Walang active session. Subukan muli.";return;}
+ currentUser=data.user;const isOwner=(data.user.email||"").toLowerCase()===AUTHORIZED_OWNER_EMAIL;
+ setOwner(isOwner);await refreshCommunityData();if(isOwner)await syncLegacyLibraryToCloud();closeModal("ownerModal");
+});
 $("#entryImage").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;try{pendingImage=await resizeImage(f);$("#imagePreview").src=pendingImage;$("#imagePreview").classList.remove("hidden");}catch(err){alert("Hindi mabasa ang image. Subukang ibang file.");}});
 $("#entryAudio").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;if(f.size>1_500_000){alert("Para sa local demo, hanggang 1.5 MB lang ang audio. Sa live site, gumamit ng cloud storage.");e.target.value="";return;}try{pendingAudio=await fileToData(f);}catch(err){alert("Hindi mabasa ang audio file.");}});
 $("#editorForm").addEventListener("submit",async e=>{
@@ -857,6 +876,10 @@ $("#editorForm").addEventListener("submit",async e=>{
  saveAll();renderWords();renderPosts();renderTimeline();closeModal("editorModal");
 });
 const richEditor=$("#richEditor");document.querySelectorAll(".rich-toolbar [data-command]").forEach(btn=>btn.addEventListener("click",()=>{richEditor.focus();document.execCommand(btn.dataset.command,false,null);}));$("#richFont").addEventListener("change",e=>{richEditor.focus();document.execCommand("fontName",false,e.target.value);});$("#richSize").addEventListener("change",e=>{richEditor.focus();document.execCommand("fontSize",false,e.target.value);});$("#richBlock").addEventListener("change",e=>{richEditor.focus();document.execCommand("formatBlock",false,e.target.value);});$("#richSpacing").addEventListener("change",e=>{richEditor.style.lineHeight=e.target.value;});richEditor.addEventListener("input",()=>{if(plainTextFromRich(richEditor.innerHTML).length>10000){alert("Hanggang 10,000 characters ang post content.");}});
+document.addEventListener("contextmenu",e=>{if(!e.target.closest("input,textarea,[contenteditable='true'],select,a,button"))e.preventDefault();});
+document.addEventListener("copy",e=>{if(!e.target.closest("input,textarea,[contenteditable='true'],select"))e.preventDefault();});
+document.addEventListener("cut",e=>{if(!e.target.closest("input,textarea,[contenteditable='true'],select"))e.preventDefault();});
+document.addEventListener("keydown",e=>{const k=e.key.toLowerCase();if((e.ctrlKey||e.metaKey)&&["c","x","u","s","p"].includes(k)&&!e.target.closest("input,textarea,[contenteditable='true']"))e.preventDefault();});
 $("#year").textContent=new Date().getFullYear();
 renderWords();renderPosts();renderTimeline();
 refreshCommunityData();
@@ -865,14 +888,14 @@ refreshSharedContent();
 // Restore owner tools only for the designated email. Existing localStorage keys/data are untouched.
 if(supabaseClient){
  supabaseClient.auth.getSession().then(({data})=>{
-   const user=data && data.session && data.session.user;
+   const user=data && data.session && data.session.user; currentUser=user||null;
    if(user && (user.email||"").toLowerCase()===AUTHORIZED_OWNER_EMAIL) { setOwner(true); refreshSharedContent(); }
    else setOwner(false);
  }).catch(()=>setOwner(false));
  supabaseClient.auth.onAuthStateChange((event, session)=>{
-   const user=session && session.user;
+   const user=session && session.user; currentUser=user||null;
    if(user && (user.email||"").toLowerCase()===AUTHORIZED_OWNER_EMAIL) { setOwner(true); refreshCommunityData(); refreshSharedContent(); }
-   else if(event==="SIGNED_OUT" || event==="USER_DELETED" || event==="SIGNED_IN") setOwner(false);
+   else { if(event==="SIGNED_OUT" || event==="USER_DELETED") currentUser=null; setOwner(false); refreshCommunityData(); }
  });
 }
 </script>
