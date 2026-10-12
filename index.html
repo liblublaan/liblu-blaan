@@ -255,64 +255,64 @@ input,textarea,[contenteditable="true"],select,.comment-body{-webkit-user-select
 <section class="hero" id="home">
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow">Isang tahanan para sa ating wika</span>
+      <span class="eyebrow">A living home for the Blaan language</span>
       <h1>Blaan ang tribo,<br><em>Blaan din ang</em><br>lengwahe ko.</h1>
-      <p class="hero-copy">Isang digital na aklatan para sa mga salitang Blaan, tamang pagbigkas, kuwentong-bayan, tradisyon, at pamanang nais nating maipasa sa susunod na henerasyon.</p>
-      <div class="hero-actions"><a class="btn btn-primary" href="#dictionary">⌕ &nbsp; Hanapin ang salita</a><a class="btn btn-light" href="#heritage">Tuklasin ang pamana ↗</a></div>
-      <div class="hero-note"><span class="dot"></span> Isang buhay na talaan ng wika at kultura ng Blaan</div>
+      <p class="hero-copy">A digital library of Blaan words, pronunciation, folklore, traditions, and heritage to share with future generations.</p>
+      <div class="hero-actions"><a class="btn btn-primary" href="#dictionary">⌕ &nbsp; Explore the Dictionary</a><a class="btn btn-light" href="#heritage">Explore Blaan Heritage ↗</a></div>
+      <div class="hero-note"><span class="dot"></span> A living record of Blaan language and culture</div>
     </div>
     <div class="hero-art" aria-label="Decorative Blaan-inspired heritage pattern">
       <div class="pattern"></div>
-      <div class="art-top"><span>Wika · Kultura · Pamana</span><span class="art-seal">✳</span></div>
-      <div class="art-center"><div class="art-symbol">⌘</div><h2>Liblu Blaan</h2><p>Mga salita at kuwentong nag-uugnay sa ating pinagmulan.</p></div>
-      <div class="art-bottom"><span>ISINULAT AT ININGATAN</span><span>FLORAMAE MALAYON</span></div>
+      <div class="art-top"><span>Language · Culture · Heritage</span><span class="art-seal">✳</span></div>
+      <div class="art-center"><div class="art-symbol">⌘</div><h2>Liblu Blaan</h2><p>Words and stories that connect us to our roots.</p></div>
+      <div class="art-bottom"><span>RECORDED AND PRESERVED</span><span>FLORAMAE MALAYON</span></div>
     </div>
   </div>
   <div class="wrap stats">
     <a class="stat stat-link" href="#dictionary" aria-label="Pumunta sa mga salita">
-      <div class="stat-icon">📖</div><div><strong id="wordCount">6</strong><span>Mga salita</span></div>
+      <div class="stat-icon">📖</div><div><strong id="wordCount">6</strong><span>Words</span></div>
     </a>
     <a class="stat stat-link" href="#heritage" aria-label="Pumunta sa Heritage">
-      <div class="stat-icon">🌿</div><div><strong>Heritage</strong><span>Kultura at tradisyon</span></div>
+      <div class="stat-icon">🌿</div><div><strong>Heritage</strong><span>Culture & traditions</span></div>
     </a>
     <a class="stat stat-link" href="#dictionary" aria-label="Pumunta sa Sounds at gabay sa pagbigkas">
-      <div class="stat-icon">🔊</div><div><strong>Sounds</strong><span>Gabay sa pagbigkas</span></div>
+      <div class="stat-icon">🔊</div><div><strong>Sounds</strong><span>Pronunciation guide</span></div>
     </a>
     <button class="stat stat-link stat-owner-link" id="statsOwner" type="button" aria-label="Buksan ang Editors Lounge">
-      <div class="stat-icon">✍️</div><div><strong>By owner</strong><span>Pinamamahalaan ng may-ari</span></div>
+      <div class="stat-icon">✍️</div><div><strong>By owner</strong><span>Owner managed</span></div>
     </button>
   </div>
 </section>
 
 <section id="dictionary">
  <div class="wrap">
-  <div class="section-head"><div><span class="eyebrow">Salita ng ating pamayanan</span><h2>Blaan Dictionary</h2><p>Maghanap ng salita, kahulugan, at gabay sa pagbigkas. Ang mga halimbawang salita ay maaaring dagdagan at beripikahin ng may-ari.</p></div><button class="btn btn-outline owner-action hidden" id="addWordBtn">＋ Add word</button></div>
-  <div class="searchbar"><label class="searchbox"><span>⌕</span><input id="wordSearch" type="search" placeholder="Maghanap ng Blaan word o kahulugan…" aria-label="Search dictionary"></label><button class="btn btn-primary" id="searchBtn">Search</button></div>
-  <div class="chips" id="wordFilters"><button class="chip active" data-filter="All">Lahat</button><button class="chip" data-filter="Animals">Hayop</button><button class="chip" data-filter="Daily words">Pang-araw-araw</button><button class="chip" data-filter="Culture">Kultura</button></div>
+  <div class="section-head"><div><span class="eyebrow">Words from the community</span><h2>Blaan Dictionary</h2><p>Search for Blaan words, meanings, and pronunciation guides. Example entries may be added and verified by the site owner.</p></div><button class="btn btn-outline owner-action hidden" id="addWordBtn">＋ Add word</button></div>
+  <div class="searchbar"><label class="searchbox"><span>⌕</span><input id="wordSearch" type="search" placeholder="Search Blaan words or meanings…" aria-label="Search dictionary"></label><button class="btn btn-primary" id="searchBtn">Search</button></div>
+  <div class="chips" id="wordFilters"><button class="chip active" data-filter="All">All</button><button class="chip" data-filter="Animals">Animals</button><button class="chip" data-filter="Daily words">Daily words</button><button class="chip" data-filter="Culture">Culture</button></div>
   <div class="word-grid" id="wordGrid"></div>
-  <div class="dictionary-posts-wrap"><div class="section-head dictionary-posts-head"><div><span class="eyebrow">Mga post na may kaugnayan sa mga salita</span><h3>Dictionary Notes &amp; Updates</h3><p>Mga post na inilathala sa Newsfeed gamit ang kategoryang Dictionary.</p></div></div><div class="dictionary-posts" id="dictionaryPosts"></div></div>
+  <div class="dictionary-posts-wrap"><div class="section-head dictionary-posts-head"><div><span class="eyebrow">Related word posts</span><h3>Dictionary Notes &amp; Updates</h3><p>Posts published in the Newsfeed under the Dictionary category.</p></div></div><div class="dictionary-posts" id="dictionaryPosts"></div></div>
  </div>
 </section>
 
 <section class="band" id="heritage">
  <div class="wrap">
-  <div class="section-head"><div><span class="eyebrow">Higit pa sa mga salita</span><h2>Mga ugat na dapat alagaan</h2><p>Ipinagdiriwang natin ang kaalamang ipinasa ng mga nakatatanda—nang may paggalang sa komunidad at sa tamang pinagmulan ng bawat tala.</p></div></div>
+  <div class="section-head"><div><span class="eyebrow">More than words</span><h2>Roots Worth Preserving</h2><p>We honor knowledge passed down by elders, respecting the community and documenting the source of every entry.</p></div></div>
   <div class="feature-grid">
-   <article class="feature-card"><div class="feature-art">✺</div><div class="feature-body"><span class="kicker">01 · Pamana</span><h3>Heritage & Traditions</h3><p>Mga kaugalian, sining, kasuotan, pagkain, at kaalamang pangkomunidad na may paliwanag at pinagmulan.</p><a class="text-link" href="#newsfeed">Basahin ang mga tala →</a></div></article>
-   <article class="feature-card" id="stories"><div class="feature-art">❧</div><div class="feature-body"><span class="kicker">02 · Panitikan</span><h3>Stories & Folklore</h3><p>Mga alamat, kuwentong-bayan, salaysay ng matatanda, at aral na bahagi ng ating pagkakakilanlan.</p><a class="text-link" href="#timeline">Tingnan ang timeline →</a></div></article>
-   <article class="feature-card"><div class="feature-art">♫</div><div class="feature-body"><span class="kicker">03 · Tunog</span><h3>Sounds & Pronunciation</h3><p>Makinig sa audio ng salita kung mayroon. Mas mainam ang recording mula sa fluent speaker para sa wastong bigkas.</p><a class="text-link" href="#dictionary">Subukan ang mga salita →</a></div></article>
+   <article class="feature-card"><div class="feature-art">✺</div><div class="feature-body"><span class="kicker">01 · Heritage</span><h3>Heritage & Traditions</h3><p>Explore customs, arts, clothing, food, and community knowledge with context and source attribution.</p><a class="text-link" href="#newsfeed">Read heritage entries →</a></div></article>
+   <article class="feature-card" id="stories"><div class="feature-art">❧</div><div class="feature-body"><span class="kicker">02 · Literature</span><h3>Stories & Folklore</h3><p>Discover legends, folktales, elders’ accounts, and lessons that shape Blaan identity.</p><a class="text-link" href="#timeline">View the timeline →</a></div></article>
+   <article class="feature-card"><div class="feature-art">♫</div><div class="feature-body"><span class="kicker">03 · Sound</span><h3>Sounds & Pronunciation</h3><p>Listen to word recordings when available. Recordings from fluent speakers are preferred for accurate pronunciation.</p><a class="text-link" href="#dictionary">Explore words →</a></div></article>
   </div>
  </div>
 </section>
 
 <section id="newsfeed">
  <div class="wrap">
-  <div class="section-head"><div><span class="eyebrow">Mga bagong tala</span><h2>Newsfeed</h2><p>Mga update, bagong salita, kuwento, at anunsyo mula sa Liblu Blaan.</p></div><button class="btn btn-primary owner-action hidden" id="addPostBtn">＋ Publish post</button></div>
+  <div class="section-head"><div><span class="eyebrow">Latest entries</span><h2>Newsfeed</h2><p>Updates, new words, stories, and announcements from Liblu Blaan.</p></div><button class="btn btn-primary owner-action hidden" id="addPostBtn">＋ Publish post</button></div>
   <div class="content-grid">
    <div class="feed-list" id="feedList"></div>
    <aside class="side-stack">
-    <div class="side-panel"><span class="kicker" style="color:#e1c47d">Mensahe ng may-akda</span><h3>Ang wika ay pamana.</h3><p>Kapag itinatala natin ang ating mga salita at kuwento, binibigyan natin ng puwang ang susunod na henerasyon na makilala ang kanilang pinagmulan.</p><a class="btn" href="#about">Kilalanin ang proyekto →</a></div>
-    <div class="feed-card"><span class="kicker">Tandaan</span><h3 style="font-family:Georgia,serif;color:var(--forest);margin:8px 0">Igalang ang pinagmulan</h3><p style="font-size:.88rem;color:var(--muted);margin:0">Ang mga salin at pagbigkas ay maaaring mag-iba ayon sa tagapagsalita at pamayanan. Maglagay ng source at kumpirmasyon kung maaari.</p></div>
+    <div class="side-panel"><span class="kicker" style="color:#e1c47d">A Note from the Creator</span><h3>Language is heritage.</h3><p>By recording our words and stories, we help future generations discover their roots.</p><a class="btn" href="#about">About the project →</a></div>
+    <div class="feed-card"><span class="kicker">Please remember</span><h3 style="font-family:Georgia,serif;color:var(--forest);margin:8px 0">Respect the Source</h3><p style="font-size:.88rem;color:var(--muted);margin:0">Translations and pronunciation may vary by speaker and community. Include the source and verification status whenever possible.</p></div>
    </aside>
   </div>
  </div>
@@ -320,7 +320,7 @@ input,textarea,[contenteditable="true"],select,.comment-body{-webkit-user-select
 
 <section id="timeline" class="band">
  <div class="wrap">
-  <div class="section-head"><div><span class="eyebrow">Mga tala sa paglipas ng panahon</span><h2>Community Timeline</h2><p>Isang sunod-sunod na talaan ng mga publikasyon at mahahalagang update sa website.</p></div><button class="btn btn-outline owner-action hidden" id="addTimelineBtn">＋ Add timeline item</button></div>
+  <div class="section-head"><div><span class="eyebrow">A record over time</span><h2>Community Timeline</h2><p>A chronological record of publications and important website updates.</p></div><button class="btn btn-outline owner-action hidden" id="addTimelineBtn">＋ Add timeline item</button></div>
   <div class="timeline" id="timelineList"></div>
  </div>
 </section>
@@ -328,11 +328,11 @@ input,textarea,[contenteditable="true"],select,.comment-body{-webkit-user-select
 <section id="about">
  <div class="wrap about-grid">
   <div class="about-art" aria-hidden="true">✳</div>
-  <div class="about-copy"><span class="eyebrow">Tungkol sa Liblu Blaan</span><h2>Isang munting hakbang para sa pagpapanatili ng wika.</h2>
+  <div class="about-copy"><span class="eyebrow">About Liblu Blaan</span><h2>A small step toward language preservation.</h2>
    <p><strong>Liblu Blaan</strong> ay isang digital na proyektong naglalayong magtipon at magbahagi ng mga salita, tunog, kuwento, folklore, at kaalaman tungkol sa pamana ng Blaan. Nilikha ito bilang lugar na maaaring balikan, matutuhan, at patuloy na pagyamanin.</p>
    <div class="quote">“Blaan ang tribo, Blaan din ang lengwahe ko.”</div>
    <p><strong>Created by: Floramae Malayon</strong></p>
-   <p>Ang mga tala sa wika at kultura ay dapat ilahad nang may paggalang, tamang pagkilala sa pinagmulan, at pakikipag-ugnayan sa mga may kaalaman sa komunidad.</p>
+   <p>Language and cultural entries should be shared respectfully, with clear source attribution and consultation with knowledgeable community members.</p>
   </div>
  </div>
 </section>
@@ -340,12 +340,12 @@ input,textarea,[contenteditable="true"],select,.comment-body{-webkit-user-select
 </main>
 
 <div class="modal-backdrop" id="policyModal" role="dialog" aria-modal="true" aria-labelledby="policyTitle">
- <div class="modal policy-modal"><div class="modal-head"><div><span class="eyebrow">Malinaw na patakaran</span><h2 id="policyTitle">Terms, Privacy & Content Policy</h2></div><button class="icon-btn" data-close="policyModal" aria-label="Close">✕</button></div>
-  <p class="legal-note">Mga gabay sa paggamit ng Liblu Blaan. Dapat iayon ng may-ari ang privacy notice sa aktuwal na data practices bago ito ituring na pinal na legal notice.</p>
+ <div class="modal policy-modal"><div class="modal-head"><div><span class="eyebrow">Site policies</span><h2 id="policyTitle">Terms, Privacy & Content Policy</h2></div><button class="icon-btn" data-close="policyModal" aria-label="Close">✕</button></div>
+  <p class="legal-note">Guidelines for using Liblu Blaan. The site owner should ensure that the privacy notice matches actual data practices before treating it as a final legal notice.</p>
   <div class="policy-grid">
-   <article class="feed-card"><h3 style="color:var(--forest)">Terms of Use</h3><p style="color:var(--muted);font-size:.9rem">Gamitin ang website para sa pag-aaral, pagbahagi ng kaalaman, at paggalang sa wikang at kulturang Blaan. Huwag mag-post ng ilegal, mapanakit, mapanlinlang, spam, personal na impormasyon ng ibang tao, o materyal na wala kang pahintulot na ibahagi. Maaaring alisin ng owner ang content na lumalabag sa mga patakarang ito. Ang mga tala sa wika at kultura ay dapat may wastong pagkilala sa pinagmulan at beripikasyon kung maaari.</p></article>
-   <article class="feed-card"><h3 style="color:var(--forest)">Privacy Policy</h3><p style="color:var(--muted);font-size:.9rem">Maaaring iproseso ng website ang owner email/session para sa authentication, at ang display name, comment, reaction, at post data na isinusumite sa site. Ginagamit ang data para patakbuhin ang community features, protektahan ang website, at mag-moderate ng content. Huwag maglagay ng password, government ID, financial details, o sensitibong personal na impormasyon sa comments. Ang Supabase at GitHub Pages ay third-party providers. Para sa access, correction, o removal request, makipag-ugnayan sa site owner. Iwasang mangakong walang tracking hangga’t hindi sinusuri ang provider settings. Dapat tiyakin ng may-ari na tugma ang patakarang ito sa aktuwal na data practices ng website at sa naaangkop na batas bago ilathala bilang pinal na legal notice.</p></article>
-   <article class="feed-card"><h3 style="color:var(--forest)">Copyright & Cultural Respect</h3><p style="color:var(--muted);font-size:.9rem">Kilalanin ang may-akda, tagapagsalaysay, photographer, at pinagmulan. Huwag kopyahin o muling ilathala ang protektadong nilalaman nang walang pahintulot. Igalang ang kaalamang may limitasyon sa pagbabahagi. Ang pag-post ay hindi nangangahulugang pagmamay-ari ng website ang copyright ng materyal.</p></article>
+   <article class="feed-card"><h3 style="color:var(--forest)">Terms of Use</h3><p style="color:var(--muted);font-size:.9rem">Use this website for learning, sharing knowledge, and respecting Blaan language and culture. Do not post illegal, abusive, misleading, spam, private information about others, or material you do not have permission to share. The owner may remove content that violates these rules. Language and cultural entries should include source attribution and verification whenever possible.</p></article>
+   <article class="feed-card"><h3 style="color:var(--forest)">Privacy Policy</h3><p style="color:var(--muted);font-size:.9rem">The website may process owner email/session data for authentication, along with display names, comments, reactions, and submitted posts. This data supports community features, site security, and content moderation. Do not post passwords, government IDs, financial details, or sensitive personal information in comments. Supabase and GitHub Pages are third-party providers. Contact the site owner to request access, correction, or removal. Do not promise that tracking is absent without checking provider settings. The owner should ensure this policy matches actual data practices and applicable law before publishing it as a final legal notice.</p></article>
+   <article class="feed-card"><h3 style="color:var(--forest)">Copyright & Cultural Respect</h3><p style="color:var(--muted);font-size:.9rem">Credit authors, storytellers, photographers, and sources. Do not copy or republish protected material without permission. Respect knowledge that is restricted from public sharing. Posting material does not transfer its copyright to the website.</p></article>
   
   </div>
  </div>
@@ -354,7 +354,7 @@ input,textarea,[contenteditable="true"],select,.comment-body{-webkit-user-select
 <footer>
  <div class="wrap">
   <div class="footer-grid">
-   <div><a class="brand" href="#home"><img class="brand-mark" src="liblu-blaan-logo.svg" alt="" aria-hidden="true"><div><div class="brand-name">Liblu Blaan</div><div class="brand-tag">Blaan ang tribo, Blaan din ang lengwahe ko</div></div></a><p style="max-width:360px;margin-top:16px">Isang digital na tahanan para sa wika, pamana, kuwentong-bayan, at tunog ng Blaan.</p></div>
+   <div><a class="brand" href="#home"><img class="brand-mark" src="liblu-blaan-logo.svg" alt="" aria-hidden="true"><div><div class="brand-name">Liblu Blaan</div><div class="brand-tag">Blaan ang tribo, Blaan din ang lengwahe ko</div></div></a><p style="max-width:360px;margin-top:16px">A digital home for Blaan language, heritage, folklore, and sound.</p></div>
    <div><h4>Explore</h4><div class="footer-links"><a href="#dictionary">Dictionary</a><a href="#heritage">Heritage</a><a href="#stories">Stories & Folklore</a><a href="#newsfeed">Newsfeed</a><a href="#timeline">Timeline</a></div></div>
    <div><h4>Website information</h4><div class="footer-links"><a href="#about">About the Author</a><a href="#policyModal" data-policy-open>Terms of Use</a><a href="#policyModal" data-policy-open>Privacy Policy</a><a href="#policyModal" data-policy-open>Copyright & Content Policy</a><a href="mailto:liblublaan@example.com">Contact / Report</a><button class="btn btn-outline" id="footerOwner" style="justify-content:flex-start;color:#f6f1e4;border-color:#637568">Editors Lounge</button></div></div>
   </div>
@@ -364,13 +364,13 @@ input,textarea,[contenteditable="true"],select,.comment-body{-webkit-user-select
 
 <div class="modal-backdrop" id="ownerModal" role="dialog" aria-modal="true" aria-labelledby="ownerTitle">
  <div class="modal"><div class="modal-head"><h2 id="ownerTitle">Editors Lounge</h2><button class="icon-btn" data-close="ownerModal" aria-label="Close">✕</button></div>
-  <p id="authIntro">Mag-login o gumawa ng account para makapag-like at makapag-comment. Ang Editors Lounge ay para lamang sa awtorisadong owner.</p>
+  <p id="authIntro">Sign in or create an account to like and comment. The Editors Lounge is restricted to the authorized site owner.</p>
   <form id="ownerForm">
-   <div class="field"><label for="ownerEmail">Email</label><input type="email" id="ownerEmail" placeholder="Gmail o email address" autocomplete="username" required></div>
+   <div class="field"><label for="ownerEmail">Email</label><input type="email" id="ownerEmail" placeholder="Email address" autocomplete="username" required></div>
    <div class="field"><label for="ownerPassword">Password</label><input type="password" id="ownerPassword" placeholder="Password" autocomplete="current-password" required></div>
    <button class="btn btn-primary" type="submit" id="authSubmit">Log in</button> <button class="btn btn-light" type="button" id="authModeToggle">Create account</button> <button class="btn btn-outline" type="button" id="googleAuth">Continue with Google</button><p id="loginError" style="color:#9b3c32;font-size:.85rem;margin:10px 0 0" role="alert"></p>
   </form>
-  <div id="ownerPanel" class="hidden"><div class="lounge-panel"><span class="owner-lounge-label">✦ Editors Lounge · OWNER</span><p style="margin:10px 0 4px">Owner-only workspace. Ikaw lamang ang may pahintulot na gumawa at mag-edit ng official updates.</p><p class="legal-note" style="margin:0">Ang cloud updates ay puwedeng gawin, i-edit, at burahin ng owner lamang. I-import ang lumang browser-saved posts para makita ng lahat; hindi buburahin ang local backup.</p><button class="btn btn-light" id="syncLegacyPosts" type="button" style="margin-top:10px">Import existing browser posts to cloud</button><p id="syncStatus" class="legal-note" role="status"></p></div><div style="display:flex;gap:9px;flex-wrap:wrap"><button class="btn btn-primary" id="ownerAddWord">＋ Add word</button><button class="btn btn-primary" id="ownerAddPost">＋ Create update</button><button class="btn btn-primary" id="ownerAddTimeline">＋ Timeline item</button><button class="btn btn-light" id="ownerLogout">Log out</button></div></div>
+  <div id="ownerPanel" class="hidden"><div class="lounge-panel"><span class="owner-lounge-label">✦ Editors Lounge · OWNER</span><p style="margin:10px 0 4px">Owner-only workspace. Only the authorized owner can create and edit official updates.</p><p class="legal-note" style="margin:0">Only the owner can create, edit, or delete cloud updates. Import older browser-saved posts so everyone can see them; the local backup will not be deleted.</p><button class="btn btn-light" id="syncLegacyPosts" type="button" style="margin-top:10px">Import existing browser posts to cloud</button><p id="syncStatus" class="legal-note" role="status"></p></div><div style="display:flex;gap:9px;flex-wrap:wrap"><button class="btn btn-primary" id="ownerAddWord">＋ Add word</button><button class="btn btn-primary" id="ownerAddPost">＋ Create update</button><button class="btn btn-primary" id="ownerAddTimeline">＋ Timeline item</button><button class="btn btn-light" id="ownerLogout">Log out</button></div></div>
  </div>
 </div>
 
@@ -378,13 +378,13 @@ input,textarea,[contenteditable="true"],select,.comment-body{-webkit-user-select
  <div class="modal"><div class="modal-head"><h2 id="editorTitle">Add content</h2><button class="icon-btn" data-close="editorModal" aria-label="Close">✕</button></div>
   <form id="editorForm">
    <input type="hidden" id="contentType"><input type="hidden" id="editingPostId">
-   <div class="field" id="wordField"><label for="entryWord" id="entryWordLabel">Blaan word</label><input id="entryWord" placeholder="Hal. AYÈM" autocomplete="off" maxlength="100" /></div>
+   <div class="field" id="wordField"><label for="entryWord" id="entryWordLabel">Blaan word</label><input id="entryWord" placeholder="e.g. AYÈM" autocomplete="off" maxlength="100" /></div>
    <div class="form-grid" id="wordExtras">
     <div class="field"><label for="entryPronunciation">Pronunciation guide</label><input id="entryPronunciation" placeholder="Phonetic guide (optional)"></div>
     <div class="field"><label for="entryCategory">Category</label><select id="entryCategory"><option>Daily words</option><option>Animals</option><option>Culture</option></select></div>
    </div>
-   <div class="field hidden" id="sourceField"><label for="entrySource">Source / speaker (optional)</label><input id="entrySource" maxlength="120" placeholder="Hal. pangalan ng source o community speaker"></div>
-   <div class="field" id="meaningField"><label for="entryMeaning" id="entryMeaningLabel">Kahulugan / salin</label>
+   <div class="field hidden" id="sourceField"><label for="entrySource">Source / speaker (optional)</label><input id="entrySource" maxlength="120" placeholder="e.g. source name or community speaker"></div>
+   <div class="field" id="meaningField"><label for="entryMeaning" id="entryMeaningLabel">Meaning / translation</label>
     <div id="richEditorWrap" class="rich-editor-wrap hidden"><div class="rich-toolbar" role="toolbar" aria-label="Writing Lounge formatting tools">
     <button type="button" data-command="bold" title="Bold"><b>B</b></button><button type="button" data-command="italic" title="Italic"><i>I</i></button><button type="button" data-command="underline" title="Underline"><u>U</u></button><span class="toolbar-divider"></span>
     <label class="toolbar-select-label">Font <select id="richFont"><option value="Arial">Arial</option><option value="Georgia">Georgia</option><option value="Verdana">Verdana</option><option value="'Times New Roman'">Times</option><option value="'Courier New'">Courier</option></select></label>
@@ -392,12 +392,12 @@ input,textarea,[contenteditable="true"],select,.comment-body{-webkit-user-select
     <button type="button" data-command="insertUnorderedList">• List</button><button type="button" data-command="insertOrderedList">1. List</button><button type="button" data-command="justifyLeft">≡</button><button type="button" data-command="justifyCenter">☰</button>
     <label class="toolbar-select-label">Format <select id="richBlock"><option value="p">Paragraph</option><option value="h2">Heading</option><option value="h3">Subheading</option><option value="blockquote">Quote</option></select></label>
     <label class="toolbar-select-label">Spacing <select id="richSpacing"><option value="1.5">Normal</option><option value="1.8">Relaxed</option><option value="2">Wide</option></select></label><button type="button" data-command="removeFormat">Clear</button></div>
-    <div id="richEditor" class="rich-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Post content editor" data-placeholder="Isulat dito ang iyong post. Gumamit ng Enter para sa bagong talata."></div><div class="editor-help">Tip: Pindutin ang Enter para sa bagong talata. Piliin muna ang text bago baguhin ang font, size, o alignment.</div></div>
-    <textarea id="entryMeaning" placeholder="Ilagay ang kahulugan o nilalaman…" maxlength="10000"></textarea></div>
-   <div class="field hidden" id="audioField"><label for="entryAudio">Audio file (optional)</label><input id="entryAudio" type="file" accept="audio/*"><small style="color:var(--muted)">Audio files are not uploaded to the server by this form. Gumamit ng cloud storage bago mag-publish ng audio para makita ito ng lahat.</small></div>
-   <div class="field hidden" id="imageField"><label for="entryImage">Post image (optional)</label><input id="entryImage" type="file" accept="image/*"><small style="color:var(--muted)">Image is resized in the browser. Para makita ng lahat, kailangan itong i-upload sa cloud storage.</small><img id="imagePreview" class="hidden" alt="Image preview" style="max-height:170px;object-fit:contain;border-radius:10px"></div>
-   <div class="field hidden" id="dateField"><label for="entryDate">Date / year</label><input id="entryDate" placeholder="Hal. 2026 · October"></div>
-   <div class="notice">Iwasang maglathala ng hindi pa nabeberipikang kahulugan, sensitibong kaalamang pangkomunidad, o recording nang walang pahintulot.</div>
+    <div id="richEditor" class="rich-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Post content editor" data-placeholder="Write your post here. Press Enter to start a new paragraph."></div><div class="editor-help">Tip: Press Enter to start a new paragraph. Select text before changing its font, size, or alignment.</div></div>
+    <textarea id="entryMeaning" placeholder="Enter the meaning or content…" maxlength="10000"></textarea></div>
+   <div class="field hidden" id="audioField"><label for="entryAudio">Audio file (optional)</label><input id="entryAudio" type="file" accept="audio/*"><small style="color:var(--muted)">Audio files are not uploaded to the server by this form. Use cloud storage before publishing audio so everyone can access it.</small></div>
+   <div class="field hidden" id="imageField"><label for="entryImage">Post image (optional)</label><input id="entryImage" type="file" accept="image/*"><small style="color:var(--muted)">The image is resized in the browser. Upload it to cloud storage so everyone can access it.</small><img id="imagePreview" class="hidden" alt="Image preview" style="max-height:170px;object-fit:contain;border-radius:10px"></div>
+   <div class="field hidden" id="dateField"><label for="entryDate">Date / year</label><input id="entryDate" placeholder="e.g. 2026 · October"></div>
+   <div class="notice">Do not publish unverified meanings, sensitive community knowledge, or recordings without permission.</div>
    <button class="btn btn-primary" type="submit" id="editorSaveButton">Save content</button>
   </form>
  </div>
@@ -423,7 +423,7 @@ const initialWords = [
 ];
 const initialPosts = [
  {title:"Maligayang pagdating sa Liblu Blaan",category:"Announcement",date:"Oktubre 2026",body:"Ito ang bagong digital na tahanan para sa mga salita, tunog, kuwento, folklore, at pamana ng Blaan. Unti-unti nating palalawakin ang mga tala—na may paggalang at beripikasyon mula sa komunidad.",image:"",likes:0},
- {title:"Mga salitang dapat nating ingatan",category:"Dictionary",date:"Oktubre 2026",body:"Nagsisimula ang dictionary sa ilang paunang salita. Ang mga kahulugan at gabay sa bigkas ay dapat kumpirmahin sa mga tagapagsalitang may sapat na kaalaman; maaari ring mag-iba ang bigkas ayon sa lugar.",image:"",likes:0}
+ {title:"Wordsng dapat nating ingatan",category:"Dictionary",date:"Oktubre 2026",body:"Nagsisimula ang dictionary sa ilang paunang salita. Ang mga kahulugan at gabay sa bigkas ay dapat kumpirmahin sa mga tagapagsalitang may sapat na kaalaman; maaari ring mag-iba ang bigkas ayon sa lugar.",image:"",likes:0}
 ];
 const initialTimeline = [
  {date:"Oktubre 2026",title:"Pagbubukas ng Liblu Blaan",body:"Sinimulan ang digital na proyekto upang magtipon ng salita, pagbigkas, heritage, at mga kuwentong Blaan."},
@@ -436,7 +436,7 @@ let words = safeRead("liblu_words", initialWords);
 let posts = safeRead("liblu_posts", initialPosts);
 let timelineItems = safeRead("liblu_timeline", initialTimeline);
 let ownerMode = false, currentUser = null, currentFilter = "All", pendingImage = "", pendingAudio = "", editingLegacyIndex = null, editingWordValue = null;
-function saveAll(){try{localStorage.setItem("liblu_words",JSON.stringify(words));localStorage.setItem("liblu_posts",JSON.stringify(posts));localStorage.setItem("liblu_timeline",JSON.stringify(timelineItems));}catch(e){alert("Hindi sapat ang browser storage. Gumamit ng mas maliit na image/audio o ikonekta ang site sa cloud storage.");}}
+function saveAll(){try{localStorage.setItem("liblu_words",JSON.stringify(words));localStorage.setItem("liblu_posts",JSON.stringify(posts));localStorage.setItem("liblu_timeline",JSON.stringify(timelineItems));}catch(e){alert("Not enough browser storage. Use a smaller image/audio file or connect the site to cloud storage.");}}
 function escapeHTML(s=""){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function safeMediaUrl(value, kind="image") {
  if (typeof value !== "string") return "";
@@ -447,7 +447,7 @@ function safeMediaUrl(value, kind="image") {
    : /^data:image\/(?:jpeg|jpg|png|gif|webp);base64,[a-z0-9+/=\r\n]+$/i;
  return allowed.test(v) ? escapeHTML(v) : "";
 }
-function speakWord(word){if(!("speechSynthesis" in window)){alert("Hindi suportado ng browser ang text-to-speech. Mas mainam ang verified audio recording ng Blaan speaker.");return;}let u=new SpeechSynthesisUtterance(word);u.lang="en-US";u.rate=.78;window.speechSynthesis.cancel();window.speechSynthesis.speak(u);alert("Browser text-to-speech ito, hindi garantisadong tamang Blaan pronunciation. Gumamit ng verified Blaan audio kapag available.");}
+function speakWord(word){if(!("speechSynthesis" in window)){alert("Text-to-speech is not supported by this browser. A verified recording from a Blaan speaker is recommended.");return;}let u=new SpeechSynthesisUtterance(word);u.lang="en-US";u.rate=.78;window.speechSynthesis.cancel();window.speechSynthesis.speak(u);alert("This is browser text-to-speech and may not reflect accurate Blaan pronunciation. Use verified Blaan audio when available.");}
 function renderWords(){
  const q=$("#wordSearch").value.trim().toLowerCase();
  const activeWords = cloudWords !== null ? cloudWords : words;
@@ -575,12 +575,12 @@ function renderPosts() {
   renderDictionaryPosts();
 }
 async function likeCloudPost(postId) {
-  if (!supabaseClient) return alert("Hindi available ang community database.");
+  if (!supabaseClient) return alert("The community database is unavailable.");
   try {
     const {error} = await supabaseClient.from("post_reactions").insert({post_id:postId, visitor_id:currentUser.id});
     if (error && !String(error.code).includes("23505")) throw error;
     await refreshCommunityData();
-  } catch (e) { alert("Hindi na-save ang Like. Tiyaking naipatupad ang Supabase SQL setup. " + (e.message || "")); }
+  } catch (e) { alert("Like could not be saved. Make sure the Supabase SQL setup has been applied. " + (e.message || "")); }
 }
 function focusComment(postId) {
   const form = document.querySelector(`[data-cloud-post="${postId}"] .comment-form`);
@@ -594,7 +594,7 @@ function setReplyTarget(postId, commentId) {
 }
 async function submitCloudComment(event, postId) {
   event.preventDefault();
-  if (!supabaseClient) return alert("Hindi available ang community database.");
+  if (!supabaseClient) return alert("The community database is unavailable.");
   const form = event.currentTarget;
   const display_name = form.elements.display_name.value.trim();
   const body = form.elements.body.value.trim();
@@ -607,7 +607,7 @@ async function submitCloudComment(event, postId) {
     if (error) throw error;
     delete replyToByPost[postId];
     await refreshCommunityData();
-  } catch (e) { alert("Hindi na-save ang comment/reply. Tiyaking naipatupad ang Supabase SQL setup. " + (e.message || "")); }
+  } catch (e) { alert("Comment/reply could not be saved. Make sure the Supabase SQL setup has been applied. " + (e.message || "")); }
 }
 async function shareCloudPost(postId) {
   const p = cloudPosts.find(x => x.id === postId);
@@ -618,7 +618,7 @@ async function shareCloudPost(postId) {
     if (navigator.share) await navigator.share(shareData);
     else if (navigator.clipboard) { await navigator.clipboard.writeText(url); alert("Nakopya ang website link para ma-share."); }
     else prompt("Kopyahin ang link na ito:", url);
-  } catch (e) { if (e.name !== "AbortError") alert("Hindi mabuksan ang share dialog. Kopyahin ang URL ng website."); }
+  } catch (e) { if (e.name !== "AbortError") alert("The share dialog could not be opened. Copy the website URL instead."); }
 }
 async function editCloudPost(postId) {
   if (!ownerMode) return openOwner();
@@ -654,7 +654,7 @@ async function deleteCloudPost(postId) {
   if (!ownerMode) return openOwner();
   if (!confirm("Sigurado ka bang buburahin ang post na ito? Mabubura rin ang comments/reactions na naka-link dito.")) return;
   const {error}=await supabaseClient.from("community_posts").delete().eq("id",postId);
-  if (error) return alert("Hindi nabura ang post: " + error.message);
+  if (error) return alert("Could not delete the post: " + error.message);
   await refreshCommunityData();
 }
 async function syncLegacyPostsToCloud() {
@@ -673,10 +673,10 @@ async function syncLegacyPostsToCloud() {
       if(error) throw error;
       count++;
     }
-    status.textContent=`Tapos. ${count} browser post(s) na-import o na-check. Hindi binura ang localStorage backup.`;
+    status.textContent=`Done. ${count} browser post(s) imported or checked. The localStorage backup was not deleted.`;
     await refreshCommunityData();
   } catch(e) {
-    status.textContent="Hindi natapos ang import. " + (e.message || "Suriin ang SQL setup at RLS policies.");
+    status.textContent="Import did not finish. " + (e.message || "Check the SQL setup and RLS policies.");
   }
 }
 function renderTimeline(){
@@ -690,7 +690,7 @@ function openOwner(){ $("#loginError").textContent="";$("#ownerPassword").value=
 function setEditorCategories(type, selected="") {
  const select=$("#entryCategory");
  const options=type==="word"
-   ? [["Daily words","Pang-araw-araw"],["Animals","Hayop"],["Culture","Kultura"]]
+   ? [["Daily words","Daily words"],["Animals","Animals"],["Culture","Culture"]]
    : [["Announcement","Announcement"],["Dictionary","Dictionary"],["Heritage","Heritage"],["Stories & Folklore","Stories & Folklore"],["Community Update","Community Update"]];
  select.innerHTML=options.map(([value,label])=>`<option value="${escapeHTML(value)}">${escapeHTML(label)}</option>`).join("");
  select.value=options.some(([value])=>value===selected)?selected:options[0][0];
@@ -712,9 +712,9 @@ function openEditor(type, legacyData=null){
  $("#audioField").classList.toggle("hidden",type!=="word"&&type!=="post");
  $("#imageField").classList.toggle("hidden",type!=="post");
  $("#dateField").classList.toggle("hidden",type==="word");
- $("#entryWord").placeholder=type==="post"?"Pamagat ng post":type==="timeline"?"Pamagat ng timeline":"Hal. AYÈM";
+ $("#entryWord").placeholder=type==="post"?"Pamagat ng post":type==="timeline"?"Pamagat ng timeline":"e.g. AYÈM";
  $("#entryWordLabel").textContent=type==="post"?"Post title":type==="timeline"?"Timeline title":"Blaan word";
- $("#entryMeaningLabel").textContent=type==="post"?"Post content":type==="timeline"?"Description":"Kahulugan / salin";
+ $("#entryMeaningLabel").textContent=type==="post"?"Post content":type==="timeline"?"Description":"Meaning / translation";
  $("#entryMeaning").placeholder=type==="word"?"Meaning / translation":type==="post"?"Write the newsfeed post…":"Description";
  if (legacyData) {
    $("#editorTitle").textContent="Edit browser-saved update";
@@ -744,9 +744,9 @@ function editWord(word){
  $("#entrySource").value=item.source||"";
  pendingAudio=item.audio_url||item.audio||"";
 }
-async function deleteWord(word){if(!ownerMode)return openOwner();if(!confirm("Burahin ang dictionary entry na "+word+"?"))return;if(supabaseClient && cloudWords!==null){const {error}=await supabaseClient.from("dictionary_words").delete().eq("word",word);if(error)return alert("Hindi nabura sa cloud: "+error.message);await refreshSharedContent();return;}words=words.filter(w=>w.word!==word);saveAll();renderWords();}
-function deletePost(i){if(confirm("Burahin ang post na ito?")){posts.splice(i,1);saveAll();renderPosts();}}
-async function deleteTimeline(i){if(!ownerMode)return openOwner();if(!confirm("Burahin ang timeline item na ito?"))return;if(supabaseClient && cloudTimeline!==null){const item=cloudTimeline[i];if(!item)return;const {error}=await supabaseClient.from("timeline_items").delete().eq("id",item.id);if(error)return alert("Hindi nabura sa cloud: "+error.message);await refreshSharedContent();return;}timelineItems.splice(i,1);saveAll();renderTimeline();}
+async function deleteWord(word){if(!ownerMode)return openOwner();if(!confirm("Delete dictionary entry "+word+"?"))return;if(supabaseClient && cloudWords!==null){const {error}=await supabaseClient.from("dictionary_words").delete().eq("word",word);if(error)return alert("Could not delete from cloud: "+error.message);await refreshSharedContent();return;}words=words.filter(w=>w.word!==word);saveAll();renderWords();}
+function deletePost(i){if(confirm("Delete this post?")){posts.splice(i,1);saveAll();renderPosts();}}
+async function deleteTimeline(i){if(!ownerMode)return openOwner();if(!confirm("Delete this timeline item?"))return;if(supabaseClient && cloudTimeline!==null){const item=cloudTimeline[i];if(!item)return;const {error}=await supabaseClient.from("timeline_items").delete().eq("id",item.id);if(error)return alert("Could not delete from cloud: "+error.message);await refreshSharedContent();return;}timelineItems.splice(i,1);saveAll();renderTimeline();}
 async function resizeImage(file){
  if(!file||!file.type.startsWith("image/"))return "";
  return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onerror=reject;reader.onload=()=>{const img=new Image();img.onerror=reject;img.onload=()=>{const max=1400,scale=Math.min(1,max/Math.max(img.width,img.height));const canvas=document.createElement("canvas");canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);const ctx=canvas.getContext("2d");ctx.drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL("image/jpeg",.78));};img.src=reader.result;};reader.readAsDataURL(file);});
@@ -774,7 +774,7 @@ document.querySelectorAll("[data-policy-open]").forEach(a=>a.addEventListener("c
 document.querySelectorAll(".modal-backdrop").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)closeModal(m.id)}));
 let authMode = "login";
 async function requireCommunityLogin(){
- if(!supabaseClient){alert("Hindi available ang login service.");return false;}
+ if(!supabaseClient){alert("The login service is unavailable.");return false;}
  const {data}=await supabaseClient.auth.getSession(); currentUser=data?.session?.user||null;
  if(!currentUser){openOwner();$("#loginError").textContent="Mag-login o gumawa ng account para magpatuloy.";return false;}
  return true;
@@ -783,17 +783,17 @@ $("#authModeToggle").addEventListener("click",()=>{
  authMode=authMode==="login"?"signup":"login";
  $("#authSubmit").textContent=authMode==="signup"?"Create account":"Log in";
  $("#authModeToggle").textContent=authMode==="signup"?"Back to login":"Create account";
- $("#authIntro").textContent=authMode==="signup"?"Gumawa ng account gamit ang email at password.":"Mag-login o gumawa ng account para makapag-like at makapag-comment. Ang Editors Lounge ay para lamang sa awtorisadong owner.";
+ $("#authIntro").textContent=authMode==="signup"?"Create an account using your email and password.":"Sign in or create an account to like and comment. The Editors Lounge is restricted to the authorized site owner.";
  $("#loginError").textContent="";
 });
 $("#googleAuth").addEventListener("click",async()=>{
- if(!supabaseClient){$("#loginError").textContent="Hindi available ang login service.";return;}
+ if(!supabaseClient){$("#loginError").textContent="The login service is unavailable.";return;}
  const {error}=await supabaseClient.auth.signInWithOAuth({provider:"google",options:{redirectTo:location.origin+location.pathname}});
  if(error)$("#loginError").textContent=error.message;
 });
 $("#ownerForm").addEventListener("submit",async e=>{
  e.preventDefault();const error=$("#loginError");error.textContent="";
- if(!supabaseClient){error.textContent="Hindi ma-load ang login service. Suriin ang internet connection at Supabase configuration.";return;}
+ if(!supabaseClient){error.textContent="Could not load the login service. Check your internet connection and Supabase configuration.";return;}
  const email=$("#ownerEmail").value.trim().toLowerCase(),password=$("#ownerPassword").value;
  if(authMode==="signup"){
   if(password.length<6){error.textContent="Gumamit ng password na hindi bababa sa 6 na character.";return;}
@@ -804,13 +804,13 @@ $("#ownerForm").addEventListener("submit",async e=>{
   return;
  }
  const {data,error:authError}=await supabaseClient.auth.signInWithPassword({email,password});
- if(authError){error.textContent="Hindi makapag-login. Suriin ang email/password o i-verify muna ang email.";return;}
+ if(authError){error.textContent="Login failed. Check your email/password or verify your email first.";return;}
  if(!data.session||!data.user){error.textContent="Walang active session. Subukan muli.";return;}
  currentUser=data.user;const isOwner=(data.user.email||"").toLowerCase()===AUTHORIZED_OWNER_EMAIL;
  setOwner(isOwner);await refreshCommunityData();if(isOwner)await syncLegacyLibraryToCloud();closeModal("ownerModal");
 });
-$("#entryImage").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;try{pendingImage=await resizeImage(f);$("#imagePreview").src=pendingImage;$("#imagePreview").classList.remove("hidden");}catch(err){alert("Hindi mabasa ang image. Subukang ibang file.");}});
-$("#entryAudio").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;if(f.size>1_500_000){alert("Para sa local demo, hanggang 1.5 MB lang ang audio. Sa live site, gumamit ng cloud storage.");e.target.value="";return;}try{pendingAudio=await fileToData(f);}catch(err){alert("Hindi mabasa ang audio file.");}});
+$("#entryImage").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;try{pendingImage=await resizeImage(f);$("#imagePreview").src=pendingImage;$("#imagePreview").classList.remove("hidden");}catch(err){alert("Could not read the image. Try another file.");}});
+$("#entryAudio").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;if(f.size>1_500_000){alert("For the local demo, audio files must be 1.5 MB or smaller. Use cloud storage on the live site.");e.target.value="";return;}try{pendingAudio=await fileToData(f);}catch(err){alert("Could not read the audio file.");}});
 $("#editorForm").addEventListener("submit",async e=>{
  e.preventDefault();if(!ownerMode){alert("Owner mode muna.");return;}
  const type=$("#contentType").value,title=$("#entryWord").value.trim(),body=(type==="post"?$("#richEditor").innerHTML:$("#entryMeaning").value).trim(),date=$("#entryDate").value.trim()||new Date().toLocaleDateString("en-PH",{year:"numeric",month:"long"});
@@ -827,7 +827,7 @@ $("#editorForm").addEventListener("submit",async e=>{
    const result=postId
       ? await supabaseClient.from("community_posts").update({...row,updated_at:new Date().toISOString()}).eq("id",postId).select().single()
       : await supabaseClient.from("community_posts").insert(row).select().single();
-   if(result.error){alert("Hindi na-save sa cloud. Patakbuhin muna ang SQL setup file. " + result.error.message);return;}
+   if(result.error){alert("Could not save to the cloud. Run the SQL setup file first. " + result.error.message);return;}
    closeModal("editorModal");await refreshCommunityData();return;
  }
  if(type==="post" && supabaseClient && $("#editingPostId").value) {
@@ -837,24 +837,24 @@ $("#editorForm").addEventListener("submit",async e=>{
    const row={title,body,category:$("#entryCategory").value||"Announcement",published_at:date,updated_at:new Date().toISOString()};
    if(pendingImage && (pendingImage.startsWith("http") || pendingImage.startsWith("data:image/"))) row.image_url=pendingImage;
    const result=await supabaseClient.from("community_posts").update(row).eq("id",$("#editingPostId").value).select().single();
-   if(result.error){alert("Hindi na-save ang update: "+result.error.message);return;}
+   if(result.error){alert("Could not save the update: "+result.error.message);return;}
    closeModal("editorModal");await refreshCommunityData();return;
  }
  if(type==="word" && supabaseClient && cloudWords!==null) {
    const {data:sd}=await supabaseClient.auth.getSession(); const u=sd?.session?.user;
-   if(!u || (u.email||"").toLowerCase()!==AUTHORIZED_OWNER_EMAIL) return alert("Hindi beripikado ang owner session.");
+   if(!u || (u.email||"").toLowerCase()!==AUTHORIZED_OWNER_EMAIL) return alert("The owner session could not be verified.");
    const row={word:title,pronunciation:$("#entryPronunciation").value.trim(),category:$("#entryCategory").value,meaning:body,source:$("#entrySource").value.trim()||"Owner entry",audio_url:(pendingAudio.startsWith("https://")?pendingAudio:null)};
    const result=editingWordValue
      ? await supabaseClient.from("dictionary_words").update(row).eq("word",editingWordValue)
      : await supabaseClient.from("dictionary_words").insert(row);
-   if(result.error)return alert("Hindi na-save ang salita sa cloud: "+result.error.message);
+   if(result.error)return alert("Could not save the word to the cloud: "+result.error.message);
    editingWordValue=null;closeModal("editorModal"); await refreshSharedContent(); return;
  }
  if(type==="timeline" && supabaseClient && cloudTimeline!==null) {
    const {data:sd}=await supabaseClient.auth.getSession(); const u=sd?.session?.user;
-   if(!u || (u.email||"").toLowerCase()!==AUTHORIZED_OWNER_EMAIL) return alert("Hindi beripikado ang owner session.");
+   if(!u || (u.email||"").toLowerCase()!==AUTHORIZED_OWNER_EMAIL) return alert("The owner session could not be verified.");
    const {error}=await supabaseClient.from("timeline_items").insert({event_date:date,title,body,legacy_key:legacyKey({date,title,body})});
-   if(error)return alert("Hindi na-save ang timeline sa cloud: "+error.message);
+   if(error)return alert("Could not save the timeline to the cloud: "+error.message);
    closeModal("editorModal"); await refreshSharedContent(); return;
  }
  if(type==="word"){
