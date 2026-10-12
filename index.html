@@ -232,69 +232,6 @@ input,textarea,[contenteditable="true"],select,.comment-body{-webkit-user-select
 .rich-editor-wrap{position:relative;border:1px solid #cfcbbd;border-radius:13px;overflow:hidden;background:#fffef9}.rich-toolbar{display:flex;align-items:center;gap:5px;flex-wrap:wrap;padding:9px;border-bottom:1px solid var(--line);background:#f3f1e8}.rich-toolbar button{border:1px solid #ded9ca;background:#fffdf7;color:var(--forest);border-radius:7px;padding:7px 9px;min-height:34px;font-size:.82rem;font-weight:700}.rich-toolbar button:hover{background:#e8eddf}.toolbar-divider{height:25px;width:1px;background:#d7d1c2;margin:0 3px}.toolbar-select-label{display:inline-flex;align-items:center;gap:4px;font-size:.72rem;color:var(--muted);font-weight:800}.toolbar-select-label select{max-width:110px;border:1px solid #ded9ca;border-radius:7px;background:#fffdf7;color:var(--ink);padding:7px 5px;font-size:.78rem}.rich-editor{min-height:260px;padding:17px 18px;outline:none;line-height:1.7;overflow-wrap:anywhere}.rich-editor:empty:before{content:attr(data-placeholder);color:#969b92;pointer-events:none}.rich-editor p{margin:0 0 1em}.rich-editor h2{font-family:Georgia,serif;font-size:1.7rem;line-height:1.2;margin:.5em 0}.rich-editor h3{font-family:Georgia,serif;font-size:1.3rem;margin:.5em 0}.rich-editor blockquote{margin:1em 0;padding:8px 14px;border-left:3px solid var(--gold);background:#f7f3e8}.rich-editor ul,.rich-editor ol{padding-left:1.7em}.editor-help{padding:9px 13px;background:#f7f3e8;border-top:1px solid var(--line);color:var(--muted);font-size:.76rem}.post-rich-content{line-height:1.8;overflow-wrap:anywhere;white-space:normal}.post-rich-content p{margin:0 0 1em;color:#536158}.post-rich-content p:last-child{margin-bottom:0}.post-rich-content h2,.post-rich-content h3{font-family:Georgia,serif;color:var(--forest);line-height:1.3;margin:1em 0 .5em}.post-rich-content blockquote{margin:1em 0;padding:9px 15px;border-left:3px solid var(--gold);background:#f7f3e8;color:#536158}.post-rich-content ul,.post-rich-content ol{padding-left:1.6em;margin:.6em 0 1em}.post-rich-content a{color:#176b48;text-decoration:underline}.post-rich-content img{max-height:360px;object-fit:contain;border-radius:12px}@media(max-width:700px){.dictionary-posts{grid-template-columns:1fr}.rich-editor{min-height:220px;padding:14px}.rich-toolbar{gap:4px}.toolbar-select-label select{max-width:85px}}
 
 
-
-/* Liblu Blaan visual refresh: editorial layout, clear hierarchy, mobile-first interactions */
-:root{--forest:#173f32;--forest2:#245944;--gold:#d8b45f;--cream:#f8f5ec;--paper:#fffdf8;--ink:#24362e;--muted:#65736a;--line:#e5dfcf;--soft:#edf2e8;--shadow:0 16px 42px rgba(24,55,42,.09);--radius:18px}
-body{background:linear-gradient(180deg,#fbf9f2 0%,#f6f2e7 100%)}
-.topline{background:#12372b;letter-spacing:.08em}
-header{background:rgba(255,253,248,.96)}
-.nav{min-height:72px}
-.navlinks a{font-weight:650;transition:background .18s,color .18s}
-.navlinks a.active{box-shadow:inset 0 -2px var(--gold);border-radius:9px 9px 0 0}
-.btn{min-height:44px;transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
-.btn:hover{transform:translateY(-1px);box-shadow:0 7px 18px rgba(23,63,50,.12)}
-.hero{padding:54px 0 24px}
-.hero-grid{gap:clamp(22px,4vw,52px)}
-.hero-copy{line-height:1.75}
-.hero-art{border:1px solid rgba(216,180,95,.3);background:radial-gradient(circle at 78% 18%,rgba(216,180,95,.22),transparent 34%),linear-gradient(145deg,#315d48,#12372b 78%);min-height:400px}
-.art-symbol{font-size:clamp(4rem,8vw,6rem)}
-.stats{gap:14px;margin:24px 0 34px}
-.stat{box-shadow:0 5px 20px rgba(38,53,45,.035);transition:transform .18s,border-color .18s}
-.stat:hover{transform:translateY(-3px);border-color:#c8b579}
-section{padding:48px 0}
-.section-head{margin-bottom:24px}
-.section-head h2{letter-spacing:-.035em}
-.word-card,.feed-card,.feature-card,.timeline-card{box-shadow:0 7px 22px rgba(24,55,42,.045);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
-.word-card:hover,.feature-card:hover,.feed-card:hover,.timeline-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(24,55,42,.09);border-color:#d5c69e}
-.word-card{border-top:3px solid var(--gold)}
-.word{letter-spacing:-.025em}
-.word-meta{flex-wrap:wrap}
-.band{background:linear-gradient(135deg,#edf1e5,#f8f4e8);border-color:#e0e5d6}
-.feature-art{background:radial-gradient(circle at 50% 45%,rgba(216,180,95,.18),transparent 45%),linear-gradient(135deg,#315d48,#12372b)}
-footer{background:#12372b}
-#wordOfDay{padding:0 0 34px}
-.word-day-card{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:22px;padding:clamp(22px,4vw,36px);border-radius:24px;background:radial-gradient(circle at 90% 10%,rgba(216,180,95,.2),transparent 30%),linear-gradient(120deg,#173f32,#245944);color:#fffdf4;box-shadow:var(--shadow)}
-.word-day-card:after{content:"";position:absolute;right:-38px;bottom:-90px;width:230px;height:230px;border:1px solid rgba(216,180,95,.35);border-radius:50%;box-shadow:0 0 0 22px rgba(216,180,95,.035),0 0 0 44px rgba(216,180,95,.025);pointer-events:none}
-.word-day-card .eyebrow{color:#ead49a}
-.word-day-card .eyebrow:before{background:#ead49a}
-.word-day-card h2{font-family:Georgia,serif;font-size:clamp(1.7rem,3vw,2.4rem);margin:8px 0;color:#fffdf4}
-.word-day-card .day-word{font-family:Georgia,serif;font-size:clamp(2.1rem,5vw,3.4rem);line-height:1.08;color:#f2d27d;margin:6px 0}
-.word-day-card .day-meaning{color:#f5f0df;max-width:620px;margin:0}
-.word-day-side{position:relative;z-index:1;display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end}
-.word-day-side .btn-light{background:#f2d27d;color:#173f32}
-.word-day-side .btn-outline{border-color:rgba(255,255,255,.45);color:#fffdf4}
-.word-day-empty{color:#f5f0df;max-width:600px}
-.media-status{display:block;margin-top:8px;font-size:.8rem;color:var(--muted)}
-.upload-progress{height:5px;background:#e8e3d6;border-radius:99px;overflow:hidden;margin-top:8px}
-.upload-progress>span{display:block;height:100%;width:0;background:var(--forest);transition:width .2s}
-@media(max-width:760px){
- .hero{padding:30px 0 12px}.hero-grid{grid-template-columns:1fr;gap:18px}.hero-art{min-height:290px;border-radius:22px}
- .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:24px}
- .stat{padding:13px;gap:10px}.stat-icon{width:38px;height:38px}
- section{padding:34px 0}.section-head{align-items:start;flex-direction:column;gap:12px}
- .word-day-card{grid-template-columns:1fr;gap:17px}.word-day-side{justify-content:flex-start}
- .word-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media(max-width:480px){
- .wrap{width:min(100% - 28px,1160px)}
- .word-grid{grid-template-columns:1fr}
- .hero-actions{display:grid;grid-template-columns:1fr}
- .hero-actions .btn{width:100%}
- .word-card{min-height:0;padding:16px}
- .searchbar{gap:7px}.searchbar>.btn{padding:10px 12px}
- .word-day-card{padding:22px 18px}
-}
-
 </style>
 </head>
 <body>
@@ -332,37 +269,19 @@ footer{background:#12372b}
     </div>
   </div>
   <div class="wrap stats">
-    <a class="stat stat-link" href="#dictionary" aria-label="Explore dictionary words">
+    <a class="stat stat-link" href="#dictionary" aria-label="Pumunta sa mga salita">
       <div class="stat-icon">📖</div><div><strong id="wordCount">6</strong><span>Words</span></div>
     </a>
-    <a class="stat stat-link" href="#heritage" aria-label="Explore heritage">
+    <a class="stat stat-link" href="#heritage" aria-label="Pumunta sa Heritage">
       <div class="stat-icon">🌿</div><div><strong>Heritage</strong><span>Culture & traditions</span></div>
     </a>
-    <a class="stat stat-link" href="#dictionary" aria-label="Explore pronunciation and audio">
+    <a class="stat stat-link" href="#dictionary" aria-label="Pumunta sa Sounds at gabay sa pagbigkas">
       <div class="stat-icon">🔊</div><div><strong>Sounds</strong><span>Pronunciation guide</span></div>
     </a>
     <button class="stat stat-link stat-owner-link" id="statsOwner" type="button" aria-label="Buksan ang Editors Lounge">
       <div class="stat-icon">✍️</div><div><strong>By owner</strong><span>Owner managed</span></div>
     </button>
   </div>
-</section>
-
-<section id="wordOfDay" aria-labelledby="wordOfDayTitle">
- <div class="wrap">
-  <div class="word-day-card">
-   <div>
-    <span class="eyebrow">A daily moment with the Blaan language</span>
-    <h2 id="wordOfDayTitle">Blaan Word of the Day</h2>
-    <div id="dayWord" class="day-word">Explore a Blaan word</div>
-    <p id="dayMeaning" class="day-meaning">Discover a word, its meaning, and its community-verified details.</p>
-    <p id="dayMeta" class="media-status" style="color:#dce8dc">Words and translations are shown as submitted and updated by the site owner.</p>
-   </div>
-   <div class="word-day-side">
-    <a class="btn btn-light" href="#dictionary">Explore the Dictionary →</a>
-    <button class="btn btn-outline" id="shareDayWord" type="button">↗ Share this word</button>
-   </div>
-  </div>
- </div>
 </section>
 
 <section id="dictionary">
@@ -475,8 +394,8 @@ footer{background:#12372b}
     <label class="toolbar-select-label">Spacing <select id="richSpacing"><option value="1.5">Normal</option><option value="1.8">Relaxed</option><option value="2">Wide</option></select></label><button type="button" data-command="removeFormat">Clear</button></div>
     <div id="richEditor" class="rich-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Post content editor" data-placeholder="Write your post here. Press Enter to start a new paragraph."></div><div class="editor-help">Tip: Press Enter to start a new paragraph. Select text before changing its font, size, or alignment.</div></div>
     <textarea id="entryMeaning" placeholder="Enter the meaning or content…" maxlength="10000"></textarea></div>
-   <div class="field hidden" id="audioField"><label for="entryAudio">Audio file (optional)</label><input id="entryAudio" type="file" accept="audio/*"><small style="color:var(--muted)">Audio is optimized when supported and uploaded to shared cloud storage before publishing. Maximum source size: 12 MB.</small><span id="audioUploadStatus" class="media-status" role="status"></span></div>
-   <div class="field hidden" id="imageField"><label for="entryImage">Post image (optional)</label><input id="entryImage" type="file" accept="image/*"><small style="color:var(--muted)">Images are automatically resized and compressed before cloud upload to reduce storage use.</small><span id="imageUploadStatus" class="media-status" role="status"></span><img id="imagePreview" class="hidden" alt="Image preview" style="max-height:170px;object-fit:contain;border-radius:10px"></div>
+   <div class="field hidden" id="audioField"><label for="entryAudio">Audio file (optional)</label><input id="entryAudio" type="file" accept="audio/*"><small style="color:var(--muted)">Audio files are not uploaded to the server by this form. Use cloud storage before publishing audio so everyone can access it.</small></div>
+   <div class="field hidden" id="imageField"><label for="entryImage">Post image (optional)</label><input id="entryImage" type="file" accept="image/*"><small style="color:var(--muted)">The image is resized in the browser. Upload it to cloud storage so everyone can access it.</small><img id="imagePreview" class="hidden" alt="Image preview" style="max-height:170px;object-fit:contain;border-radius:10px"></div>
    <div class="field hidden" id="dateField"><label for="entryDate">Date / year</label><input id="entryDate" placeholder="e.g. 2026 · October"></div>
    <div class="notice">Do not publish unverified meanings, sensitive community knowledge, or recordings without permission.</div>
    <button class="btn btn-primary" type="submit" id="editorSaveButton">Save content</button>
@@ -486,12 +405,10 @@ footer{background:#12372b}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-/* Configure the Supabase URL and publishable/anon key. Never use a service_role key in browser code.
-   Media uploads use the public bucket name below; create the bucket and policies with the companion SQL file. */
+/* I-configure ang Supabase URL at Publishable/anon key. Huwag gamitin ang service_role key sa browser. */
 const SUPABASE_URL = 'https://hlkbexmgmzhjkithgbex.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_F4E1mYBNNtyZLujIMrYJbg_ow6AdxMU';
 const AUTHORIZED_OWNER_EMAIL = 'liblublaan@gmail.com'.toLowerCase();
-const MEDIA_BUCKET = 'liblu-media';
 const supabaseClient = (window.supabase && SUPABASE_URL.startsWith('https://') &&
  !SUPABASE_URL.includes('PASTE_') && !SUPABASE_PUBLISHABLE_KEY.includes('PASTE_'))
  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY) : null;
@@ -536,54 +453,11 @@ function renderWords(){
  const activeWords = cloudWords !== null ? cloudWords : words;
  const list=activeWords.filter(w=>(currentFilter==="All"||w.category===currentFilter)&&[w.word,w.meaning,w.pronunciation||w.pron,w.category,w.source].join(" ").toLowerCase().includes(q));
  $("#wordCount").textContent=activeWords.length;
- renderWordOfDay();
  $("#wordGrid").innerHTML=list.length?list.map((w)=>{
   const audioUrl=safeMediaUrl(w.audio_url||w.audio,"audio");
-  return `<article class="word-card"><div class="word-top"><div><div class="word">${escapeHTML(w.word)}</div><div class="pronunciation">${escapeHTML(w.pronunciation||w.pron||"Pronunciation guide not yet added")}</div></div><button class="icon-btn" type="button" data-speak-word="${escapeHTML(w.word)}" title="Hear pronunciation (browser voice only)" aria-label="Hear ${escapeHTML(w.word)}">♫</button></div><div class="meaning">${escapeHTML(w.meaning)}</div><div class="word-meta"><span>${escapeHTML(w.category)} · ${escapeHTML(w.source||"Liblu Blaan")}</span>${ownerMode?`<button class="icon-btn" type="button" data-edit-word="${escapeHTML(w.word)}" title="Edit entry" aria-label="Edit ${escapeHTML(w.word)}">✎</button><button class="icon-btn" type="button" data-delete-word="${escapeHTML(w.word)}" title="Delete entry" aria-label="Delete ${escapeHTML(w.word)}">⌫</button>`:""}</div>${audioUrl?`<audio controls preload="none" style="width:100%;margin-top:12px"><source src="${audioUrl}"></audio>`:""}</article>`;
- }).join(""):'<div class="empty">No words found. Try another keyword or category.</div>';
+  return `<article class="word-card"><div class="word-top"><div><div class="word">${escapeHTML(w.word)}</div><div class="pronunciation">${escapeHTML(w.pronunciation||w.pron||"Bigkas: kailangan pang idagdag")}</div></div><button class="icon-btn" type="button" data-speak-word="${escapeHTML(w.word)}" title="Hear pronunciation (browser voice only)" aria-label="Hear ${escapeHTML(w.word)}">♫</button></div><div class="meaning">${escapeHTML(w.meaning)}</div><div class="word-meta"><span>${escapeHTML(w.category)} · ${escapeHTML(w.source||"Liblu Blaan")}</span>${ownerMode?`<button class="icon-btn" type="button" data-edit-word="${escapeHTML(w.word)}" title="Edit entry" aria-label="Edit ${escapeHTML(w.word)}">✎</button><button class="icon-btn" type="button" data-delete-word="${escapeHTML(w.word)}" title="Delete entry" aria-label="Delete ${escapeHTML(w.word)}">⌫</button>`:""}</div>${audioUrl?`<audio controls preload="none" style="width:100%;margin-top:12px"><source src="${audioUrl}"></audio>`:""}</article>`;
+ }).join(""):'<div class="empty">Walang nahanap na salita. Subukang ibang keyword o category.</div>';
 }
-
-function renderWordOfDay(){
- const target=$("#dayWord"); if(!target)return;
- const all=(cloudWords!==null?cloudWords:words).filter(w=>w&&w.word&&w.meaning);
- if(!all.length){target.textContent="No words published yet";$("#dayMeaning").textContent="Check back soon for a new Blaan word.";$("#dayMeta").textContent="";return;}
- const day=Math.floor(Date.now()/86400000);
- const item=all[day%all.length];
- target.textContent=item.word;
- $("#dayMeaning").textContent=item.meaning;
- $("#dayMeta").textContent=[item.pronunciation||item.pron||"Pronunciation guide not yet added",item.category||"Blaan word",item.source||"Liblu Blaan"].join(" · ");
- const share=$("#shareDayWord");
- if(share&&!share.dataset.bound){share.dataset.bound="1";share.addEventListener("click",async()=>{
-   const text=`Blaan Word of the Day: ${item.word}\\n${item.meaning}\\n${location.href.split("#")[0]}#dictionary`;
-   try{if(navigator.share)await navigator.share({title:"Liblu Blaan — Word of the Day",text});else if(navigator.clipboard){await navigator.clipboard.writeText(text);alert("Word details copied. You can share them now.");}else alert(text);}catch(e){}
- });}
-}
-async function compressImageFile(file){
- const dataUrl=await resizeImage(file);
- const response=await fetch(dataUrl);
- return await response.blob();
-}
-async function uploadMediaFile(file, kind){
- if(!file)return "";
- if(!supabaseClient)throw new Error("Cloud storage is not configured.");
- const maxBytes=kind==="image"?15*1024*1024:12*1024*1024;
- if(file.size>maxBytes)throw new Error(`File is too large. Maximum source size: ${kind==="image"?"15 MB":"12 MB"}.`);
- let body=file, contentType=file.type||"application/octet-stream", ext=(file.name.split(".").pop()||"bin").toLowerCase();
- if(kind==="image"){
-   body=await compressImageFile(file);
-   contentType="image/jpeg";ext="jpg";
- }
- const {data:sessionData}=await supabaseClient.auth.getSession();
- const user=sessionData?.session?.user;
- if(!user||(user.email||"").toLowerCase()!==AUTHORIZED_OWNER_EMAIL)throw new Error("Please sign in as the authorized site owner before uploading media.");
- const path=`${user.id}/${kind}/${Date.now()}-${crypto.randomUUID?crypto.randomUUID():Math.random().toString(36).slice(2)}.${ext}`;
- const {error}=await supabaseClient.storage.from(MEDIA_BUCKET).upload(path,body,{contentType,upsert:false,cacheControl:"31536000"});
- if(error)throw new Error(`Cloud upload failed: ${error.message}. Check the ${MEDIA_BUCKET} bucket and its storage policies.`);
- const {data}=supabaseClient.storage.from(MEDIA_BUCKET).getPublicUrl(path);
- if(!data?.publicUrl)throw new Error("Upload completed, but the public media URL could not be created.");
- return data.publicUrl;
-}
-
 let cloudPosts = [];
 let cloudWords = null;
 let cloudTimeline = null;
@@ -681,7 +555,7 @@ function renderCloudPost(p) {
     <h3>${escapeHTML(p.title)}</h3><div class="post-rich-content">${renderRichContent(p.body)}</div>${imageUrl ? `<img class="post-image" src="${imageUrl}" alt="Image for ${escapeHTML(p.title)}" loading="lazy">` : ""}
     <div class="post-actions"><button class="social-btn ${liked ? "liked" : ""}" type="button" onclick="likeCloudPost('${p.id}')" ${liked ? "disabled" : ""}>♥ ${liked ? "Liked" : "Like"} (${postReactions.filter(r=>r.post_id===p.id).length})</button><button class="social-btn" type="button" onclick="focusComment('${p.id}')">💬 Comment (${comments.length})</button><button class="social-btn" type="button" onclick="shareCloudPost('${p.id}')">↗ Share</button>${isOwner ? `<button class="social-btn" type="button" onclick="editCloudPost('${p.id}')">✎ Edit</button><button class="social-btn" type="button" onclick="deleteCloudPost('${p.id}')">Delete</button>` : ""}</div>
     <div class="post-comments"><strong>Comments & replies</strong><div class="comment-list">${renderCommentTree(p.id) || '<p class="legal-note">Wala pang comment. Maging magalang sa pagbahagi.</p>'}</div>
-      <form class="comment-form" onsubmit="submitCloudComment(event,'${p.id}')"><input name="display_name" maxlength="60" placeholder="Name or display name" value="${escapeHTML(currentUser?.user_metadata?.full_name || currentUser?.user_metadata?.name || (currentUser?.email||"").split("@")[0] || "")}" required ${currentUser ? "" : "disabled"}><textarea name="body" maxlength="1000" placeholder="Write a comment…" required ${currentUser ? "" : "disabled"}></textarea><div class="legal-note" id="reply-label-${p.id}">${currentUser ? (replyToByPost[p.id] ? "Replying to a comment." : "") : "Log in to comment."}</div><button class="btn btn-light" type="submit" ${currentUser ? "" : "disabled"}>Post comment / reply</button></form>
+      <form class="comment-form" onsubmit="submitCloudComment(event,'${p.id}')"><input name="display_name" maxlength="60" placeholder="Pangalan o display name" value="${escapeHTML(currentUser?.user_metadata?.full_name || currentUser?.user_metadata?.name || (currentUser?.email||"").split("@")[0] || "")}" required ${currentUser ? "" : "disabled"}><textarea name="body" maxlength="1000" placeholder="Isulat ang comment…" required ${currentUser ? "" : "disabled"}></textarea><div class="legal-note" id="reply-label-${p.id}">${currentUser ? (replyToByPost[p.id] ? "May napiling reply target." : "") : "Mag-login para makapag-comment."}</div><button class="btn btn-light" type="submit" ${currentUser ? "" : "disabled"}>Post comment / reply</button></form>
     </div></article>`;
 }
 function renderLegacyPost(p, i, migratedKeys) {
@@ -778,15 +652,15 @@ function editLegacyPost(i) {
 }
 async function deleteCloudPost(postId) {
   if (!ownerMode) return openOwner();
-  if (!confirm("Delete this post? Its linked comments and reactions will also be deleted.")) return;
+  if (!confirm("Sigurado ka bang buburahin ang post na ito? Mabubura rin ang comments/reactions na naka-link dito.")) return;
   const {error}=await supabaseClient.from("community_posts").delete().eq("id",postId);
   if (error) return alert("Could not delete the post: " + error.message);
   await refreshCommunityData();
 }
 async function syncLegacyPostsToCloud() {
-  if (!ownerMode || !supabaseClient) return alert("Sign in as the site owner and make sure Supabase is configured.");
+  if (!ownerMode || !supabaseClient) return alert("Mag-login bilang owner at tiyaking naka-configure ang Supabase.");
   const status=$("#syncStatus");
-  status.textContent="Importing browser-saved posts to the cloud…";
+  status.textContent="Ini-import ang browser posts sa cloud…";
   let count=0;
   try {
     const {data:sessionData}=await supabaseClient.auth.getSession();
@@ -836,3 +710,194 @@ function openEditor(type, legacyData=null){
  $("#meaningField").classList.toggle("hidden",type==="timeline");
  $("#richEditorWrap").classList.toggle("hidden",type!=="post");$("#entryMeaning").classList.toggle("hidden",type==="post");$("#richEditor").innerHTML="";
  $("#audioField").classList.toggle("hidden",type!=="word"&&type!=="post");
+ $("#imageField").classList.toggle("hidden",type!=="post");
+ $("#dateField").classList.toggle("hidden",type==="word");
+ $("#entryWord").placeholder=type==="post"?"Pamagat ng post":type==="timeline"?"Pamagat ng timeline":"e.g. AYÈM";
+ $("#entryWordLabel").textContent=type==="post"?"Post title":type==="timeline"?"Timeline title":"Blaan word";
+ $("#entryMeaningLabel").textContent=type==="post"?"Post content":type==="timeline"?"Description":"Meaning / translation";
+ $("#entryMeaning").placeholder=type==="word"?"Meaning / translation":type==="post"?"Write the newsfeed post…":"Description";
+ if (legacyData) {
+   $("#editorTitle").textContent="Edit browser-saved update";
+   $("#editorSaveButton").textContent="Save changes";
+   $("#entryWord").value=legacyData.title||"";
+   $("#entryMeaning").value=legacyData.body||"";
+   $("#richEditor").innerHTML=renderRichContent(legacyData.body||"");
+   $("#entryDate").value=legacyData.date||"";
+   setEditorCategories("post", legacyData.category||"Announcement");
+   pendingImage=legacyData.image||""; pendingAudio=legacyData.audio||"";
+   if (pendingImage) { $("#imagePreview").src=pendingImage; $("#imagePreview").classList.remove("hidden"); }
+ }
+ openModal("editorModal");
+}
+function editWord(word){
+ if(!ownerMode)return openOwner();
+ const item=(cloudWords!==null?cloudWords:words).find(w=>w.word===word);
+ if(!item)return;
+ openEditor("word");
+ editingWordValue=item.word;
+ $("#editorTitle").textContent="Edit dictionary word";
+ $("#editorSaveButton").textContent="Save changes";
+ $("#entryWord").value=item.word||"";
+ $("#entryPronunciation").value=item.pronunciation||item.pron||"";
+ $("#entryMeaning").value=item.meaning||"";
+ $("#entryCategory").value=item.category||"Daily words";
+ $("#entrySource").value=item.source||"";
+ pendingAudio=item.audio_url||item.audio||"";
+}
+async function deleteWord(word){if(!ownerMode)return openOwner();if(!confirm("Delete dictionary entry "+word+"?"))return;if(supabaseClient && cloudWords!==null){const {error}=await supabaseClient.from("dictionary_words").delete().eq("word",word);if(error)return alert("Could not delete from cloud: "+error.message);await refreshSharedContent();return;}words=words.filter(w=>w.word!==word);saveAll();renderWords();}
+function deletePost(i){if(confirm("Delete this post?")){posts.splice(i,1);saveAll();renderPosts();}}
+async function deleteTimeline(i){if(!ownerMode)return openOwner();if(!confirm("Delete this timeline item?"))return;if(supabaseClient && cloudTimeline!==null){const item=cloudTimeline[i];if(!item)return;const {error}=await supabaseClient.from("timeline_items").delete().eq("id",item.id);if(error)return alert("Could not delete from cloud: "+error.message);await refreshSharedContent();return;}timelineItems.splice(i,1);saveAll();renderTimeline();}
+async function resizeImage(file){
+ if(!file||!file.type.startsWith("image/"))return "";
+ return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onerror=reject;reader.onload=()=>{const img=new Image();img.onerror=reject;img.onload=()=>{const max=1400,scale=Math.min(1,max/Math.max(img.width,img.height));const canvas=document.createElement("canvas");canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);const ctx=canvas.getContext("2d");ctx.drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL("image/jpeg",.78));};img.src=reader.result;};reader.readAsDataURL(file);});
+}
+async function fileToData(file){if(!file)return "";return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file);});}
+$("#wordGrid").addEventListener("click",async e=>{
+ const speakButton=e.target.closest("[data-speak-word]");
+ if(speakButton){speakWord(speakButton.dataset.speakWord);return;}
+ const editButton=e.target.closest("[data-edit-word]");
+ if(editButton){editWord(editButton.dataset.editWord);return;}
+ const deleteButton=e.target.closest("[data-delete-word]");
+ if(deleteButton) await deleteWord(deleteButton.dataset.deleteWord);
+});
+$("#wordSearch").addEventListener("input",renderWords);$("#searchBtn").addEventListener("click",renderWords);
+$("#wordFilters").addEventListener("click",e=>{const b=e.target.closest("[data-filter]");if(!b)return;currentFilter=b.dataset.filter;document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("active",c===b));renderWords();});
+$("#menuToggle").addEventListener("click",()=>{const n=$("#navlinks"),open=n.classList.toggle("open");$("#menuToggle").setAttribute("aria-expanded",open?"true":"false");$("#menuToggle").textContent=open?"✕":"☰";});
+$("#navlinks").addEventListener("click",e=>{if(e.target.closest("a")){$("#navlinks").classList.remove("open");$("#menuToggle").setAttribute("aria-expanded","false");$("#menuToggle").textContent="☰";}});
+$("#ownerOpen").addEventListener("click",async()=>{if(currentUser&&!ownerMode){if(confirm("Mag-log out sa account na ito?")){await supabaseClient.auth.signOut();currentUser=null;setOwner(false);}}else openOwner();});$("#footerOwner").addEventListener("click",openOwner);$("#statsOwner").addEventListener("click",openOwner);
+$("#addWordBtn").addEventListener("click",()=>openEditor("word"));$("#addPostBtn").addEventListener("click",()=>openEditor("post"));$("#addTimelineBtn").addEventListener("click",()=>openEditor("timeline"));
+$("#ownerAddWord").addEventListener("click",()=>{closeModal("ownerModal");openEditor("word")});$("#ownerAddPost").addEventListener("click",()=>{closeModal("ownerModal");openEditor("post")});$("#ownerAddTimeline").addEventListener("click",()=>{closeModal("ownerModal");openEditor("timeline")});
+$("#syncLegacyPosts").addEventListener("click",syncLegacyPostsToCloud);
+$("#ownerLogout").addEventListener("click",async()=>{if(supabaseClient)await supabaseClient.auth.signOut();currentUser=null;setOwner(false);closeModal("ownerModal")});
+document.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",()=>closeModal(b.dataset.close)));
+document.querySelectorAll("[data-policy-open]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();openModal("policyModal");}));
+document.querySelectorAll(".modal-backdrop").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)closeModal(m.id)}));
+let authMode = "login";
+async function requireCommunityLogin(){
+ if(!supabaseClient){alert("The login service is unavailable.");return false;}
+ const {data}=await supabaseClient.auth.getSession(); currentUser=data?.session?.user||null;
+ if(!currentUser){openOwner();$("#loginError").textContent="Mag-login o gumawa ng account para magpatuloy.";return false;}
+ return true;
+}
+$("#authModeToggle").addEventListener("click",()=>{
+ authMode=authMode==="login"?"signup":"login";
+ $("#authSubmit").textContent=authMode==="signup"?"Create account":"Log in";
+ $("#authModeToggle").textContent=authMode==="signup"?"Back to login":"Create account";
+ $("#authIntro").textContent=authMode==="signup"?"Create an account using your email and password.":"Sign in or create an account to like and comment. The Editors Lounge is restricted to the authorized site owner.";
+ $("#loginError").textContent="";
+});
+$("#googleAuth").addEventListener("click",async()=>{
+ if(!supabaseClient){$("#loginError").textContent="The login service is unavailable.";return;}
+ const {error}=await supabaseClient.auth.signInWithOAuth({provider:"google",options:{redirectTo:location.origin+location.pathname}});
+ if(error)$("#loginError").textContent=error.message;
+});
+$("#ownerForm").addEventListener("submit",async e=>{
+ e.preventDefault();const error=$("#loginError");error.textContent="";
+ if(!supabaseClient){error.textContent="Could not load the login service. Check your internet connection and Supabase configuration.";return;}
+ const email=$("#ownerEmail").value.trim().toLowerCase(),password=$("#ownerPassword").value;
+ if(authMode==="signup"){
+  if(password.length<6){error.textContent="Gumamit ng password na hindi bababa sa 6 na character.";return;}
+  const {data,error:signupError}=await supabaseClient.auth.signUp({email,password,options:{emailRedirectTo:location.origin+location.pathname}});
+  if(signupError){error.textContent=signupError.message;return;}
+  if(data.session&&data.user){currentUser=data.user;setOwner((data.user.email||"").toLowerCase()===AUTHORIZED_OWNER_EMAIL);await refreshCommunityData();closeModal("ownerModal");}
+  else error.textContent="Tingnan ang iyong email para sa verification link bago mag-login.";
+  return;
+ }
+ const {data,error:authError}=await supabaseClient.auth.signInWithPassword({email,password});
+ if(authError){error.textContent="Login failed. Check your email/password or verify your email first.";return;}
+ if(!data.session||!data.user){error.textContent="Walang active session. Subukan muli.";return;}
+ currentUser=data.user;const isOwner=(data.user.email||"").toLowerCase()===AUTHORIZED_OWNER_EMAIL;
+ setOwner(isOwner);await refreshCommunityData();if(isOwner)await syncLegacyLibraryToCloud();closeModal("ownerModal");
+});
+$("#entryImage").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;try{pendingImage=await resizeImage(f);$("#imagePreview").src=pendingImage;$("#imagePreview").classList.remove("hidden");}catch(err){alert("Could not read the image. Try another file.");}});
+$("#entryAudio").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;if(f.size>1_500_000){alert("For the local demo, audio files must be 1.5 MB or smaller. Use cloud storage on the live site.");e.target.value="";return;}try{pendingAudio=await fileToData(f);}catch(err){alert("Could not read the audio file.");}});
+$("#editorForm").addEventListener("submit",async e=>{
+ e.preventDefault();if(!ownerMode){alert("Owner mode muna.");return;}
+ const type=$("#contentType").value,title=$("#entryWord").value.trim(),body=(type==="post"?$("#richEditor").innerHTML:$("#entryMeaning").value).trim(),date=$("#entryDate").value.trim()||new Date().toLocaleDateString("en-PH",{year:"numeric",month:"long"});
+ if(type!=="timeline"&&!title){alert("Pakilagyan ng title o salita.");return;}
+ if(type!=="timeline"&&!(type==="post"?plainTextFromRich(body):body)){alert("Pakilagyan ng kahulugan o nilalaman.");return;}
+ if(type==="post"&&body.length>20000){alert("Masyadong mahaba ang post. Paikliin ang content.");return;}
+ if(type==="post" && supabaseClient && !editingLegacyIndex && !$("#editingPostId").value) {
+   const {data:sessionData}=await supabaseClient.auth.getSession();
+   const user=sessionData?.session?.user;
+   if(!user || (user.email||"").toLowerCase()!==AUTHORIZED_OWNER_EMAIL){alert("Owner session not verified.");return;}
+   const row={title,body,category:$("#entryCategory").value||"Announcement",published_at:date,owner_id:user.id};
+   if(pendingImage && (pendingImage.startsWith("http") || pendingImage.startsWith("data:image/"))) row.image_url=pendingImage;
+   const postId=$("#editingPostId").value;
+   const result=postId
+      ? await supabaseClient.from("community_posts").update({...row,updated_at:new Date().toISOString()}).eq("id",postId).select().single()
+      : await supabaseClient.from("community_posts").insert(row).select().single();
+   if(result.error){alert("Could not save to the cloud. Run the SQL setup file first. " + result.error.message);return;}
+   closeModal("editorModal");await refreshCommunityData();return;
+ }
+ if(type==="post" && supabaseClient && $("#editingPostId").value) {
+   const {data:sessionData}=await supabaseClient.auth.getSession();
+   const user=sessionData?.session?.user;
+   if(!user || (user.email||"").toLowerCase()!==AUTHORIZED_OWNER_EMAIL){alert("Owner session not verified.");return;}
+   const row={title,body,category:$("#entryCategory").value||"Announcement",published_at:date,updated_at:new Date().toISOString()};
+   if(pendingImage && (pendingImage.startsWith("http") || pendingImage.startsWith("data:image/"))) row.image_url=pendingImage;
+   const result=await supabaseClient.from("community_posts").update(row).eq("id",$("#editingPostId").value).select().single();
+   if(result.error){alert("Could not save the update: "+result.error.message);return;}
+   closeModal("editorModal");await refreshCommunityData();return;
+ }
+ if(type==="word" && supabaseClient && cloudWords!==null) {
+   const {data:sd}=await supabaseClient.auth.getSession(); const u=sd?.session?.user;
+   if(!u || (u.email||"").toLowerCase()!==AUTHORIZED_OWNER_EMAIL) return alert("The owner session could not be verified.");
+   const row={word:title,pronunciation:$("#entryPronunciation").value.trim(),category:$("#entryCategory").value,meaning:body,source:$("#entrySource").value.trim()||"Owner entry",audio_url:(pendingAudio.startsWith("https://")?pendingAudio:null)};
+   const result=editingWordValue
+     ? await supabaseClient.from("dictionary_words").update(row).eq("word",editingWordValue)
+     : await supabaseClient.from("dictionary_words").insert(row);
+   if(result.error)return alert("Could not save the word to the cloud: "+result.error.message);
+   editingWordValue=null;closeModal("editorModal"); await refreshSharedContent(); return;
+ }
+ if(type==="timeline" && supabaseClient && cloudTimeline!==null) {
+   const {data:sd}=await supabaseClient.auth.getSession(); const u=sd?.session?.user;
+   if(!u || (u.email||"").toLowerCase()!==AUTHORIZED_OWNER_EMAIL) return alert("The owner session could not be verified.");
+   const {error}=await supabaseClient.from("timeline_items").insert({event_date:date,title,body,legacy_key:legacyKey({date,title,body})});
+   if(error)return alert("Could not save the timeline to the cloud: "+error.message);
+   closeModal("editorModal"); await refreshSharedContent(); return;
+ }
+ if(type==="word"){
+   const entry={word:title,pronunciation:$("#entryPronunciation").value.trim(),category:$("#entryCategory").value,meaning:body,source:$("#entrySource").value.trim()||"Owner entry",audio:pendingAudio};
+   if(editingWordValue!==null){words=words.map(w=>w.word===editingWordValue?{...w,...entry}:w);editingWordValue=null;}
+   else words.unshift(entry);
+ }
+ if(type==="post"){
+   if (editingLegacyIndex !== null) {
+     const old=posts[editingLegacyIndex];
+     posts[editingLegacyIndex]={...old,title,body,date,category:$("#entryCategory").value||"Announcement",image:pendingImage||old.image||"",audio:pendingAudio||old.audio||""};
+     editingLegacyIndex=null;
+   } else {
+     alert("Cloud posts are not configured. This post can only be saved locally until the SQL setup is installed.");
+     return;
+   }
+ }
+ if(type==="timeline"){if(!title||!body){alert("Pakilagyan ng title at description.");return;}timelineItems.unshift({date,title,body});}
+ saveAll();renderWords();renderPosts();renderTimeline();closeModal("editorModal");
+});
+const richEditor=$("#richEditor");document.querySelectorAll(".rich-toolbar [data-command]").forEach(btn=>btn.addEventListener("click",()=>{richEditor.focus();document.execCommand(btn.dataset.command,false,null);}));$("#richFont").addEventListener("change",e=>{richEditor.focus();document.execCommand("fontName",false,e.target.value);});$("#richSize").addEventListener("change",e=>{richEditor.focus();document.execCommand("fontSize",false,e.target.value);});$("#richBlock").addEventListener("change",e=>{richEditor.focus();document.execCommand("formatBlock",false,e.target.value);});$("#richSpacing").addEventListener("change",e=>{richEditor.style.lineHeight=e.target.value;});richEditor.addEventListener("input",()=>{if(plainTextFromRich(richEditor.innerHTML).length>10000){alert("Hanggang 10,000 characters ang post content.");}});
+document.addEventListener("contextmenu",e=>{if(!e.target.closest("input,textarea,[contenteditable='true'],select,a,button"))e.preventDefault();});
+document.addEventListener("copy",e=>{if(!e.target.closest("input,textarea,[contenteditable='true'],select"))e.preventDefault();});
+document.addEventListener("cut",e=>{if(!e.target.closest("input,textarea,[contenteditable='true'],select"))e.preventDefault();});
+document.addEventListener("keydown",e=>{const k=e.key.toLowerCase();if((e.ctrlKey||e.metaKey)&&["c","x","u","s","p"].includes(k)&&!e.target.closest("input,textarea,[contenteditable='true']"))e.preventDefault();});
+$("#year").textContent=new Date().getFullYear();
+renderWords();renderPosts();renderTimeline();
+refreshCommunityData();
+refreshSharedContent();
+
+// Restore owner tools only for the designated email. Existing localStorage keys/data are untouched.
+if(supabaseClient){
+ supabaseClient.auth.getSession().then(({data})=>{
+   const user=data && data.session && data.session.user; currentUser=user||null;
+   if(user && (user.email||"").toLowerCase()===AUTHORIZED_OWNER_EMAIL) { setOwner(true); refreshSharedContent(); }
+   else setOwner(false);
+ }).catch(()=>setOwner(false));
+ supabaseClient.auth.onAuthStateChange((event, session)=>{
+   const user=session && session.user; currentUser=user||null;
+   if(user && (user.email||"").toLowerCase()===AUTHORIZED_OWNER_EMAIL) { setOwner(true); refreshCommunityData(); refreshSharedContent(); }
+   else { if(event==="SIGNED_OUT" || event==="USER_DELETED") currentUser=null; setOwner(false); refreshCommunityData(); }
+ });
+}
+</script>
+</body>
+</html>
