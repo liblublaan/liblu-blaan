@@ -232,35 +232,38 @@ input,textarea,[contenteditable="true"],select,.comment-body{-webkit-user-select
 .rich-editor-wrap{position:relative;border:1px solid #cfcbbd;border-radius:13px;overflow:hidden;background:#fffef9}.rich-toolbar{display:flex;align-items:center;gap:5px;flex-wrap:wrap;padding:9px;border-bottom:1px solid var(--line);background:#f3f1e8}.rich-toolbar button{border:1px solid #ded9ca;background:#fffdf7;color:var(--forest);border-radius:7px;padding:7px 9px;min-height:34px;font-size:.82rem;font-weight:700}.rich-toolbar button:hover{background:#e8eddf}.toolbar-divider{height:25px;width:1px;background:#d7d1c2;margin:0 3px}.toolbar-select-label{display:inline-flex;align-items:center;gap:4px;font-size:.72rem;color:var(--muted);font-weight:800}.toolbar-select-label select{max-width:110px;border:1px solid #ded9ca;border-radius:7px;background:#fffdf7;color:var(--ink);padding:7px 5px;font-size:.78rem}.rich-editor{min-height:260px;padding:17px 18px;outline:none;line-height:1.7;overflow-wrap:anywhere}.rich-editor:empty:before{content:attr(data-placeholder);color:#969b92;pointer-events:none}.rich-editor p{margin:0 0 1em}.rich-editor h2{font-family:Georgia,serif;font-size:1.7rem;line-height:1.2;margin:.5em 0}.rich-editor h3{font-family:Georgia,serif;font-size:1.3rem;margin:.5em 0}.rich-editor blockquote{margin:1em 0;padding:8px 14px;border-left:3px solid var(--gold);background:#f7f3e8}.rich-editor ul,.rich-editor ol{padding-left:1.7em}.editor-help{padding:9px 13px;background:#f7f3e8;border-top:1px solid var(--line);color:var(--muted);font-size:.76rem}.post-rich-content{line-height:1.8;overflow-wrap:anywhere;white-space:normal}.post-rich-content p{margin:0 0 1em;color:#536158}.post-rich-content p:last-child{margin-bottom:0}.post-rich-content h2,.post-rich-content h3{font-family:Georgia,serif;color:var(--forest);line-height:1.3;margin:1em 0 .5em}.post-rich-content blockquote{margin:1em 0;padding:9px 15px;border-left:3px solid var(--gold);background:#f7f3e8;color:#536158}.post-rich-content ul,.post-rich-content ol{padding-left:1.6em;margin:.6em 0 1em}.post-rich-content a{color:#176b48;text-decoration:underline}.post-rich-content img{max-height:360px;object-fit:contain;border-radius:12px}@media(max-width:700px){.dictionary-posts{grid-template-columns:1fr}.rich-editor{min-height:220px;padding:14px}.rich-toolbar{gap:4px}.toolbar-select-label select{max-width:85px}}
 
 
-</style>
-<link rel="canonical" href="https://liblublaan.github.io/liblu-blaan/">
-<meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="application-name" content="Liblu Blaan">
-<meta name="author" content="Floramae Malayon">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Liblu Blaan">
-<meta property="og:title" content="Liblu Blaan — Blaan ang tribo, Blaan din ang lengwahe ko">
-<meta property="og:description" content="Discover the Blaan language, dictionary, pronunciation, heritage, stories, folklore, and cultural knowledge with Liblu Blaan.">
-<meta property="og:url" content="https://liblublaan.github.io/liblu-blaan/">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Liblu Blaan — Blaan ang tribo, Blaan din ang lengwahe ko">
-<meta name="twitter:description" content="A digital home for Blaan language, heritage, stories, folklore, and pronunciation.">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Liblu Blaan",
-  "alternateName": "Liblu Blaan — Blaan ang tribo, Blaan din ang lengwahe ko",
-  "url": "https://liblublaan.github.io/liblu-blaan/",
-  "description": "A digital library of Blaan words, pronunciation, folklore, traditions, and heritage.",
-  "inLanguage": ["en", "tl"],
-  "author": {
-    "@type": "Person",
-    "name": "Floramae Malayon"
-  }
-}
-</script>
 
+/* Cinematic cultural museum design additions — review copy */
+:root{--museum-red:#b84436;--museum-gold:#d8ad53}
+body{background-image:radial-gradient(#7c62351c .7px,transparent .7px);background-size:9px 9px}
+.topline{min-height:10px;font-size:0;padding:0}
+header{backdrop-filter:blur(14px)}
+.hero{padding-top:54px}
+.hero-art{box-shadow:10px 10px 0 var(--museum-red),var(--shadow);border-radius:4px}
+.btn,.stat,.word-card,.feature-card,.feed-card,.side-panel{border-radius:5px}
+.hero h1 em{color:var(--museum-red);text-decoration-color:var(--museum-gold)}
+.stat{box-shadow:4px 4px 0 #d6b66e}
+.museum-gallery{background:#e8dcc6;border-block:1px solid #d4c1a3;padding:58px 0}
+.museum-grid{display:grid;grid-template-columns:1.15fr .85fr .85fr;gap:18px}
+.museum-photo{position:relative;min-height:310px;overflow:hidden;background:#173c2e;border:2px solid #132d28;box-shadow:5px 5px 0 #d6b66e;color:#fff}
+.museum-photo:first-child{min-height:390px}
+.museum-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.museum-photo:hover img{transform:scale(1.035)}
+.museum-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#10271fee,transparent 72%);pointer-events:none}
+.museum-photo-copy{position:absolute;z-index:1;left:19px;right:19px;bottom:19px}
+.museum-photo-copy h3{font:700 1.5rem Georgia,serif;margin:8px 0;color:#fff8e8}
+.museum-photo-copy p{font-size:.82rem;color:#e8e5d8;margin:0}
+.museum-tag{display:inline-block;padding:6px 9px;border:1px solid #f0bd55aa;color:#f0bd55;font-size:.68rem;font-weight:850;letter-spacing:.1em;text-transform:uppercase}
+.museum-photo-tools{position:absolute;z-index:3;top:12px;right:12px}
+.museum-photo-tools label{display:inline-block;cursor:pointer;background:#fff9e9ed;color:#173c2e;border:1px solid #173c2e;padding:8px 10px;font-size:.72rem;font-weight:900}
+.museum-photo-tools input{display:none}
+.museum-note{font-size:.82rem;color:#6a6b58;margin-top:16px}
+.owner-edit-note{padding:13px 16px;margin-top:18px;background:#fff8e8;border-left:4px solid #df4b3e;font-size:.85rem;color:#445449}
+.museum-gallery .section-head h2{color:#173c2e}
+@media(max-width:900px){.museum-grid{grid-template-columns:1fr 1fr}.museum-photo:first-child{grid-row:span 2}}
+@media(max-width:650px){.hero{padding-top:30px}.museum-grid{grid-template-columns:1fr}.museum-photo,.museum-photo:first-child{min-height:300px;grid-row:auto}.museum-gallery{padding:34px 0}}
+
+</style>
 </head>
 <body>
 <div class="topline">PAGPAPANATILI NG WIKA • PAMANA • MGA KUWENTO NG BLAAN</div>
@@ -350,6 +353,20 @@ input,textarea,[contenteditable="true"],select,.comment-body{-webkit-user-select
  <div class="wrap">
   <div class="section-head"><div><span class="eyebrow">A record over time</span><h2>Community Timeline</h2><p>A chronological record of publications and important website updates.</p></div><button class="btn btn-outline owner-action hidden" id="addTimelineBtn">＋ Add timeline item</button></div>
   <div class="timeline" id="timelineList"></div>
+ </div>
+</section>
+
+
+<section class="museum-gallery" id="culture-gallery">
+ <div class="wrap">
+  <div class="section-head"><div><span class="eyebrow">A visual cultural archive</span><h2>Culture, Seen and Remembered</h2><p>Use owner-approved photographs to tell the story of Blaan heritage with dignity, context, permission, and accurate captions.</p></div></div>
+  <div class="museum-grid">
+   <article class="museum-photo"><img id="culture-photo-1" src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=85" alt="Art materials placeholder; replace with an owner-approved Blaan cultural photograph"><div class="museum-photo-tools"><label for="culture-upload-1">✎ Replace photo<input id="culture-upload-1" type="file" accept="image/*" data-photo-target="culture-photo-1" aria-label="Replace first cultural photo"></label></div><div class="museum-photo-copy"><span class="museum-tag">01 · Living art</span><h3>Art & Craftsmanship</h3><p>Replace with a verified image and accurate cultural context.</p></div></article>
+   <article class="museum-photo"><img id="culture-photo-2" src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?auto=format&fit=crop&w=900&q=85" alt="Creative studio placeholder; replace with an owner-approved Blaan cultural photograph"><div class="museum-photo-tools"><label for="culture-upload-2">✎ Replace photo<input id="culture-upload-2" type="file" accept="image/*" data-photo-target="culture-photo-2" aria-label="Replace second cultural photo"></label></div><div class="museum-photo-copy"><span class="museum-tag">02 · Knowledge</span><h3>Tradition & Learning</h3><p>Choose a community-approved photo.</p></div></article>
+   <article class="museum-photo"><img id="culture-photo-3" src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=900&q=85" alt="Books placeholder; replace with an owner-approved Blaan cultural photograph"><div class="museum-photo-tools"><label for="culture-upload-3">✎ Replace photo<input id="culture-upload-3" type="file" accept="image/*" data-photo-target="culture-photo-3" aria-label="Replace third cultural photo"></label></div><div class="museum-photo-copy"><span class="museum-tag">03 · Oral history</span><h3>Stories & Memory</h3><p>Honor elders and storytellers with permission and attribution.</p></div></article>
+  </div>
+  <p class="museum-note">The default photos are generic placeholders, not verified photographs of Blaan people or traditions.</p>
+  <div class="owner-edit-note"><strong>Owner photo controls:</strong> “Replace photo” lets you preview a local image on this page. This does not permanently save or upload it. For permanent changes on the live site, the owner editor must be connected to authorized cloud storage.</div>
  </div>
 </section>
 
@@ -836,3 +853,111 @@ $("#ownerForm").addEventListener("submit",async e=>{
  if(!data.session||!data.user){error.textContent="Walang active session. Subukan muli.";return;}
  currentUser=data.user;const isOwner=(data.user.email||"").toLowerCase()===AUTHORIZED_OWNER_EMAIL;
  setOwner(isOwner);await refreshCommunityData();if(isOwner)await syncLegacyLibraryToCloud();closeModal("ownerModal");
+});
+$("#entryImage").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;try{pendingImage=await resizeImage(f);$("#imagePreview").src=pendingImage;$("#imagePreview").classList.remove("hidden");}catch(err){alert("Could not read the image. Try another file.");}});
+$("#entryAudio").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;if(f.size>1_500_000){alert("For the local demo, audio files must be 1.5 MB or smaller. Use cloud storage on the live site.");e.target.value="";return;}try{pendingAudio=await fileToData(f);}catch(err){alert("Could not read the audio file.");}});
+$("#editorForm").addEventListener("submit",async e=>{
+ e.preventDefault();if(!ownerMode){alert("Owner mode muna.");return;}
+ const type=$("#contentType").value,title=$("#entryWord").value.trim(),body=(type==="post"?$("#richEditor").innerHTML:$("#entryMeaning").value).trim(),date=$("#entryDate").value.trim()||new Date().toLocaleDateString("en-PH",{year:"numeric",month:"long"});
+ if(type!=="timeline"&&!title){alert("Pakilagyan ng title o salita.");return;}
+ if(type!=="timeline"&&!(type==="post"?plainTextFromRich(body):body)){alert("Pakilagyan ng kahulugan o nilalaman.");return;}
+ if(type==="post"&&body.length>20000){alert("Masyadong mahaba ang post. Paikliin ang content.");return;}
+ if(type==="post" && supabaseClient && !editingLegacyIndex && !$("#editingPostId").value) {
+   const {data:sessionData}=await supabaseClient.auth.getSession();
+   const user=sessionData?.session?.user;
+   if(!user || (user.email||"").toLowerCase()!==AUTHORIZED_OWNER_EMAIL){alert("Owner session not verified.");return;}
+   const row={title,body,category:$("#entryCategory").value||"Announcement",published_at:date,owner_id:user.id};
+   if(pendingImage && (pendingImage.startsWith("http") || pendingImage.startsWith("data:image/"))) row.image_url=pendingImage;
+   const postId=$("#editingPostId").value;
+   const result=postId
+      ? await supabaseClient.from("community_posts").update({...row,updated_at:new Date().toISOString()}).eq("id",postId).select().single()
+      : await supabaseClient.from("community_posts").insert(row).select().single();
+   if(result.error){alert("Could not save to the cloud. Run the SQL setup file first. " + result.error.message);return;}
+   closeModal("editorModal");await refreshCommunityData();return;
+ }
+ if(type==="post" && supabaseClient && $("#editingPostId").value) {
+   const {data:sessionData}=await supabaseClient.auth.getSession();
+   const user=sessionData?.session?.user;
+   if(!user || (user.email||"").toLowerCase()!==AUTHORIZED_OWNER_EMAIL){alert("Owner session not verified.");return;}
+   const row={title,body,category:$("#entryCategory").value||"Announcement",published_at:date,updated_at:new Date().toISOString()};
+   if(pendingImage && (pendingImage.startsWith("http") || pendingImage.startsWith("data:image/"))) row.image_url=pendingImage;
+   const result=await supabaseClient.from("community_posts").update(row).eq("id",$("#editingPostId").value).select().single();
+   if(result.error){alert("Could not save the update: "+result.error.message);return;}
+   closeModal("editorModal");await refreshCommunityData();return;
+ }
+ if(type==="word" && supabaseClient && cloudWords!==null) {
+   const {data:sd}=await supabaseClient.auth.getSession(); const u=sd?.session?.user;
+   if(!u || (u.email||"").toLowerCase()!==AUTHORIZED_OWNER_EMAIL) return alert("The owner session could not be verified.");
+   const row={word:title,pronunciation:$("#entryPronunciation").value.trim(),category:$("#entryCategory").value,meaning:body,source:$("#entrySource").value.trim()||"Owner entry",audio_url:(pendingAudio.startsWith("https://")?pendingAudio:null)};
+   const result=editingWordValue
+     ? await supabaseClient.from("dictionary_words").update(row).eq("word",editingWordValue)
+     : await supabaseClient.from("dictionary_words").insert(row);
+   if(result.error)return alert("Could not save the word to the cloud: "+result.error.message);
+   editingWordValue=null;closeModal("editorModal"); await refreshSharedContent(); return;
+ }
+ if(type==="timeline" && supabaseClient && cloudTimeline!==null) {
+   const {data:sd}=await supabaseClient.auth.getSession(); const u=sd?.session?.user;
+   if(!u || (u.email||"").toLowerCase()!==AUTHORIZED_OWNER_EMAIL) return alert("The owner session could not be verified.");
+   const {error}=await supabaseClient.from("timeline_items").insert({event_date:date,title,body,legacy_key:legacyKey({date,title,body})});
+   if(error)return alert("Could not save the timeline to the cloud: "+error.message);
+   closeModal("editorModal"); await refreshSharedContent(); return;
+ }
+ if(type==="word"){
+   const entry={word:title,pronunciation:$("#entryPronunciation").value.trim(),category:$("#entryCategory").value,meaning:body,source:$("#entrySource").value.trim()||"Owner entry",audio:pendingAudio};
+   if(editingWordValue!==null){words=words.map(w=>w.word===editingWordValue?{...w,...entry}:w);editingWordValue=null;}
+   else words.unshift(entry);
+ }
+ if(type==="post"){
+   if (editingLegacyIndex !== null) {
+     const old=posts[editingLegacyIndex];
+     posts[editingLegacyIndex]={...old,title,body,date,category:$("#entryCategory").value||"Announcement",image:pendingImage||old.image||"",audio:pendingAudio||old.audio||""};
+     editingLegacyIndex=null;
+   } else {
+     alert("Cloud posts are not configured. This post can only be saved locally until the SQL setup is installed.");
+     return;
+   }
+ }
+ if(type==="timeline"){if(!title||!body){alert("Pakilagyan ng title at description.");return;}timelineItems.unshift({date,title,body});}
+ saveAll();renderWords();renderPosts();renderTimeline();closeModal("editorModal");
+});
+const richEditor=$("#richEditor");document.querySelectorAll(".rich-toolbar [data-command]").forEach(btn=>btn.addEventListener("click",()=>{richEditor.focus();document.execCommand(btn.dataset.command,false,null);}));$("#richFont").addEventListener("change",e=>{richEditor.focus();document.execCommand("fontName",false,e.target.value);});$("#richSize").addEventListener("change",e=>{richEditor.focus();document.execCommand("fontSize",false,e.target.value);});$("#richBlock").addEventListener("change",e=>{richEditor.focus();document.execCommand("formatBlock",false,e.target.value);});$("#richSpacing").addEventListener("change",e=>{richEditor.style.lineHeight=e.target.value;});richEditor.addEventListener("input",()=>{if(plainTextFromRich(richEditor.innerHTML).length>10000){alert("Hanggang 10,000 characters ang post content.");}});
+document.addEventListener("contextmenu",e=>{if(!e.target.closest("input,textarea,[contenteditable='true'],select,a,button"))e.preventDefault();});
+document.addEventListener("copy",e=>{if(!e.target.closest("input,textarea,[contenteditable='true'],select"))e.preventDefault();});
+document.addEventListener("cut",e=>{if(!e.target.closest("input,textarea,[contenteditable='true'],select"))e.preventDefault();});
+document.addEventListener("keydown",e=>{const k=e.key.toLowerCase();if((e.ctrlKey||e.metaKey)&&["c","x","u","s","p"].includes(k)&&!e.target.closest("input,textarea,[contenteditable='true']"))e.preventDefault();});
+$("#year").textContent=new Date().getFullYear();
+renderWords();renderPosts();renderTimeline();
+refreshCommunityData();
+refreshSharedContent();
+
+// Restore owner tools only for the designated email. Existing localStorage keys/data are untouched.
+if(supabaseClient){
+ supabaseClient.auth.getSession().then(({data})=>{
+   const user=data && data.session && data.session.user; currentUser=user||null;
+   if(user && (user.email||"").toLowerCase()===AUTHORIZED_OWNER_EMAIL) { setOwner(true); refreshSharedContent(); }
+   else setOwner(false);
+ }).catch(()=>setOwner(false));
+ supabaseClient.auth.onAuthStateChange((event, session)=>{
+   const user=session && session.user; currentUser=user||null;
+   if(user && (user.email||"").toLowerCase()===AUTHORIZED_OWNER_EMAIL) { setOwner(true); refreshCommunityData(); refreshSharedContent(); }
+   else { if(event==="SIGNED_OUT" || event==="USER_DELETED") currentUser=null; setOwner(false); refreshCommunityData(); }
+ });
+}
+</script>
+
+<script>
+document.querySelectorAll('[data-photo-target]').forEach(function(input){
+ input.addEventListener('change',function(event){
+  var file=event.target.files&&event.target.files[0]; if(!file)return;
+  if(!file.type.startsWith('image/')){alert('Please choose an image file.');return;}
+  var target=document.getElementById(event.target.dataset.photoTarget);
+  if(target){
+   if(target.dataset.localPreviewUrl)URL.revokeObjectURL(target.dataset.localPreviewUrl);
+   var url=URL.createObjectURL(file);target.dataset.localPreviewUrl=url;target.src=url;
+  }
+ });
+});
+</script>
+
+</body>
+</html>
