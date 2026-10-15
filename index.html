@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -946,17 +946,74 @@ if(supabaseClient){
 </script>
 
 <script>
-document.querySelectorAll('[data-photo-target]').forEach(function(input){
- input.addEventListener('change',function(event){
-  var file=event.target.files&&event.target.files[0]; if(!file)return;
-  if(!file.type.startsWith('image/')){alert('Please choose an image file.');return;}
-  var target=document.getElementById(event.target.dataset.photoTarget);
-  if(target){
-   if(target.dataset.localPreviewUrl)URL.revokeObjectURL(target.dataset.localPreviewUrl);
-   var url=URL.createObjectURL(file);target.dataset.localPreviewUrl=url;target.src=url;
-  }
+/* Cultural archive photo upload: owner-only Supabase Storage + shared database metadata. */
+(function(){
+ const BUCKET = "cultural-archive";
+ const OWNER_EMAIL = "liblublaan@gmail.com";
+ const status = document.querySelector(".owner-edit-note");
+ function setPhotoStatus(message, isError){
+   if(!status) return;
+   let el=document.getElementById("culturePhotoStatus");
+   if(!el){el=document.createElement("p");el.id="culturePhotoStatus";el.setAttribute("role","status");el.style.marginTop="8px";status.appendChild(el);}
+   el.textContent=message;
+   el.style.color=isError?"#a12626":"#176b48";
+ }
+ async function restoreSavedPhotos(){
+   if(!window.supabase || typeof supabaseClient==="undefined" || !supabaseClient) return;
+   const {data,error}=await supabaseClient.from("cultural_archive_photos").select("slot,public_url");
+   if(error){console.warn("Could not load saved cultural photos:",error.message);return;}
+   (data||[]).forEach(row=>{
+     const target=document.getElementById("culture-photo-"+row.slot);
+     if(target && row.public_url) target.src=row.public_url+(row.public_url.includes("?")?"&":"?")+"v="+encodeURIComponent(row.updated_at||Date.now());
+   });
+ }
+ document.querySelectorAll("[data-photo-target]").forEach(input=>{
+   input.addEventListener("change",async function(event){
+     const file=event.target.files&&event.target.files[0];
+     if(!file)return;
+     if(!["image/jpeg","image/png","image/webp","image/gif"].includes(file.type)){alert("Please choose a JPG, PNG, WEBP, or GIF image.");event.target.value="";return;}
+     if(file.size>8*1024*1024){alert("Please choose an image smaller than 8 MB.");event.target.value="";return;}
+     const target=document.getElementById(event.target.dataset.photoTarget);
+     const slot=Number((target&&target.id||"").replace("culture-photo-",""));
+     if(!target || ![1,2,3].includes(slot)){alert("Could not identify this cultural photo slot.");return;}
+     if(!supabaseClient){alert("Cloud connection is unavailable. The photo was not saved.");return;}
+     const {data:sessionData,error:sessionError}=await supabaseClient.auth.getSession();
+     const user=sessionData&&sessionData.session&&sessionData.session.user;
+     if(sessionError || !user || (user.email||"").toLowerCase()!==OWNER_EMAIL){
+       alert("Mag-log in muna gamit ang authorized owner account bago mag-replace ng cultural photo.");
+       event.target.value="";return;
+     }
+     const extension=(file.type.split("/")[1]||"jpeg").replace("jpeg","jpg").replace(/[^a-z0-9]/gi,"").toLowerCase()||"jpg";
+     const objectPath="photo-"+slot+"."+extension;
+     const label=event.target.closest("label");
+     const oldLabel=label?label.childNodes[0].textContent:"";
+     if(label) label.childNodes[0].textContent="Uploading… ";
+     setPhotoStatus("Uploading photo "+slot+" to secure cloud storage…",false);
+     try{
+       const upload=await supabaseClient.storage.from(BUCKET).upload(objectPath,file,{upsert:true,contentType:file.type,cacheControl:"0"});
+       if(upload.error) throw upload.error;
+       const publicResult=supabaseClient.storage.from(BUCKET).getPublicUrl(objectPath);
+       const publicUrl=publicResult&&publicResult.data&&publicResult.data.publicUrl;
+       if(!publicUrl) throw new Error("Could not create a public photo URL.");
+       const save=await supabaseClient.from("cultural_archive_photos").upsert({
+         slot:slot,storage_path:objectPath,public_url:publicUrl,updated_at:new Date().toISOString()
+       },{onConflict:"slot"});
+       if(save.error) throw save.error;
+       target.src=publicUrl+"?v="+Date.now();
+       target.alt="Owner-approved cultural archive photograph";
+       setPhotoStatus("Photo "+slot+" uploaded and saved. It should now appear for other visitors and after refresh.",false);
+     }catch(err){
+       console.error("Cultural photo save failed:",err);
+       setPhotoStatus("Photo was not saved: "+(err&&err.message?err.message:"Unknown upload error")+". Check the Supabase bucket and SQL policies.",true);
+       alert("Hindi na-save ang larawan sa cloud.\n\n"+(err&&err.message?err.message:"Unknown error")+"\n\nPakisuri ang Supabase Storage bucket at policies.");
+     }finally{
+       if(label) label.childNodes[0].textContent=oldLabel||"✎ Replace photo ";
+       event.target.value="";
+     }
+   });
  });
-});
+ restoreSavedPhotos().catch(err=>console.warn("Cultural photo restore failed:",err));
+})();
 </script>
 
 </body>
