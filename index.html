@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -263,6 +263,22 @@ header{backdrop-filter:blur(14px)}
 @media(max-width:900px){.museum-grid{grid-template-columns:1fr 1fr}.museum-photo:first-child{grid-row:span 2}}
 @media(max-width:650px){.hero{padding-top:30px}.museum-grid{grid-template-columns:1fr}.museum-photo,.museum-photo:first-child{min-height:300px;grid-row:auto}.museum-gallery{padding:34px 0}}
 
+
+/* Owner-only controls, accessible image previews, and quiet visitor feedback */
+.museum-photo-tools,.owner-edit-note{display:none}
+body.owner-mode .museum-photo-tools{display:block}
+body.owner-mode .owner-edit-note{display:block}
+#imagePreview{display:block;width:100%;height:auto;max-height: min(48vh,420px);object-fit:contain;object-position:center;background:#e9e8df;border:1px solid var(--line);padding:8px;margin-top:10px}
+#imageField input[type=file]{width:100%;max-width:100%;padding:12px;border:1px dashed #b9c4b5;border-radius:12px;background:#f7f8f2}
+.post-cover-wrap{margin:12px 0 16px;display:grid;gap:8px;justify-items:start}
+.post-image{display:block;width:100%;height:auto;max-height:460px;object-fit:contain;object-position:center;background:#f0efe8;border:1px solid var(--line);padding:5px;cursor:zoom-in}
+.post-cover-open{border:1px solid var(--line);background:#f4f5ed;color:var(--forest);border-radius:10px;padding:8px 12px;font-size:.82rem;font-weight:800}
+#postImageModal .modal{width:min(1000px,100%);max-height:94dvh}
+#postImageModal .post-image-full{display:block;width:100%;height:auto;max-height:76dvh;object-fit:contain;background:#efeee7;border-radius:12px}
+#siteToast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:100;max-width:min(92vw,520px);padding:12px 16px;border-radius:12px;background:#20392e;color:#fffdf7;box-shadow:0 10px 30px #0003;font-size:.9rem;display:none}
+#siteToast.show{display:block}
+@media(max-width:650px){.post-image{max-height:320px}.post-cover-wrap{margin:10px 0 13px}#postImageModal .modal{padding:12px}#postImageModal .post-image-full{max-height:72dvh}}
+
 </style>
 </head>
 <body>
@@ -366,7 +382,7 @@ header{backdrop-filter:blur(14px)}
    <article class="museum-photo"><img id="culture-photo-3" src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=900&q=85" alt="Books placeholder; replace with an owner-approved Blaan cultural photograph"><div class="museum-photo-tools"><label for="culture-upload-3">✎ Replace photo<input id="culture-upload-3" type="file" accept="image/*" data-photo-target="culture-photo-3" aria-label="Replace third cultural photo"></label></div><div class="museum-photo-copy"><span class="museum-tag">03 · Oral history</span><h3>Stories & Memory</h3><p>Honor elders and storytellers with permission and attribution.</p></div></article>
   </div>
   <p class="museum-note">The default photos are generic placeholders, not verified photographs of Blaan people or traditions.</p>
-  <div class="owner-edit-note"><strong>Owner photo controls:</strong> “Replace photo” lets you preview a local image on this page. This does not permanently save or upload it. For permanent changes on the live site, the owner editor must be connected to authorized cloud storage.</div>
+  <div class="owner-edit-note"><strong>Owner photo controls:</strong> Only the authorized owner can replace these shared cultural archive photos. Uploaded images are saved to cloud storage for other visitors to see.</div>
  </div>
 </section>
 
@@ -447,6 +463,13 @@ header{backdrop-filter:blur(14px)}
   </form>
  </div>
 </div>
+
+<div class="modal-backdrop" id="postImageModal" role="dialog" aria-modal="true" aria-labelledby="postImageTitle">
+  <div class="modal"><div class="modal-head"><h2 id="postImageTitle">Post image preview</h2><button class="icon-btn" data-close="postImageModal" aria-label="Close image preview">✕</button></div>
+    <img id="postImageFull" class="post-image-full" alt="Full-size post cover preview">
+  </div>
+</div>
+<div id="siteToast" role="status" aria-live="polite"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -590,6 +613,18 @@ function sanitizeRichHtml(value="") {
 function renderRichContent(value=""){return sanitizeRichHtml(value);}
 function plainTextFromRich(html=""){const d=new DOMParser().parseFromString(String(html),"text/html");return (d.body.textContent||"").trim();}
 function renderDictionaryPosts(){const target=$("#dictionaryPosts");if(!target)return;const all=[...(cloudPosts||[]),...(posts||[]).filter(p=>!cloudPosts.some(c=>c.legacy_key===legacyKey(p)))].filter(p=>String(p.category||"").toLowerCase()==="dictionary");target.innerHTML=all.length?all.map(p=>`<article class="dictionary-post-card"><div class="kicker">Dictionary · ${escapeHTML(p.published_at||p.date||"Update")}</div><h4>${escapeHTML(p.title||"Dictionary note")}</h4><div class="post-rich-content">${renderRichContent(p.body||"")}</div>${ownerMode&&p.id?`<div class="post-owner-actions"><button class="social-btn" type="button" onclick="editCloudPost('${p.id}')">✎ Edit</button></div>`:""}</article>`).join(""):'<div class="empty">Wala pang Dictionary post. Kapag nag-publish ka ng post sa Writing Lounge at pinili ang “Dictionary,” lalabas din ito rito.</div>';}
+let toastTimer=null;
+function showToast(message){
+ const el=$("#siteToast");if(!el)return;
+ el.textContent=message;el.classList.add("show");
+ clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove("show"),3600);
+}
+function openPostImage(src,title){
+ const safe=safeMediaUrl(src,"image");if(!safe)return;
+ $("#postImageTitle").textContent=title||"Post image preview";
+ $("#postImageFull").src=safe;$("#postImageFull").alt="Cover image for "+(title||"post");
+ openModal("postImageModal");
+}
 function renderCloudPost(p) {
   const comments = postComments.filter(c => c.post_id === p.id);
   const liked = !!currentUser && postReactions.some(r => r.post_id === p.id && r.visitor_id === currentUser.id);
@@ -597,7 +632,7 @@ function renderCloudPost(p) {
   const imageUrl=safeMediaUrl(p.image_url,"image");
   return `<article class="feed-card" data-cloud-post="${p.id}">
     <div class="feed-head"><div class="avatar">BB</div><div><strong>Liblu Blaan</strong><small>${escapeHTML(p.published_at || new Date(p.created_at).toLocaleDateString())} · Official update</small></div><span class="post-tag">${escapeHTML(p.category || "Update")}</span></div>
-    <h3>${escapeHTML(p.title)}</h3><div class="post-rich-content">${renderRichContent(p.body)}</div>${imageUrl ? `<img class="post-image" src="${imageUrl}" alt="Image for ${escapeHTML(p.title)}" loading="lazy">` : ""}
+    <h3>${escapeHTML(p.title)}</h3>${imageUrl ? `<div class="post-cover-wrap"><img class="post-image" src="${imageUrl}" alt="Cover image for ${escapeHTML(p.title)}" loading="eager" decoding="async" onclick="openPostImage('${imageUrl.replace(/'/g,"%27")}','${escapeHTML(p.title).replace(/'/g,"&#39;")}')"><button class="post-cover-open" type="button" onclick="openPostImage('${imageUrl.replace(/'/g,"%27")}','${escapeHTML(p.title).replace(/'/g,"&#39;")}')">⤢ Open cover preview</button></div>` : ""}<div class="post-rich-content">${renderRichContent(p.body)}</div>
     <div class="post-actions"><button class="social-btn ${liked ? "liked" : ""}" type="button" onclick="likeCloudPost('${p.id}')" ${liked ? "disabled" : ""}>♥ ${liked ? "Liked" : "Like"} (${postReactions.filter(r=>r.post_id===p.id).length})</button><button class="social-btn" type="button" onclick="focusComment('${p.id}')">💬 Comment (${comments.length})</button><button class="social-btn" type="button" onclick="shareCloudPost('${p.id}')">↗ Share</button>${isOwner ? `<button class="social-btn" type="button" onclick="editCloudPost('${p.id}')">✎ Edit</button><button class="social-btn" type="button" onclick="deleteCloudPost('${p.id}')">Delete</button>` : ""}</div>
     <div class="post-comments"><strong>Comments & replies</strong><div class="comment-list">${renderCommentTree(p.id) || '<p class="legal-note">Wala pang comment. Maging magalang sa pagbahagi.</p>'}</div>
       <form class="comment-form" onsubmit="submitCloudComment(event,'${p.id}')"><input name="display_name" maxlength="60" placeholder="Pangalan o display name" value="${escapeHTML(currentUser?.user_metadata?.full_name || currentUser?.user_metadata?.name || (currentUser?.email||"").split("@")[0] || "")}" required ${currentUser ? "" : "disabled"}><textarea name="body" maxlength="1000" placeholder="Isulat ang comment…" required ${currentUser ? "" : "disabled"}></textarea><div class="legal-note" id="reply-label-${p.id}">${currentUser ? (replyToByPost[p.id] ? "May napiling reply target." : "") : "Mag-login para makapag-comment."}</div><button class="btn btn-light" type="submit" ${currentUser ? "" : "disabled"}>Post comment / reply</button></form>
@@ -607,7 +642,7 @@ function renderLegacyPost(p, i, migratedKeys) {
   const key = legacyKey(p);
   if (migratedKeys.has(key)) return "";
   const imageUrl=safeMediaUrl(p.image,"image"), audioUrl=safeMediaUrl(p.audio,"audio");
-  return `<article class="feed-card"><div class="feed-head"><div class="avatar">BB</div><div><strong>Liblu Blaan</strong><small>${escapeHTML(p.date||"Recent update")} · Browser-saved post</small></div><span class="post-tag">${escapeHTML(p.category||"Update")}</span></div><h3>${escapeHTML(p.title)}</h3><div class="post-rich-content">${renderRichContent(p.body)}</div>${imageUrl?`<img class="post-image" src="${imageUrl}" alt="Image for ${escapeHTML(p.title)}" loading="lazy">`:""}${audioUrl?`<audio controls preload="none" style="width:100%;margin:8px 0"><source src="${audioUrl}"></audio>`:""}<div class="post-actions">${ownerMode?`<button class="social-btn" type="button" onclick="editLegacyPost(${i})">✎ Edit locally</button><button class="social-btn" type="button" onclick="deletePost(${i})">Delete local post</button>`:""}<span class="legal-note">This older post is stored in this browser until the owner imports it.</span></div></article>`;
+  return `<article class="feed-card"><div class="feed-head"><div class="avatar">BB</div><div><strong>Liblu Blaan</strong><small>${escapeHTML(p.date||"Recent update")} · Browser-saved post</small></div><span class="post-tag">${escapeHTML(p.category||"Update")}</span></div><h3>${escapeHTML(p.title)}</h3>${imageUrl?`<div class="post-cover-wrap"><img class="post-image" src="${imageUrl}" alt="Cover image for ${escapeHTML(p.title)}" loading="eager" decoding="async" onclick="openPostImage('${imageUrl.replace(/'/g,"%27")}','${escapeHTML(p.title).replace(/'/g,"&#39;")}')"><button class="post-cover-open" type="button" onclick="openPostImage('${imageUrl.replace(/'/g,"%27")}','${escapeHTML(p.title).replace(/'/g,"&#39;")}')">⤢ Open cover preview</button></div>`:""}<div class="post-rich-content">${renderRichContent(p.body)}</div>${audioUrl?`<audio controls preload="none" style="width:100%;margin:8px 0"><source src="${audioUrl}"></audio>`:""}<div class="post-actions">${ownerMode?`<button class="social-btn" type="button" onclick="editLegacyPost(${i})">✎ Edit locally</button><button class="social-btn" type="button" onclick="deletePost(${i})">Delete local post</button>`:""}<span class="legal-note">This older post is stored in this browser until the owner imports it.</span></div></article>`;
 }
 function renderPosts() {
   const feed = $("#feedList");
@@ -620,12 +655,16 @@ function renderPosts() {
   renderDictionaryPosts();
 }
 async function likeCloudPost(postId) {
-  if (!supabaseClient) return alert("The community database is unavailable.");
+  if (!currentUser) { openOwner(); $("#loginError").textContent="Mag-login muna para makapag-like ng post."; return; }
+  if (!supabaseClient) { showToast("Hindi muna available ang pag-like. Pakisubukan ulit mamaya."); return; }
   try {
     const {error} = await supabaseClient.from("post_reactions").insert({post_id:postId, visitor_id:currentUser.id});
     if (error && !String(error.code).includes("23505")) throw error;
     await refreshCommunityData();
-  } catch (e) { alert("Like could not be saved. Make sure the Supabase SQL setup has been applied. " + (e.message || "")); }
+  } catch (e) {
+    console.warn("Like could not be saved:", e.message || e);
+    showToast("Hindi na-save ang like. Pakisubukan ulit mamaya.");
+  }
 }
 function focusComment(postId) {
   const form = document.querySelector(`[data-cloud-post="${postId}"] .comment-form`);
@@ -639,7 +678,7 @@ function setReplyTarget(postId, commentId) {
 }
 async function submitCloudComment(event, postId) {
   event.preventDefault();
-  if (!supabaseClient) return alert("The community database is unavailable.");
+  if (!supabaseClient) return showToast("Hindi muna available ang community feature. Pakisubukan ulit mamaya.");
   const form = event.currentTarget;
   const display_name = form.elements.display_name.value.trim();
   const body = form.elements.body.value.trim();
@@ -652,7 +691,7 @@ async function submitCloudComment(event, postId) {
     if (error) throw error;
     delete replyToByPost[postId];
     await refreshCommunityData();
-  } catch (e) { alert("Comment/reply could not be saved. Make sure the Supabase SQL setup has been applied. " + (e.message || "")); }
+  } catch (e) { console.warn("Comment/reply could not be saved:", e.message || e); showToast("Hindi na-save ang comment. Pakisubukan ulit mamaya."); }
 }
 async function shareCloudPost(postId) {
   const p = cloudPosts.find(x => x.id === postId);
@@ -713,7 +752,7 @@ async function syncLegacyPostsToCloud() {
     if (!user || (user.email||"").toLowerCase() !== AUTHORIZED_OWNER_EMAIL) throw new Error("Owner session not found.");
     for (const p of posts) {
       const key=legacyKey(p);
-      const row={legacy_key:key,title:String(p.title||"Untitled").slice(0,200),body:String(p.body||"").slice(0,10000),category:String(p.category||"Update").slice(0,60),image_url:(p.image && p.image.startsWith("http"))?p.image:null,published_at:String(p.date||new Date().toISOString().slice(0,10)).slice(0,60),owner_id:user.id};
+      const row={legacy_key:key,title:String(p.title||"Untitled").slice(0,200),body:String(p.body||"").slice(0,10000),category:String(p.category||"Update").slice(0,60),image_url:(p.image && (p.image.startsWith("http") || p.image.startsWith("data:image/")))?p.image:null,published_at:String(p.date||new Date().toISOString().slice(0,10)).slice(0,60),owner_id:user.id};
       const {error}=await supabaseClient.from("community_posts").upsert(row,{onConflict:"legacy_key",ignoreDuplicates:true});
       if(error) throw error;
       count++;
@@ -728,7 +767,7 @@ function renderTimeline(){
  const activeTimeline = cloudTimeline !== null ? cloudTimeline : timelineItems;
  $("#timelineList").innerHTML=activeTimeline.map((t,i)=>`<article class="timeline-card"><small>${escapeHTML(t.date||t.event_date||"Update")}</small><h3>${escapeHTML(t.title)}</h3><p>${escapeHTML(t.body)}</p>${ownerMode?`<button class="text-link" style="margin-top:10px" onclick="deleteTimeline(${i})">Delete item</button>`:""}</article>`).join("");
 }
-function setOwner(on){ownerMode=!!on;document.querySelectorAll(".owner-action").forEach(b=>b.classList.toggle("hidden",!ownerMode));$("#ownerPanel").classList.toggle("hidden",!ownerMode);$("#ownerForm").classList.toggle("hidden",ownerMode);$("#ownerTitle").textContent=ownerMode?"Editors Lounge":"Log in / Sign up";$("#ownerOpen").textContent=currentUser?(ownerMode?"Editors Lounge":"Account / Log out"):"Log in / Sign up";renderWords();renderPosts();renderTimeline();}
+function setOwner(on){ownerMode=!!on;document.body.classList.toggle("owner-mode",ownerMode);document.querySelectorAll(".owner-action").forEach(b=>b.classList.toggle("hidden",!ownerMode));$("#ownerPanel").classList.toggle("hidden",!ownerMode);$("#ownerForm").classList.toggle("hidden",ownerMode);$("#ownerTitle").textContent=ownerMode?"Editors Lounge":"Log in / Sign up";$("#ownerOpen").textContent=currentUser?(ownerMode?"Editors Lounge":"Account / Log out"):"Log in / Sign up";renderWords();renderPosts();renderTimeline();}
 function openModal(id){$("#"+id).classList.add("open");document.body.style.overflow="hidden";}
 function closeModal(id){$("#"+id).classList.remove("open");document.body.style.overflow="";}
 function openOwner(){ $("#loginError").textContent="";$("#ownerPassword").value="";authMode="login";$("#authSubmit").textContent="Log in";$("#authModeToggle").textContent="Create account";$("#ownerForm").classList.remove("hidden");$("#ownerPanel").classList.add("hidden");$("#ownerTitle").textContent="Log in / Sign up";openModal("ownerModal");}
@@ -794,7 +833,7 @@ function deletePost(i){if(confirm("Delete this post?")){posts.splice(i,1);saveAl
 async function deleteTimeline(i){if(!ownerMode)return openOwner();if(!confirm("Delete this timeline item?"))return;if(supabaseClient && cloudTimeline!==null){const item=cloudTimeline[i];if(!item)return;const {error}=await supabaseClient.from("timeline_items").delete().eq("id",item.id);if(error)return alert("Could not delete from cloud: "+error.message);await refreshSharedContent();return;}timelineItems.splice(i,1);saveAll();renderTimeline();}
 async function resizeImage(file){
  if(!file||!file.type.startsWith("image/"))return "";
- return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onerror=reject;reader.onload=()=>{const img=new Image();img.onerror=reject;img.onload=()=>{const max=1400,scale=Math.min(1,max/Math.max(img.width,img.height));const canvas=document.createElement("canvas");canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);const ctx=canvas.getContext("2d");ctx.drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL("image/jpeg",.78));};img.src=reader.result;};reader.readAsDataURL(file);});
+ return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onerror=reject;reader.onload=()=>{const img=new Image();img.onerror=reject;img.onload=()=>{const max=1800,scale=Math.min(1,max/Math.max(img.width,img.height));const canvas=document.createElement("canvas");canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);const ctx=canvas.getContext("2d");ctx.drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL("image/jpeg",.82));};img.src=reader.result;};reader.readAsDataURL(file);});
 }
 async function fileToData(file){if(!file)return "";return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file);});}
 $("#wordGrid").addEventListener("click",async e=>{
@@ -854,7 +893,7 @@ $("#ownerForm").addEventListener("submit",async e=>{
  currentUser=data.user;const isOwner=(data.user.email||"").toLowerCase()===AUTHORIZED_OWNER_EMAIL;
  setOwner(isOwner);await refreshCommunityData();if(isOwner)await syncLegacyLibraryToCloud();closeModal("ownerModal");
 });
-$("#entryImage").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;try{pendingImage=await resizeImage(f);$("#imagePreview").src=pendingImage;$("#imagePreview").classList.remove("hidden");}catch(err){alert("Could not read the image. Try another file.");}});
+$("#entryImage").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;try{pendingImage=await resizeImage(f);$("#imagePreview").src=pendingImage;$("#imagePreview").classList.remove("hidden");$("#imagePreview").scrollIntoView({block:"nearest",behavior:"smooth"});}catch(err){showToast("Hindi mabasa ang larawan. Sumubok ng ibang image.");}});
 $("#entryAudio").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;if(f.size>1_500_000){alert("For the local demo, audio files must be 1.5 MB or smaller. Use cloud storage on the live site.");e.target.value="";return;}try{pendingAudio=await fileToData(f);}catch(err){alert("Could not read the audio file.");}});
 $("#editorForm").addEventListener("submit",async e=>{
  e.preventDefault();if(!ownerMode){alert("Owner mode muna.");return;}
