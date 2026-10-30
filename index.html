@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -270,6 +270,8 @@ body.owner-mode .museum-photo-tools{display:block}
 body.owner-mode .owner-edit-note{display:block}
 #imagePreview{display:block;width:100%;height:auto;max-height: min(48vh,420px);object-fit:contain;object-position:center;background:#e9e8df;border:1px solid var(--line);padding:8px;margin-top:10px}
 #imageField input[type=file]{width:100%;max-width:100%;padding:12px;border:1px dashed #b9c4b5;border-radius:12px;background:#f7f8f2}
+#filePreview img{display:block}#filePreview audio{display:block}
+#filePreview img{display:block}#filePreview audio{display:block}
 .post-cover-wrap{margin:12px 0 16px;display:grid;gap:8px;justify-items:start}
 .post-image{display:block;width:100%;height:auto;max-height:460px;object-fit:contain;object-position:center;background:#f0efe8;border:1px solid var(--line);padding:5px;cursor:zoom-in}
 .post-cover-open{border:1px solid var(--line);background:#f4f5ed;color:var(--forest);border-radius:10px;padding:8px 12px;font-size:.82rem;font-weight:800}
@@ -455,8 +457,19 @@ body.owner-mode .owner-edit-note{display:block}
     <label class="toolbar-select-label">Spacing <select id="richSpacing"><option value="1.5">Normal</option><option value="1.8">Relaxed</option><option value="2">Wide</option></select></label><button type="button" data-command="removeFormat">Clear</button></div>
     <div id="richEditor" class="rich-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Post content editor" data-placeholder="Write your post here. Press Enter to start a new paragraph."></div><div class="editor-help">Tip: Press Enter to start a new paragraph. Select text before changing its font, size, or alignment.</div></div>
     <textarea id="entryMeaning" placeholder="Enter the meaning or content…" maxlength="10000"></textarea></div>
-   <div class="field hidden" id="audioField"><label for="entryAudio">Audio file (optional)</label><input id="entryAudio" type="file" accept="audio/*"><small style="color:var(--muted)">Audio files are not uploaded to the server by this form. Use cloud storage before publishing audio so everyone can access it.</small></div>
-   <div class="field hidden" id="imageField"><label for="entryImage">Post image (optional)</label><input id="entryImage" type="file" accept="image/*"><small style="color:var(--muted)">The image is resized in the browser. Upload it to cloud storage so everyone can access it.</small><img id="imagePreview" class="hidden" alt="Image preview" style="max-height:170px;object-fit:contain;border-radius:10px"></div>
+   <div class="field hidden" id="audioField"><label for="entryAudio">Pronunciation audio (optional)</label><input id="entryAudio" type="file" accept="audio/*"><small style="color:var(--muted)">Optional audio recording for dictionary entries.</small></div>
+    <div class="field hidden" id="imageField">
+      <label for="entryFile">Upload File (optional)</label>
+      <input id="entryFile" type="file" accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml,audio/mpeg,audio/wav,audio/ogg,application/pdf">
+      <small style="color:var(--muted)">Attach an image, SVG, audio, or PDF file. Hindi required ang attachment para makapag-publish. Maximum file size: 15 MB.</small>
+      <div id="filePreview" class="hidden" style="margin-top:10px;padding:12px;border:1px solid var(--line);border-radius:12px;background:#f7f8f2">
+        <div id="filePreviewName" style="font-weight:800;overflow-wrap:anywhere"></div>
+        <img id="imagePreview" class="hidden" alt="Attachment preview" style="max-width:100%;max-height:220px;object-fit:contain;border-radius:10px;margin-top:8px">
+        <audio id="audioPreview" class="hidden" controls style="width:100%;margin-top:8px"></audio>
+        <a id="filePreviewLink" class="hidden text-link" target="_blank" rel="noopener noreferrer">Open selected file</a>
+        <button id="removeAttachment" type="button" class="btn btn-outline" style="margin-top:9px">Remove file</button>
+      </div>
+    </div>
    <div class="field hidden" id="dateField"><label for="entryDate">Date / year</label><input id="entryDate" placeholder="e.g. 2026 · October"></div>
    <div class="notice">Do not publish unverified meanings, sensitive community knowledge, or recordings without permission.</div>
    <button class="btn btn-primary" type="submit" id="editorSaveButton">Save content</button>
@@ -503,7 +516,7 @@ const safeRead = (key, fallback) => { try { const v=localStorage.getItem(key); r
 let words = safeRead("liblu_words", initialWords);
 let posts = safeRead("liblu_posts", initialPosts);
 let timelineItems = safeRead("liblu_timeline", initialTimeline);
-let ownerMode = false, currentUser = null, currentFilter = "All", pendingImage = "", pendingAudio = "", editingLegacyIndex = null, editingWordValue = null;
+let ownerMode = false, currentUser = null, currentFilter = "All", pendingImage = "", pendingAudio = "", pendingFile = null, pendingAttachmentUrl = "", attachmentCleared = false, editingLegacyIndex = null, editingWordValue = null;
 function saveAll(){try{localStorage.setItem("liblu_words",JSON.stringify(words));localStorage.setItem("liblu_posts",JSON.stringify(posts));localStorage.setItem("liblu_timeline",JSON.stringify(timelineItems));}catch(e){alert("Not enough browser storage. Use a smaller image/audio file or connect the site to cloud storage.");}}
 function escapeHTML(s=""){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function safeMediaUrl(value, kind="image") {
@@ -625,14 +638,27 @@ function openPostImage(src,title){
  $("#postImageFull").src=safe;$("#postImageFull").alt="Cover image for "+(title||"post");
  openModal("postImageModal");
 }
+function safeAttachmentUrl(value=""){const v=String(value||"").trim();return /^https:\/\//i.test(v)?escapeHTML(v):"";}
+function attachmentMarkup(url,title="Attached file"){
+ const safe=safeAttachmentUrl(url);if(!safe)return "";
+ const path=safe.split("?")[0].toLowerCase();
+ const name=escapeHTML(decodeURIComponent(path.split("/").pop()||title));
+ if(/\.(?:png|jpe?g|gif|webp|svg)$/i.test(path)){
+   return `<div class="post-cover-wrap"><img class="post-image" src="${safe}" alt="${escapeHTML(title)} attachment" loading="lazy" decoding="async"><a class="post-cover-open" href="${safe}" target="_blank" rel="noopener noreferrer">⤢ Open image / SVG</a></div>`;
+ }
+ if(/\.(?:mp3|wav|ogg|m4a|webm)$/i.test(path)){
+   return `<div class="post-cover-wrap"><audio controls preload="none" style="width:100%"><source src="${safe}"></audio><a class="text-link" href="${safe}" target="_blank" rel="noopener noreferrer">Open audio file</a></div>`;
+ }
+ return `<div class="post-cover-wrap"><a class="post-cover-open" href="${safe}" target="_blank" rel="noopener noreferrer">↗ ${name}</a></div>`;
+}
 function renderCloudPost(p) {
   const comments = postComments.filter(c => c.post_id === p.id);
   const liked = !!currentUser && postReactions.some(r => r.post_id === p.id && r.visitor_id === currentUser.id);
   const isOwner = ownerMode;
-  const imageUrl=safeMediaUrl(p.image_url,"image");
+  const attachmentUrl=safeAttachmentUrl(p.image_url);
   return `<article class="feed-card" data-cloud-post="${p.id}">
     <div class="feed-head"><div class="avatar">BB</div><div><strong>Liblu Blaan</strong><small>${escapeHTML(p.published_at || new Date(p.created_at).toLocaleDateString())} · Official update</small></div><span class="post-tag">${escapeHTML(p.category || "Update")}</span></div>
-    <h3>${escapeHTML(p.title)}</h3>${imageUrl ? `<div class="post-cover-wrap"><img class="post-image" src="${imageUrl}" alt="Cover image for ${escapeHTML(p.title)}" loading="eager" decoding="async" onclick="openPostImage('${imageUrl.replace(/'/g,"%27")}','${escapeHTML(p.title).replace(/'/g,"&#39;")}')"><button class="post-cover-open" type="button" onclick="openPostImage('${imageUrl.replace(/'/g,"%27")}','${escapeHTML(p.title).replace(/'/g,"&#39;")}')">⤢ Open cover preview</button></div>` : ""}<div class="post-rich-content">${renderRichContent(p.body)}</div>
+    <h3>${escapeHTML(p.title)}</h3>${attachmentUrl ? attachmentMarkup(attachmentUrl,p.title) : ""}<div class="post-rich-content">${renderRichContent(p.body)}</div>
     <div class="post-actions"><button class="social-btn ${liked ? "liked" : ""}" type="button" onclick="likeCloudPost('${p.id}')" ${liked ? "disabled" : ""}>♥ ${liked ? "Liked" : "Like"} (${postReactions.filter(r=>r.post_id===p.id).length})</button><button class="social-btn" type="button" onclick="focusComment('${p.id}')">💬 Comment (${comments.length})</button><button class="social-btn" type="button" onclick="shareCloudPost('${p.id}')">↗ Share</button>${isOwner ? `<button class="social-btn" type="button" onclick="editCloudPost('${p.id}')">✎ Edit</button><button class="social-btn" type="button" onclick="deleteCloudPost('${p.id}')">Delete</button>` : ""}</div>
     <div class="post-comments"><strong>Comments & replies</strong><div class="comment-list">${renderCommentTree(p.id) || '<p class="legal-note">Wala pang comment. Maging magalang sa pagbahagi.</p>'}</div>
       <form class="comment-form" onsubmit="submitCloudComment(event,'${p.id}')"><input name="display_name" maxlength="60" placeholder="Pangalan o display name" value="${escapeHTML(currentUser?.user_metadata?.full_name || currentUser?.user_metadata?.name || (currentUser?.email||"").split("@")[0] || "")}" required ${currentUser ? "" : "disabled"}><textarea name="body" maxlength="1000" placeholder="Isulat ang comment…" required ${currentUser ? "" : "disabled"}></textarea><div class="legal-note" id="reply-label-${p.id}">${currentUser ? (replyToByPost[p.id] ? "May napiling reply target." : "") : "Mag-login para makapag-comment."}</div><button class="btn btn-light" type="submit" ${currentUser ? "" : "disabled"}>Post comment / reply</button></form>
@@ -718,14 +744,13 @@ async function editCloudPost(postId) {
   $("#meaningField").classList.remove("hidden");$("#richEditorWrap").classList.remove("hidden");$("#entryMeaning").classList.add("hidden");$("#richEditor").innerHTML=renderRichContent(p.body||"");
   $("#audioField").classList.add("hidden");
   $("#imageField").classList.remove("hidden");
+  pendingAttachmentUrl=safeAttachmentUrl(p.image_url);pendingFile=null;attachmentCleared=false;
+  showExistingAttachment(p.image_url||"");
   $("#dateField").classList.remove("hidden");
   $("#entryWord").value=p.title || "";
   $("#entryMeaning").value=p.body || "";
   $("#entryDate").value=p.published_at || "";
   setEditorCategories("post", p.category || "Announcement");
-  pendingImage=safeMediaUrl(p.image_url,"image") ? p.image_url : "";
-  if(pendingImage){$("#imagePreview").src=pendingImage;$("#imagePreview").classList.remove("hidden");}
-  else $("#imagePreview").classList.add("hidden");
   openModal("editorModal");
 }
 function editLegacyPost(i) {
@@ -781,7 +806,7 @@ function setEditorCategories(type, selected="") {
 }
 function openEditor(type, legacyData=null){
  if(!ownerMode){openOwner();return;}
- $("#editorForm").reset();pendingImage="";pendingAudio="";editingWordValue=null;$("#imagePreview").classList.add("hidden");
+ $("#editorForm").reset();pendingImage="";pendingAudio="";pendingFile=null;pendingAttachmentUrl="";attachmentCleared=false;editingWordValue=null;resetAttachmentPreview();
  $("#editingPostId").value="";
  if (!legacyData) editingLegacyIndex=null;
  $("#editorSaveButton").textContent="Save content";
@@ -793,7 +818,7 @@ function openEditor(type, legacyData=null){
  $("#entrySource").value="";
  $("#meaningField").classList.toggle("hidden",type==="timeline");
  $("#richEditorWrap").classList.toggle("hidden",type!=="post");$("#entryMeaning").classList.toggle("hidden",type==="post");$("#richEditor").innerHTML="";
- $("#audioField").classList.toggle("hidden",type!=="word"&&type!=="post");
+ $("#audioField").classList.toggle("hidden",type!=="word");
  $("#imageField").classList.toggle("hidden",type!=="post");
  $("#dateField").classList.toggle("hidden",type==="word");
  $("#entryWord").placeholder=type==="post"?"Pamagat ng post":type==="timeline"?"Pamagat ng timeline":"e.g. AYÈM";
@@ -893,7 +918,46 @@ $("#ownerForm").addEventListener("submit",async e=>{
  currentUser=data.user;const isOwner=(data.user.email||"").toLowerCase()===AUTHORIZED_OWNER_EMAIL;
  setOwner(isOwner);await refreshCommunityData();if(isOwner)await syncLegacyLibraryToCloud();closeModal("ownerModal");
 });
-$("#entryImage").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;try{pendingImage=await resizeImage(f);$("#imagePreview").src=pendingImage;$("#imagePreview").classList.remove("hidden");$("#imagePreview").scrollIntoView({block:"nearest",behavior:"smooth"});}catch(err){showToast("Hindi mabasa ang larawan. Sumubok ng ibang image.");}});
+function resetAttachmentPreview(){
+ pendingFile=null;pendingAttachmentUrl="";
+ const box=$("#filePreview");if(box)box.classList.add("hidden");
+ ["imagePreview","audioPreview","filePreviewLink"].forEach(id=>{const el=$("#"+id);if(!el)return;el.classList.add("hidden");if("src" in el)el.removeAttribute("src");});
+ $("#filePreviewName").textContent="";
+}
+function showExistingAttachment(url){
+ const safe=safeAttachmentUrl(url);if(!safe)return resetAttachmentPreview();
+ const box=$("#filePreview"),name=$("#filePreviewName"),path=safe.split("?")[0].toLowerCase();
+ box.classList.remove("hidden");name.textContent="Existing attachment";
+ if(/\.(?:png|jpe?g|gif|webp|svg)$/i.test(path)){$("#imagePreview").src=safe;$("#imagePreview").classList.remove("hidden");}
+ else if(/\.(?:mp3|wav|ogg|m4a|webm)$/i.test(path)){$("#audioPreview").src=safe;$("#audioPreview").classList.remove("hidden");}
+ else{$("#filePreviewLink").href=safe;$("#filePreviewLink").textContent="Open existing attachment";$("#filePreviewLink").classList.remove("hidden");}
+}
+async function uploadCommunityAttachment(file){
+ if(!supabaseClient)throw new Error("Hindi available ang cloud storage connection.");
+ const bucket="community-uploads";
+ const ext=(file.name.split(".").pop()||"file").toLowerCase().replace(/[^a-z0-9]/g,"");
+ const safeName=(file.name||"attachment").replace(/[^a-zA-Z0-9._-]/g,"-").slice(-90);
+ const path=`posts/${currentUser.id}/${Date.now()}-${Math.random().toString(36).slice(2,9)}-${safeName||("file."+ext)}`;
+ const {error}=await supabaseClient.storage.from(bucket).upload(path,file,{upsert:false,contentType:file.type||"application/octet-stream",cacheControl:"3600"});
+ if(error)throw error;
+ const {data}=supabaseClient.storage.from(bucket).getPublicUrl(path);
+ if(!data?.publicUrl)throw new Error("Hindi makuha ang public URL ng uploaded file.");
+ return data.publicUrl;
+}
+$("#entryFile").addEventListener("change",e=>{
+ const file=e.target.files?.[0];if(!file)return;
+ const allowed=["image/jpeg","image/png","image/webp","image/gif","image/svg+xml","audio/mpeg","audio/wav","audio/ogg","application/pdf"];
+ if(!allowed.includes(file.type)){alert("File type not supported. Choose JPG, PNG, WEBP, GIF, SVG, MP3, WAV, OGG, or PDF.");e.target.value="";return;}
+ if(file.size>15*1024*1024){alert("Maximum file size is 15 MB.");e.target.value="";return;}
+ pendingFile=file;pendingAttachmentUrl="";
+ const box=$("#filePreview");box.classList.remove("hidden");$("#filePreviewName").textContent=`${file.name} · ${(file.size/1024/1024).toFixed(2)} MB`;
+ ["imagePreview","audioPreview","filePreviewLink"].forEach(id=>{$("#"+id).classList.add("hidden");});
+ const localUrl=URL.createObjectURL(file);
+ if(file.type.startsWith("image/")){$("#imagePreview").src=localUrl;$("#imagePreview").classList.remove("hidden");}
+ else if(file.type.startsWith("audio/")){$("#audioPreview").src=localUrl;$("#audioPreview").classList.remove("hidden");}
+ else{$("#filePreviewLink").href=localUrl;$("#filePreviewLink").textContent="Preview / open selected PDF";$("#filePreviewLink").classList.remove("hidden");}
+});
+$("#removeAttachment").addEventListener("click",()=>{resetAttachmentPreview();attachmentCleared=true;$("#entryFile").value="";});
 $("#entryAudio").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;if(f.size>1_500_000){alert("For the local demo, audio files must be 1.5 MB or smaller. Use cloud storage on the live site.");e.target.value="";return;}try{pendingAudio=await fileToData(f);}catch(err){alert("Could not read the audio file.");}});
 $("#editorForm").addEventListener("submit",async e=>{
  e.preventDefault();if(!ownerMode){alert("Owner mode muna.");return;}
@@ -906,7 +970,9 @@ $("#editorForm").addEventListener("submit",async e=>{
    const user=sessionData?.session?.user;
    if(!user || (user.email||"").toLowerCase()!==AUTHORIZED_OWNER_EMAIL){alert("Owner session not verified.");return;}
    const row={title,body,category:$("#entryCategory").value||"Announcement",published_at:date,owner_id:user.id};
-   if(pendingImage && (pendingImage.startsWith("http") || pendingImage.startsWith("data:image/"))) row.image_url=pendingImage;
+   if(pendingFile){try{pendingAttachmentUrl=await uploadCommunityAttachment(pendingFile);}catch(uploadError){alert("Hindi na-upload ang attachment: "+uploadError.message+"\\n\\nTiyaking may public Supabase Storage bucket na community-uploads at tamang upload policy.");return;}}
+   if(pendingAttachmentUrl)row.image_url=pendingAttachmentUrl;
+   if(attachmentCleared)row.image_url=null;
    const postId=$("#editingPostId").value;
    const result=postId
       ? await supabaseClient.from("community_posts").update({...row,updated_at:new Date().toISOString()}).eq("id",postId).select().single()
@@ -919,7 +985,9 @@ $("#editorForm").addEventListener("submit",async e=>{
    const user=sessionData?.session?.user;
    if(!user || (user.email||"").toLowerCase()!==AUTHORIZED_OWNER_EMAIL){alert("Owner session not verified.");return;}
    const row={title,body,category:$("#entryCategory").value||"Announcement",published_at:date,updated_at:new Date().toISOString()};
-   if(pendingImage && (pendingImage.startsWith("http") || pendingImage.startsWith("data:image/"))) row.image_url=pendingImage;
+   if(pendingFile){try{pendingAttachmentUrl=await uploadCommunityAttachment(pendingFile);}catch(uploadError){alert("Hindi na-upload ang attachment: "+uploadError.message+"\\n\\nTiyaking may public Supabase Storage bucket na community-uploads at tamang upload policy.");return;}}
+   if(pendingAttachmentUrl)row.image_url=pendingAttachmentUrl;
+   if(attachmentCleared)row.image_url=null;
    const result=await supabaseClient.from("community_posts").update(row).eq("id",$("#editingPostId").value).select().single();
    if(result.error){alert("Could not save the update: "+result.error.message);return;}
    closeModal("editorModal");await refreshCommunityData();return;
@@ -949,7 +1017,7 @@ $("#editorForm").addEventListener("submit",async e=>{
  if(type==="post"){
    if (editingLegacyIndex !== null) {
      const old=posts[editingLegacyIndex];
-     posts[editingLegacyIndex]={...old,title,body,date,category:$("#entryCategory").value||"Announcement",image:pendingImage||old.image||"",audio:pendingAudio||old.audio||""};
+     posts[editingLegacyIndex]={...old,title,body,date,category:$("#entryCategory").value||"Announcement",image:attachmentCleared?"":(pendingAttachmentUrl||pendingImage||old.image||""),audio:pendingAudio||old.audio||""};
      editingLegacyIndex=null;
    } else {
      alert("Cloud posts are not configured. This post can only be saved locally until the SQL setup is installed.");
